@@ -74,6 +74,21 @@ $(document).ready(function () {
         "</div>"
     })
 
+
+    //Vue.component('blog-panel', {
+    //    props: ['todo'],
+    //    template:
+    //    "<div class=\"panel panel-primary\">\n" +
+    //    "    <div class=\"panel-heading\">\n" +
+    //    "        <h3 class=\"panel-title\">{{todo.title}}</h3>\n" +
+    //    "    </div>\n" +
+    //    "    <ul class=\"list-group\">\n" +
+    //    "        <li v-for=\"item in todo.items\" class=\"list-group-item\"><router-link to=\"item.url\">{{ item.text }}</router-link></li>\n" +
+    //    "    </ul>\n" +
+    //    "</div>"
+    //})
+
+
     //$.ajax({
     //    url : 'vueServlet',
     //    type : 'POST',

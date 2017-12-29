@@ -10,10 +10,19 @@
 
   <servlet>
     <servlet-name>VueServlet</servlet-name>
-    <servlet-class>com.linn.servlet.VueServlet</servlet-class>
+    <servlet-class>com.linn.home.servlet.VueServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>VueServlet</servlet-name>
     <url-pattern>/vueServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CategoryServlet</servlet-name>
+    <servlet-class>com.linn.home.servlet.CategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryServlet</servlet-name>
+    <url-pattern>/categoryServlet</url-pattern>
   </servlet-mapping>
 </web-app>
