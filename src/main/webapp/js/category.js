@@ -1,21 +1,23 @@
+//1.定义模板
 const listGroup = Vue.extend({
-    template: "<div id='list' class=\"list-group\">\n" +
-    "    <a href=\"#\" class=\"list-group-item\">\n" +
+    template:
+    "<div id='list' class=\"list-group\">\n" +
+    "    <a v-for=\"site in sites\" class=\"list-group-item\">\n" +
     "        <h4 class=\"list-group-item-heading\">\n" +
-    "            {{ $route.params.id  }}\n" +
+    "            {{ site.name }}\n" +
     "        </h4>\n" +
-    "        <span class=\"text-muted\">{{ message }}.</span>\n" +
+    "        <span class=\"text-muted\">{{ site.description }}.</span>\n" +
     "    </a>\n" +
     "</div>",
     data: function () {
         return {
-            title: '通知消息',
-            message: 'Hello, vue router!'
+            sites: null
         }
     },
     created:function () {
         // 组件创建完后获取数据，
         // 此时 data 已经被 observed 了
+
         this.fetchData()
     },
     watch: {
@@ -24,31 +26,30 @@ const listGroup = Vue.extend({
     },
     methods: {
         fetchData:function(){
-            alert(this.$route.params.id);
-
+            this.sites = null;
+            var resp = null;
+            $.ajax({
+                url : 'categoryServlet',
+                type : 'POST',
+                async : false,
+                data : {
+                    id:this.$route.params.id
+                },
+                success : function(data) {
+                    resp = eval(data);
+                },
+                error : function() {
+                    resp = eval(data);
+                }
+            });
+            this.sites = resp;
         }
     }
 })
 
-const Bar = {
-    template: '<div>{{$route.params.id}}</div>'
-}
-//Vue.component('mycontent', {
-//    props: ['content'],
-//
-//    render: function(h) {
-//        this.coms = [];
-//        for(var i = 0; i < this.content.length; i++) {
-//            this.coms.push(h(this.content[i], {}))
-//        }
-//        return h('div', {},
-//            this.coms)
-//    },
-//});
 // 2. 定义路由
 const routes = [
-    { path: '/category/:id', component: listGroup },
-    { path: '/category/:id', component: Bar }
+    { path: '/category/:id', component: listGroup }
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
