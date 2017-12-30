@@ -2,16 +2,16 @@
 const listGroup = Vue.extend({
     template:
     "<div id='list' class=\"list-group\">\n" +
-    "    <a v-for=\"site in sites\" class=\"list-group-item\">\n" +
+    "    <a v-for=\"item in items\" class=\"list-group-item\">\n" +
     "        <h4 class=\"list-group-item-heading\">\n" +
-    "            {{ site.name }}\n" +
+    "            {{ item.name }}\n" +
     "        </h4>\n" +
-    "        <span class=\"text-muted\">{{ site.description }}.</span>\n" +
+    "        <span class=\"text-muted\">{{ item.description }}.</span>\n" +
     "    </a>\n" +
     "</div>",
     data: function () {
         return {
-            sites: null
+            items: null
         }
     },
     created:function () {
@@ -26,7 +26,7 @@ const listGroup = Vue.extend({
     },
     methods: {
         fetchData:function(){
-            this.sites = null;
+            this.items = null;
             var resp = null;
             $.ajax({
                 url : 'categoryServlet',
@@ -42,7 +42,7 @@ const listGroup = Vue.extend({
                     resp = eval(data);
                 }
             });
-            this.sites = resp;
+            this.items = resp;
         }
     }
 })
@@ -59,5 +59,12 @@ const router = new VueRouter({
 
 // 4. 创建和挂载根实例。
 const app = new Vue({
-    router: router
+    router: router,
+    data: {
+        sites: [
+            { name: 'Runoob',url:'/category/1' },
+            { name: 'Google',url:'/category/2' },
+            { name: 'Taobao',url:'/category/3' }
+        ]
+    }
 }).$mount('#app')

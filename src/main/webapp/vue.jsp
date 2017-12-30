@@ -28,11 +28,7 @@
                     <h3 class="panel-title">分类</h3>
                 </div>
                 <ul class="list-group">
-                    <!-- 使用 router-link 组件来导航. -->
-                    <!-- 通过传入 `to` 属性指定链接. -->
-                    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-                    <a class="list-group-item"><router-link to="/vue/1">Go to Foo</router-link></a>
-                    <a class="list-group-item"><router-link to="/vue/2">Go to Foo</router-link></a>
+                    <a v-for="site in sites" class="list-group-item"><router-link :to="site.url">{{ site.name }}</router-link></a>
                 </ul>
             </div>
         </div>

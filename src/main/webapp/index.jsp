@@ -67,8 +67,7 @@
                         <!-- 使用 router-link 组件来导航. -->
                         <!-- 通过传入 `to` 属性指定链接. -->
                         <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-                        <a class="list-group-item"><router-link to="/category/1">Go to Foo</router-link></a>
-                        <a class="list-group-item"><router-link to="/category/2">Go to Foo</router-link></a>
+                        <a v-for="site in sites" class="list-group-item"><router-link :to="site.url">{{ site.name }}</router-link></a>
                     </ul>
                 </div>
                 <div class="panel panel-primary">
@@ -76,7 +75,7 @@
                         <h3 class="panel-title">归档</h3>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#">2017年12月</a></li>
+                        <%--<li v-for="item in items" class="list-group-item"><a href="#">{{ item.name }}</a></li>--%>
                         <li class="list-group-item"><a href="#">2017年12月</a></li>
                     </ul>
                 </div>
