@@ -25,4 +25,13 @@
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/categoryServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ArticleServlet</servlet-name>
+    <servlet-class>com.linn.home.servlet.ArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleServlet</servlet-name>
+    <url-pattern>/articleServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -67,7 +67,7 @@
                         <!-- 使用 router-link 组件来导航. -->
                         <!-- 通过传入 `to` 属性指定链接. -->
                         <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-                        <a v-for="site in sites" class="list-group-item"><router-link :to="site.url">{{ site.name }}</router-link></a>
+                        <a v-for="site in sites" class="list-group-item"><router-link :to="routePath + site.id">{{ site.name }}</router-link></a>
                     </ul>
                 </div>
                 <div class="panel panel-primary">

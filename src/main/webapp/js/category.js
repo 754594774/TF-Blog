@@ -1,12 +1,13 @@
+const routePath = '/category/';
 //1.定义模板
 const listGroup = Vue.extend({
     template:
     "<div id='list' class=\"list-group\">\n" +
     "    <a v-for=\"item in items\" class=\"list-group-item\">\n" +
     "        <h4 class=\"list-group-item-heading\">\n" +
-    "            {{ item.name }}\n" +
+    "            {{ item.title }}\n" +
     "        </h4>\n" +
-    "        <span class=\"text-muted\">{{ item.description }}.</span>\n" +
+    "        <span class=\"text-muted\">{{ item.author }}.</span>\n" +
     "    </a>\n" +
     "</div>",
     data: function () {
@@ -29,11 +30,11 @@ const listGroup = Vue.extend({
             this.items = null;
             var resp = null;
             $.ajax({
-                url : 'categoryServlet',
+                url : 'articleServlet',
                 type : 'POST',
                 async : false,
                 data : {
-                    id:this.$route.params.id
+                    categoryId:this.$route.params.id
                 },
                 success : function(data) {
                     resp = eval(data);
@@ -49,7 +50,7 @@ const listGroup = Vue.extend({
 
 // 2. 定义路由
 const routes = [
-    { path: '/category/:id', component: listGroup }
+    { path: routePath + ':id', component: listGroup }
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
@@ -61,10 +62,31 @@ const router = new VueRouter({
 const app = new Vue({
     router: router,
     data: {
-        sites: [
-            { name: 'Runoob',url:'/category/1' },
-            { name: 'Google',url:'/category/2' },
-            { name: 'Taobao',url:'/category/3' }
-        ]
+        sites: null,
+        routePath:routePath
+    },
+    created: function () {
+        // `this` 指向 vm 实例
+        this.sites=getCategoryData();
     }
 }).$mount('#app')
+
+//调用后台接口方法，使用同步调用，保证在页面构建完成前渲染数据
+function getCategoryData(id) {
+    var resp = null;
+    $.ajax({
+        url : 'categoryServlet',
+        type : 'POST',
+        async : false,
+        data : {
+            id:id
+        },
+        success : function(data) {
+            resp = eval(data);
+        },
+        error : function() {
+            resp = eval(data);
+        }
+    });
+    return resp;
+}
