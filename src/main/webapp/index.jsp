@@ -78,7 +78,10 @@
                         <h3 class="panel-title">归档</h3>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#">2017年12月</a></li>
+                        <a v-for="site in sites" class="list-group-item">
+                            <h4 class="list-group-item-heading"><router-link :to="routePath + site.id">{{ site.name }}</router-link></h4>
+                        </a>
+                        <%--<li class="list-group-item"><a href="#">2017年12月</a></li>--%>
                     </ul>
                 </div>
                 <div class="panel panel-primary">

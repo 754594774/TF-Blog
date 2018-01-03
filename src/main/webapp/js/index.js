@@ -8,28 +8,24 @@ $(document).ready(function () {
         },
         created: function () {
             // `this` 指向 vm 实例
-            this.sites=getCategoryData();
+            this.sites = null;
+            var resp = null;
+            $.ajax({
+                url : 'categoryServlet',
+                type : 'POST',
+                async : false,
+                data : {
+                    action:'toCategoryList'
+                },
+                success : function(data) {
+                    resp = $.parseJSON(data);
+                },
+                error : function() {
+                    resp = $.parseJSON(data);
+                }
+            });
+            this.sites = resp;
         }
     }).$mount('#app')
-
-//调用后台接口方法，使用同步调用，保证在页面构建完成前渲染数据
-    function getCategoryData(id) {
-        var resp = null;
-        $.ajax({
-            url : 'categoryServlet',
-            type : 'POST',
-            async : false,
-            data : {
-                action:'toCategoryList',
-                id:id
-            },
-            success : function(data) {
-                resp = $.parseJSON(data);
-            },
-            error : function() {
-                resp = $.parseJSON(data);
-            }
-        });
-        return resp;
-    }
 });
+//[Archive{date='20180102', count='3'}, Archive{date='20180103', count='9'}, Archive{date='20180104', count='1'}]

@@ -17,6 +17,10 @@
         <result property="isDraft" column="is_draft"/>
         <result property="isDeleted" column="is_deleted"/>
     </resultMap>
+    <resultMap id="archivesResultMap" type="com.linn.home.entity.Archive">
+        <result property="date" column="pubtime"/>
+        <result property="count" column="cnt"/>
+    </resultMap>
     <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">
         select * from blog_article where category_id = #{categoryId};
     </select>
@@ -25,4 +29,7 @@
         select * from blog_article where id = #{articleId};
     </select>
 
+    <select id="selectAllArchive" resultMap="archivesResultMap">
+        SELECT DATE_FORMAT(`gmt_create`,'%Y%m%d') AS pubtime, COUNT(*) AS cnt FROM blog_article GROUP BY DATE_FORMAT(`gmt_create`,'%Y%m%d');
+    </select>
 </mapper>

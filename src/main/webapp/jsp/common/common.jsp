@@ -5,7 +5,8 @@
 <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/vue/vue.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/vue/vue-router.js"></script>
-<%--<script src="${pageContext.request.contextPath}/js/global.js"></script>--%>
+<script src="${pageContext.request.contextPath}/js/date.js"></script>
+
 
 
 
