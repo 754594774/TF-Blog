@@ -2,11 +2,8 @@ package com.linn.home.service.impl;
 
 import com.linn.frame.util.MyBatisUtils;
 import com.linn.home.dao.ArticleMapper;
-import com.linn.home.dao.CategoryMapper;
 import com.linn.home.entity.Article;
-import com.linn.home.entity.Category;
 import com.linn.home.service.ArticleService;
-import com.linn.home.service.CategoryService;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
@@ -22,5 +19,15 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> articles = mapper.selectArticleByCategoryId(categoryId);
         session.close();
         return articles;
+    }
+
+    @Override
+    public Article selectArticleById(int articleId) throws Exception {
+        SqlSession session =  MyBatisUtils.getSqlSession();
+
+        ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+        Article article = mapper.selectArticleById(articleId);
+        session.close();
+        return article;
     }
 }

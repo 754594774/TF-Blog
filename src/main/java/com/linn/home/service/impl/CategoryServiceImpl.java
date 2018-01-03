@@ -15,7 +15,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findCategoryList() throws IOException {
         SqlSession session =  MyBatisUtils.getSqlSession();
 
-        CategoryMapper mapper = session.getMapper(CategoryMapper.class);
+        CategoryMapper mapper = session .getMapper(CategoryMapper.class);
         List<Category> categorys = mapper.selectAllCategory();
         session.close();
         return categorys;

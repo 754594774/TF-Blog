@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface ArticleService {
 
-    List<Article> selectArticleByCategoryId(int categoryId) throws IOException;
+    List<Article> selectArticleByCategoryId(int categoryId) throws Exception;
+
+    Article selectArticleById(int articleId) throws Exception;
 }

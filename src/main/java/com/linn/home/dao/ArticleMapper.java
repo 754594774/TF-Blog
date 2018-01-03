@@ -11,4 +11,11 @@ public interface ArticleMapper {
      * @return
      */
     List<Article> selectArticleByCategoryId(int categoryId);
+
+    /**
+     * 根据id查询文章信息
+     * @param articleId
+     * @return
+     */
+    Article selectArticleById(int articleId);
 }

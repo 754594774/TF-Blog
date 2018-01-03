@@ -6,18 +6,23 @@
 <mapper namespace="com.linn.home.dao.ArticleMapper">
     <resultMap id="articleResultMap" type="com.linn.home.entity.Article">
         <id property="id" column="id" />
-        <result property="category_id" column="category_id"/>
+        <result property="categoryId" column="category_id"/>
         <result property="title" column="title"/>
         <result property="author" column="author"/>
         <result property="content" column="content"/>
-        <result property="gmtCreate" column="gmtCreate"/>
-        <result property="gmtModified" column="gmtModified"/>
-        <result property="sort_no" column="sort_no"/>
-        <result property="is_stick" column="is_stick"/>
-        <result property="is_draft" column="is_draft"/>
-        <result property="is_deleted" column="is_deleted"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="sortNo" column="sort_no"/>
+        <result property="isStick" column="is_stick"/>
+        <result property="isDraft" column="is_draft"/>
+        <result property="isDeleted" column="is_deleted"/>
     </resultMap>
     <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">
         select * from blog_article where category_id = #{categoryId};
     </select>
+
+    <select id="selectArticleById"  parameterType="int" resultMap="articleResultMap">
+        select * from blog_article where id = #{articleId};
+    </select>
+
 </mapper>

@@ -17,7 +17,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis/categoryMapper.xml"/>
-        <mapper resource="mybatis/articleMapper.xml"/>
+        <mapper resource="mybatis/mysql/home/categoryMapper.xml"/>
+        <mapper resource="mybatis/mysql/home/articleMapper.xml"/>
     </mappers>
 </configuration>
