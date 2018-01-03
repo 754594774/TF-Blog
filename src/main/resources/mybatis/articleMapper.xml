@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.linn.home.dao.ArticleMapper">
+    <resultMap id="articleResultMap" type="com.linn.home.entity.Article">
+        <id property="id" column="id" />
+        <result property="category_id" column="category_id"/>
+        <result property="title" column="title"/>
+        <result property="author" column="author"/>
+        <result property="content" column="content"/>
+        <result property="gmtCreate" column="gmtCreate"/>
+        <result property="gmtModified" column="gmtModified"/>
+        <result property="sort_no" column="sort_no"/>
+        <result property="is_stick" column="is_stick"/>
+        <result property="is_draft" column="is_draft"/>
+        <result property="is_deleted" column="is_deleted"/>
+    </resultMap>
+    <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">
+        select * from blog_article where category_id = #{categoryId};
+    </select>
+</mapper>
