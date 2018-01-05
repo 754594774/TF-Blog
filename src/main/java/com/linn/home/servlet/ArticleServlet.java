@@ -2,6 +2,7 @@ package com.linn.home.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.linn.frame.util.DateUtils;
+import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
 import com.linn.home.entity.Category;
 import com.linn.home.service.ArticleService;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class ArticleServlet extends HttpServlet {
@@ -36,10 +39,12 @@ public class ArticleServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String action = request.getParameter("action");
 
-		if (action.equals("toArticleListForcCid")){
-			toArticleListForcCid(request,response);
+		if (action.equals("toArticleList")){
+			toArticleList(request,response);
 		} else if(action.equals("toArticleDetail")) {
 			toArticleDetail(request,response);
+		} else if(action.equals("getArchiveList")) {
+			getArchiveList(request,response);
 		}
 	}
 
@@ -58,11 +63,24 @@ public class ArticleServlet extends HttpServlet {
 		out.close();
 	}
 
-	private void toArticleListForcCid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void toArticleList(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		List<Article> articles = null;
 		try {
 			String categoryId = request.getParameter("categoryId");
-			articles = articleService.selectArticleByCategoryId(Integer.parseInt(categoryId));
+			String archiveDate = request.getParameter("archiveDate");
+			if(categoryId != null && !categoryId.equals("")){
+				articles = articleService.selectArticleByCategoryId(Integer.parseInt(categoryId));
+			} else if(archiveDate != null && !archiveDate.equals("")){
+				Date firstDay = DateUtils.firstDayByMonth(archiveDate);
+				Date lastDay = DateUtils.lastDayByMonth(archiveDate);
+				HashMap<String,Date> hashMap = new HashMap<String, Date>();
+				hashMap.put("firstDay",firstDay);
+				hashMap.put("lastDay",lastDay);
+				articles = articleService.selectArticleByArchiveDate(hashMap);
+			} else {
+				//failed
+			}
+
 		} catch (Exception e){
 			logger.error(e.getMessage(),e);
 		}
@@ -72,4 +90,19 @@ public class ArticleServlet extends HttpServlet {
 		out.flush();
 		out.close();
 	}
+
+	private void getArchiveList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		List<Archive> archives = null;
+		try {
+			archives = articleService.selectAllArchive();
+		} catch (Exception e){
+			logger.error(e.getMessage(),e);
+		}
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.write(JSON.toJSONString(archives));
+		out.flush();
+		out.close();
+	}
+
 }

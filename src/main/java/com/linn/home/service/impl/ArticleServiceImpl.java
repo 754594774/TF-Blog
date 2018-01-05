@@ -8,6 +8,9 @@ import com.linn.home.service.ArticleService;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
+import java.security.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class ArticleServiceImpl implements ArticleService {
@@ -18,6 +21,16 @@ public class ArticleServiceImpl implements ArticleService {
 
         ArticleMapper mapper = session.getMapper(ArticleMapper.class);
         List<Article> articleList = mapper.selectArticleByCategoryId(categoryId);
+        session.close();
+        return articleList;
+    }
+
+    @Override
+    public List<Article> selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception {
+        SqlSession session =  MyBatisUtils.getSqlSession();
+
+        ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+        List<Article> articleList = mapper.selectArticleByArchiveDate(hashMap);
         session.close();
         return articleList;
     }

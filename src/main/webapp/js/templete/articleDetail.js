@@ -4,7 +4,7 @@ const articleDetail = Vue.extend({
     "<div class=\"panel panel-default\">\n" +
     "\t<div class=\"panel-body\">\n" +
     "\t\t<h2>{{item.title}}</h2>\n" +
-    "\t\t<span class=\"text-muted\">{{item.gmtCreate| yyyyMMdd }} by {{item.author}}</span>\n" +
+    "\t\t<span class=\"text-muted\">{{item.gmtCreate| articleDateFilter}} by {{item.author}}</span>\n" +
     "\t\t<p>{{item.content}}</p>\n" +
     "  </div>\n" +
     "</div>",

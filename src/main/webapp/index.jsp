@@ -68,8 +68,8 @@
                         <!-- 使用 router-link 组件来导航. -->
                         <!-- 通过传入 `to` 属性指定链接. -->
                         <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-                        <a v-for="site in sites" class="list-group-item">
-                            <h4 class="list-group-item-heading"><router-link :to="routePath + site.id">{{ site.name }}</router-link></h4>
+                        <a v-for="category in categorys" class="list-group-item">
+                            <h4 class="list-group-item-heading"><router-link :to="categoryRoutePath + category.id">{{ category.name }}</router-link></h4>
                         </a>
                     </ul>
                 </div>
@@ -78,8 +78,8 @@
                         <h3 class="panel-title">归档</h3>
                     </div>
                     <ul class="list-group">
-                        <a v-for="site in sites" class="list-group-item">
-                            <h4 class="list-group-item-heading"><router-link :to="routePath + site.id">{{ site.name }}</router-link></h4>
+                        <a v-for="archive in archives" class="list-group-item">
+                            <h4 class="list-group-item-heading"><router-link :to="archivesRoutePath + archive.date">{{ archive.date| archiveDateFilter}} </router-link>({{archive.count}})</h4>
                         </a>
                         <%--<li class="list-group-item"><a href="#">2017年12月</a></li>--%>
                     </ul>

@@ -28,13 +28,16 @@ const categoryList = Vue.extend({
         fetchData:function(){
             this.items = null;
             var resp = null;
+            var categoryId = this.$route.params.id;
+            var archiveDate = this.$route.params.date;
             $.ajax({
                 url : 'articleServlet',
                 type : 'POST',
                 async : false,
                 data : {
-                    action:'toArticleListForcCid',
-                    categoryId:this.$route.params.id
+                    action:'toArticleList',
+                    categoryId:categoryId,
+                    archiveDate:archiveDate
                 },
                 success : function(data) {
                     resp = $.parseJSON(data);

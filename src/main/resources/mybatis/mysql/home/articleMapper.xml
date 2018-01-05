@@ -22,7 +22,11 @@
         <result property="count" column="cnt"/>
     </resultMap>
     <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">
-        select * from blog_article where category_id = #{categoryId};
+        select * from blog_article where category_id = #{categoryId} order by id desc;
+    </select>
+
+    <select id="selectArticleByArchiveDate"  parameterType="hashmap" resultMap="articleResultMap">
+        select * from blog_article where gmt_create &gt; #{firstDay} and  gmt_create &lt; #{lastDay} order by gmt_create desc;
     </select>
 
     <select id="selectArticleById"  parameterType="int" resultMap="articleResultMap">
@@ -30,6 +34,6 @@
     </select>
 
     <select id="selectAllArchive" resultMap="archivesResultMap">
-        SELECT DATE_FORMAT(`gmt_create`,'%Y%m%d') AS pubtime, COUNT(*) AS cnt FROM blog_article GROUP BY DATE_FORMAT(`gmt_create`,'%Y%m%d');
+        SELECT DATE_FORMAT(`gmt_create`,'%Y%m') AS pubtime, COUNT(*) AS cnt FROM blog_article GROUP BY pubtime DESC;
     </select>
 </mapper>
