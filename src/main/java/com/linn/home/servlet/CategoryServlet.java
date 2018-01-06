@@ -29,14 +29,12 @@ public class CategoryServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("utf-8");
 		List<Category> categorys = null;
 		try {
 			categorys = categoryService.findCategoryList();
 		}catch (Exception e){
 			logger.error(e.getMessage(),e);
 		}
-		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.write(JSON.toJSONString(categorys));
 		out.flush();

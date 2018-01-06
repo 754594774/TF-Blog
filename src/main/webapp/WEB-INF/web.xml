@@ -25,4 +25,17 @@
     <servlet-name>ArticleServlet</servlet-name>
     <url-pattern>/articleServlet</url-pattern>
   </servlet-mapping>
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>com.linn.frame.filter.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>charset</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

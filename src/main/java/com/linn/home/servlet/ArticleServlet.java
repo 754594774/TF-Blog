@@ -35,8 +35,6 @@ public class ArticleServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		request.setCharacterEncoding("utf-8");
 		String action = request.getParameter("action");
 
 		if (action.equals("toArticleList")){
@@ -56,7 +54,6 @@ public class ArticleServlet extends HttpServlet {
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 		}
-		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.write(JSON.toJSONString(article));
 		out.flush();
@@ -84,7 +81,6 @@ public class ArticleServlet extends HttpServlet {
 		} catch (Exception e){
 			logger.error(e.getMessage(),e);
 		}
-		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.write(JSON.toJSONString(articles));
 		out.flush();
@@ -98,7 +94,6 @@ public class ArticleServlet extends HttpServlet {
 		} catch (Exception e){
 			logger.error(e.getMessage(),e);
 		}
-		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.write(JSON.toJSONString(archives));
 		out.flush();
