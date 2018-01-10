@@ -4,8 +4,13 @@ const indexPage = Vue.extend({
         '<div class="center-block">' +
         '<h1 class="text-center">Marketing stuff!</h1>' +
         '<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>' +
-        '<p class="text-center"><a class="btn btn-lg btn-success" href="#/category/1" role="button">Get started today</a></p>' +
-        '</div>'
+        '<p class="text-center"><a class="btn btn-lg btn-success"  v-bind:href=\"url\" role="button">Get started today</a></p>' +
+        '</div>',
+    data: function () {
+        return {
+            url:'#/category/1'
+        }
+    }
 })
 
 
