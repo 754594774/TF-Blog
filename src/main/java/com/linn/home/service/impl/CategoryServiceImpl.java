@@ -5,10 +5,12 @@ import com.linn.home.dao.CategoryMapper;
 import com.linn.home.entity.Category;
 import com.linn.home.service.CategoryService;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
 
+@Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {
 
     @Override

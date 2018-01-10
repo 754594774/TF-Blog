@@ -1,42 +1,35 @@
 package com.linn.home.servlet;
 
-import com.alibaba.fastjson.JSON;
+import com.linn.frame.controller.BaseController;
 import com.linn.frame.util.DateUtils;
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
-import com.linn.home.entity.Category;
 import com.linn.home.service.ArticleService;
-import com.linn.home.service.impl.ArticleServiceImpl;
-import com.linn.home.service.impl.CategoryServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.security.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class ArticleServlet extends HttpServlet {
+public class ArticleServlet extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(ArticleServlet.class);
-	private ArticleService articleService = null;
+	private ArticleService articleService;
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		articleService = new ArticleServiceImpl();
+		articleService = applicationContext.getBean("articleService",ArticleService.class);
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-
 		if (action.equals("toArticleList")){
 			toArticleList(request,response);
 		} else if(action.equals("toArticleDetail")) {
@@ -54,10 +47,7 @@ public class ArticleServlet extends HttpServlet {
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 		}
-		PrintWriter out = response.getWriter();
-		out.write(JSON.toJSONString(article));
-		out.flush();
-		out.close();
+		responseJson(response,article);
 	}
 
 	private void toArticleList(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -77,14 +67,10 @@ public class ArticleServlet extends HttpServlet {
 			} else {
 				//failed
 			}
-
 		} catch (Exception e){
 			logger.error(e.getMessage(),e);
 		}
-		PrintWriter out = response.getWriter();
-		out.write(JSON.toJSONString(articles));
-		out.flush();
-		out.close();
+		responseJson(response,articles);
 	}
 
 	private void getArchiveList(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -94,10 +80,7 @@ public class ArticleServlet extends HttpServlet {
 		} catch (Exception e){
 			logger.error(e.getMessage(),e);
 		}
-		PrintWriter out = response.getWriter();
-		out.write(JSON.toJSONString(archives));
-		out.flush();
-		out.close();
+		responseJson(response,archives);
 	}
 
 }

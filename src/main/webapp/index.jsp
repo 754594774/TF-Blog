@@ -11,6 +11,7 @@
     <meta http-equiv="description" content="This is my page">
     <%@include file="jsp/common/common.jsp"%>
     <%@include file="jsp/common/templet.jsp"%>
+    <%@include file="jsp/common/component.jsp"%>
     <script src="${pageContext.request.contextPath}/js/index.js"></script>
 </head>
 
@@ -52,14 +53,8 @@
             </div>
 
             <div class="col-sm-3 col-sm-offset-1">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">公告</h3>
-                    </div>
-                    <div class="panel-body">
-                        这是一个基本的面板
-                    </div>
-                </div>
+                <!-- 通知面板 -->
+                <blog-notice></blog-notice>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">分类</h3>
@@ -81,7 +76,6 @@
                         <a v-for="archive in archives" class="list-group-item">
                             <h4 class="list-group-item-heading"><router-link :to="archivesRoutePath + archive.date">{{ archive.date| archiveDateFilter}} </router-link>({{archive.count}})</h4>
                         </a>
-                        <%--<li class="list-group-item"><a href="#">2017年12月</a></li>--%>
                     </ul>
                 </div>
                 <div class="panel panel-primary">

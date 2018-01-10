@@ -2,9 +2,15 @@ package com.linn.frame.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.linn.home.service.NoticeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,12 +21,20 @@ import java.io.PrintWriter;
  *
  * @Author:LNN 2017-12-28 下午 1:52
  */
-public class BaseController
+public class BaseController extends HttpServlet
 {
     private static Logger logger = LoggerFactory.getLogger(BaseController.class);
+
+    protected ApplicationContext applicationContext;
+
+    @Override
+    public void init() throws ServletException {
+        applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+    }
+
     /**
      * 返回json格式字符串数据
-     *
+     * 字符编码：text/html;charset=utf-8
      * @param response
      * @param obj
      */
@@ -38,4 +52,6 @@ public class BaseController
         out.flush();
         out.close();
     }
+
+
 }

@@ -7,6 +7,14 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+    <servlet>
+        <servlet-name>NoticeServlet</servlet-name>
+        <servlet-class>com.linn.home.servlet.NoticeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NoticeServlet</servlet-name>
+        <url-pattern>/noticeServlet</url-pattern>
+    </servlet-mapping>
 
   <servlet>
     <servlet-name>CategoryServlet</servlet-name>

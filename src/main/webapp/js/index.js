@@ -1,6 +1,7 @@
 $(document).ready(function () {
 // 4. 创建和挂载根实例。
     const app = new Vue({
+        el: '#app',
         router: router,
         data: {
             categorys: null,
@@ -55,4 +56,5 @@ $(document).ready(function () {
         });
         vm.archives = resp;
     }
+
 });

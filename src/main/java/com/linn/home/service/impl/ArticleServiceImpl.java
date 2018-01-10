@@ -6,6 +6,7 @@ import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
 import com.linn.home.service.ArticleService;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.Timestamp;
@@ -13,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+@Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
 
     @Override
