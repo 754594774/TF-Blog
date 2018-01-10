@@ -26,7 +26,6 @@ function getlinkData(){
             action:'findLinkList'
         },
         success : function(data) {
-            console.log(data);
             resp = $.parseJSON(data);
         },
         error : function() {

@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 <div>
                     <ul class="nav navbar-nav navbar-left">
-                        <li class="active"><a href="#">首页</a></li>
+                        <li class="active"><router-link to="/index">首页</router-link></li>
                         <li><a href="#">联系我</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -80,14 +80,6 @@
                 </div>
                 <!-- 友链 -->
                 <blog-link></blog-link>
-                <%--<div class="panel panel-primary">--%>
-                    <%--<div class="panel-heading">--%>
-                        <%--<h3 class="panel-title">友链</h3>--%>
-                    <%--</div>--%>
-                    <%--<ul class="list-group">--%>
-                        <%--<li class="list-group-item"><a href="#">Hamster-blog</a></li>--%>
-                    <%--</ul>--%>
-                <%--</div>--%>
             </div>
         </div>
 

@@ -2,7 +2,8 @@
 const routes = [
     { path: categoryRoutePath + ':id', component: categoryList },
     { path: articleRoutePath + ':id', component: articleDetail },
-    { path: archiveRoutePath + ':date', component: categoryList }
+    { path: archiveRoutePath + ':date', component: categoryList },
+    { path: indexRoutePath, component: indexPage }
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置

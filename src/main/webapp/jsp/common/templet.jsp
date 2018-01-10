@@ -4,5 +4,6 @@
 <!-- 模板在这里引入 -->
 <script src="${pageContext.request.contextPath}/js/templete/categoryList.js"></script>
 <script src="${pageContext.request.contextPath}/js/templete/articleDetail.js"></script>
+<script src="${pageContext.request.contextPath}/js/templete/indexPage.js"></script>
 <!-- 路由在这里定义 -->
 <script src="${pageContext.request.contextPath}/js/router.js"></script>
