@@ -78,14 +78,16 @@
                         </a>
                     </ul>
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">友链</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#">Hamster-blog</a></li>
-                    </ul>
-                </div>
+                <!-- 友链 -->
+                <blog-link></blog-link>
+                <%--<div class="panel panel-primary">--%>
+                    <%--<div class="panel-heading">--%>
+                        <%--<h3 class="panel-title">友链</h3>--%>
+                    <%--</div>--%>
+                    <%--<ul class="list-group">--%>
+                        <%--<li class="list-group-item"><a href="#">Hamster-blog</a></li>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
             </div>
         </div>
 

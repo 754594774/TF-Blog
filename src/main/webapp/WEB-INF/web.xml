@@ -8,6 +8,15 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
     <servlet>
+        <servlet-name>LinkServlet</servlet-name>
+        <servlet-class>com.linn.home.servlet.LinkServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LinkServlet</servlet-name>
+        <url-pattern>/linkServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>NoticeServlet</servlet-name>
         <servlet-class>com.linn.home.servlet.NoticeServlet</servlet-class>
     </servlet>

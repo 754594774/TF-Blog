@@ -4,24 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 通知实体类
+ * 友链实体类
  * @Author:LNN 2018-01-09 下午 4:09
  */
-public class Notice implements Serializable{
+public class Link implements Serializable{
 	private Integer id;
 	private String title;
-	private String content;
-	private String author;
+	private String url;
+	private String remark;
 	private Date gmtCreate;
 	private Date gmtModified;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 	public Integer getId() {
 		return id;
@@ -31,20 +23,28 @@ public class Notice implements Serializable{
 		this.id = id;
 	}
 
-	public String getContent() {
-		return content;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getAuthor() {
-		return author;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public Date getGmtCreate() {
@@ -65,11 +65,11 @@ public class Notice implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Notice{" +
+		return "Link{" +
 				"id=" + id +
 				", title='" + title + '\'' +
-				", content='" + content + '\'' +
-				", author='" + author + '\'' +
+				", url='" + url + '\'' +
+				", remark='" + remark + '\'' +
 				", gmtCreate=" + gmtCreate +
 				", gmtModified=" + gmtModified +
 				'}';
