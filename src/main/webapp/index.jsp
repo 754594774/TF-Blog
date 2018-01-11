@@ -9,6 +9,7 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
+    <link href="${pageContext.request.contextPath}/css/blog.css" rel="stylesheet">
     <%@include file="jsp/common/common.jsp"%>
     <%@include file="jsp/common/templet.jsp"%>
     <%@include file="jsp/common/component.jsp"%>
