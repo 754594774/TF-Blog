@@ -3,11 +3,14 @@
 <head>
     <title>Title</title>
     <link href="${pageContext.request.contextPath}/css/mm-vertical.css" rel="stylesheet">
-    <%@include file="../common/common.jsp"%>
+    <%@include file="../common/common.jsp" %>
     <style>
-        .col-md-2{
-            padding-left: 0px;
-            /*padding-right: 50px;*/
+        .col-md-2 {
+            padding: 0 0px;
+        }
+
+        .col-md-10 {
+            padding: 0 0px;;
         }
     </style>
     <script>
@@ -19,12 +22,12 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2" >
+        <div class="col-md-2">
             <nav class="sidebar-nav" style="background-color: #212529;height: 100%">
                 <ul class="metismenu" id="menu1">
                     <li>
                         <a class="has-arrow" href="#">
-                            <span class="fa fa-fw fa-github fa-lg"></span>
+                            <span class="fa fa-fw fa-github fa-2x"></span>
                             metisMenu
                         </a>
                         <ul aria-expanded="true">
@@ -35,7 +38,7 @@
                             </li>
                             <li>
                                 <a href="https://github.com/onokumus/metisMenu">
-                                    <span class="fa fa-fw fa-star"></span> Star
+                                    <span class="fa fa-fw fa-star fa-2x"></span> Star
                                 </a>
                             </li>
                             <li>
@@ -46,7 +49,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">Menu 0</a>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-fw fa-code-fork fa-2x"></span>
+                            Menu 0
+                        </a>
                         <ul aria-expanded="false">
                             <li><a href="#">item 0.1</a></li>
                             <li><a href="#">item 0.2</a></li>
@@ -55,12 +61,17 @@
                         </ul>
                     </li>
                     <li id="removable">
-                        <a class="has-arrow" href="#" aria-expanded="false">Menu 1</a>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-fw fa-snapchat fa-2x"></span>
+                             Menu 1
+                        </a>
                         <ul aria-expanded="false">
                             <li><a href="#">item 1.1</a></li>
                             <li><a href="#">item 1.2</a></li>
                             <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                    <span class="fa fa-fw fa-exclamation-triangle"></span>Menu 1.3
+                                </a>
                                 <ul aria-expanded="false">
                                     <li><a href="#">item 1.3.1</a></li>
                                     <li><a href="#">item 1.3.2</a></li>
@@ -81,7 +92,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">Menu 2</a>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-fw fa-star fa-2x"></span> Menu 2
+                        </a>
                         <ul aria-expanded="false">
                             <li><a href="#">item 2.1</a></li>
                             <li><a href="#">item 2.2</a></li>
@@ -93,10 +106,39 @@
             </nav>
         </div>
         <div class="col-md-10">
-            <p>
-                使得反恐军事反恐军事
-                十大富豪科技手段和福克斯交电话费
-            </p>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-bars fa-2x"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-envelope-o"></span>
+                                <span class="badge">3</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="fa fa-user"></span>
+                                John Doe
+                                <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">setting</a></li>
+                                <li><a href="#">logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container">
+
+            </div>
         </div>
     </div>
 </div>

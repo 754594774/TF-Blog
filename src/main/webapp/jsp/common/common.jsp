@@ -1,5 +1,5 @@
 <link href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/plugins/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/plugins/metismenu/metisMenu.css" rel="stylesheet">
 
 <script src="${pageContext.request.contextPath}/plugins/jquery.min.js"></script>
