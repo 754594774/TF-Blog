@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CategoryService {
 
-    List<Category> findCategoryList () throws IOException;
+    List<Category> findCategoryList () throws Exception;
 }

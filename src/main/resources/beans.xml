@@ -4,29 +4,32 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+    <!--自动扫描spring注解-->
     <context:component-scan base-package="com.linn"/>
 
-    <!--&lt;!&ndash; 配置数据源 &ndash;&gt;-->
-    <!--<context:property-placeholder location="db.properties"/>-->
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="${jdbc.driverClassName}"/>-->
-        <!--<property name="url" value="${jdbc.url}"/>-->
-        <!--<property name="username" value="${jdbc.username}"/>-->
-        <!--<property name="password" value="${jdbc.password}"/>-->
-    <!--</bean>-->
+    <!-- 配置数据源 -->
+    <context:property-placeholder location="db.properties"/>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${mysqlDriver}"/>
+        <property name="url" value="${mysqlURL}"/>
+        <property name="username" value="${mysqlUser}"/>
+        <property name="password" value="${mysqlPwd}"/>
+    </bean>
 
-    <!--&lt;!&ndash; 配置sqlSessionFactory &ndash;&gt;-->
-    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource" />-->
-        <!--<property name="mapperLocations" value="classpath*:mybatis/mysql/home/**/*.xml" />-->
-    <!--</bean>-->
+    <!-- 配置sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath*:mybatis/mysql/home/**/*.xml" />
+    </bean>
 
-    <!--<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--&lt;!&ndash;<property name="mapperInterface" value="org.mybatis.spring.sample.mapper.UserMapper" />&ndash;&gt;-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory" />-->
-    <!--</bean>-->
+    <!--配置SqlSessionTemplate-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
 
-    <!--<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">-->
-        <!--<constructor-arg index="0" ref="sqlSessionFactory" />-->
-    <!--</bean>-->
+    <!--扫描dao层，生成MapperFactoryBean-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.linn.home.dao" />
+    </bean>
+
 </beans>

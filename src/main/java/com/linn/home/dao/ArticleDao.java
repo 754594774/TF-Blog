@@ -2,6 +2,8 @@ package com.linn.home.dao;
 
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
+import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.security.Timestamp;
@@ -9,12 +11,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+@Repository("articleDao")
 public interface ArticleDao {
     /**
      * 根据分类id查找文章
      * @return
      */
-    List<Article> selectArticleByCategoryId(int categoryId) throws IOException;
+    List<Article> selectArticleByCategoryId(int categoryId) throws Exception;
 
     /**
      * 根据日期范围查找文章
