@@ -1,15 +1,16 @@
 package com.linn.home.service.impl;
 
 import com.linn.frame.util.MyBatisUtils;
-import com.linn.home.dao.ArticleMapper;
+import com.linn.home.dao.ArticleDao;
+import com.linn.home.dao.CategoryDao;
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
 import com.linn.home.service.ArticleService;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.IOException;
-import java.security.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,49 +18,32 @@ import java.util.List;
 @Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
 
+    @Resource
+    private ArticleDao articleDao;
+
     @Override
     public List<Article> selectArticleByCategoryId(int categoryId) throws IOException {
-        SqlSession session =  MyBatisUtils.getSqlSession();
 
-        ArticleMapper mapper = session.getMapper(ArticleMapper.class);
-        List<Article> articleList = mapper.selectArticleByCategoryId(categoryId);
-        session.close();
-        return articleList;
+        return articleDao.selectArticleByCategoryId(categoryId);
     }
 
     @Override
     public List<Article> selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception {
-        SqlSession session =  MyBatisUtils.getSqlSession();
 
-        ArticleMapper mapper = session.getMapper(ArticleMapper.class);
-        List<Article> articleList = mapper.selectArticleByArchiveDate(hashMap);
-        session.close();
-        return articleList;
+        return articleDao.selectArticleByArchiveDate(hashMap);
     }
 
     @Override
     public Article selectArticleById(int articleId) throws Exception {
-        SqlSession session =  MyBatisUtils.getSqlSession();
 
-        ArticleMapper mapper = session.getMapper(ArticleMapper.class);
-        Article article = mapper.selectArticleById(articleId);
-        session.close();
-        return article;
+
+        return articleDao.selectArticleById(articleId);
     }
 
     @Override
     public List<Archive> selectAllArchive() throws Exception {
-        SqlSession session =  MyBatisUtils.getSqlSession();
 
-        ArticleMapper mapper = session.getMapper(ArticleMapper.class);
-        List<Archive> archiveList = mapper.selectAllArchive();
-        session.close();
-        return archiveList;
+        return articleDao.selectAllArchive();
     }
 
-//    public static void main(String[] args) throws Exception {
-//        ArticleServiceImpl  articleService = new ArticleServiceImpl();
-//        List<Archive> archiveList = articleService.selectAllArchive();
-//        System.out.println(archiveList);
-//    }
 }

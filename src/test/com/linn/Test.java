@@ -19,15 +19,6 @@ public class Test {
         Date lastDay = DateUtils.lastDayByMonth(str);
         System.out.println(sdf.format(firstDay));
         System.out.println(sdf.format(lastDay));
-//        CategoryServiceImpl categoryServiceImpl  = new CategoryServiceImpl();
-//        List<Category> categorys = categoryServiceImpl.findCategoryList();
-//        System.out.println(categorys);
-//        SqlSession session =  MyBatisUtils.getSqlSession();
-//
-//        CategoryMapper mapper = session.getMapper(CategoryMapper.class);
-//        Category category = mapper.selectCategory(1);
-//        System.out.println(category);
-//        session.close();
 
     }
 }
