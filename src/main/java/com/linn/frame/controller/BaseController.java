@@ -21,16 +21,12 @@ import java.io.PrintWriter;
  *
  * @Author:LNN 2017-12-28 下午 1:52
  */
-public class BaseController extends HttpServlet
+public class BaseController
 {
-    private static Logger logger = LoggerFactory.getLogger(BaseController.class);
-
-    protected ApplicationContext applicationContext;
-
-    @Override
-    public void init() throws ServletException {
-        applicationContext = new ClassPathXmlApplicationContext("beans.xml");
-    }
+    /**
+     * 日志变量
+     **/
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 返回json格式字符串数据

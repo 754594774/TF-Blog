@@ -27,11 +27,10 @@ const articleDetail = Vue.extend({
             this.item = null;
             var resp = {};
             $.ajax({
-                url : 'articleServlet',
+                url : 'toArticleDetail',
                 type : 'POST',
                 async : false,
                 data : {
-                    action:'toArticleDetail',
                     articleId:this.$route.params.id
                 },
                 success : function(data) {

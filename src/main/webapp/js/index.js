@@ -20,11 +20,11 @@ $(document).ready(function () {
         vm.categorys = null;
         var resp = null;
         $.ajax({
-            url : 'categoryServlet',
+            url : 'toCategoryList',
             type : 'POST',
             async : false,
             data : {
-                action:'getCategoryList'
+                //action:'getCategoryList'
             },
             success : function(data) {
                 resp = $.parseJSON(data);
@@ -41,12 +41,9 @@ $(document).ready(function () {
         vm.archives = null;
         var resp = null;
         $.ajax({
-            url : 'articleServlet',
+            url : 'getArchiveList',
             type : 'POST',
             async : false,
-            data : {
-                action:'getArchiveList'
-            },
             success : function(data) {
                 resp = $.parseJSON(data);
             },

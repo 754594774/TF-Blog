@@ -31,11 +31,10 @@ const categoryList = Vue.extend({
             var categoryId = this.$route.params.id;
             var archiveDate = this.$route.params.date;
             $.ajax({
-                url : 'articleServlet',
+                url : 'toArticleList',
                 type : 'POST',
                 async : false,
                 data : {
-                    action:'toArticleList',
                     categoryId:categoryId,
                     archiveDate:archiveDate
                 },

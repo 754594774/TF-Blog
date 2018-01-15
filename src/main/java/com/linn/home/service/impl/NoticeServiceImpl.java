@@ -16,7 +16,7 @@ public class NoticeServiceImpl implements NoticeService {
         notice.setGmtCreate(new Date());
         notice.setTitle("bootStrap");
         notice.setAuthor("lnn");
-        notice.setContent("this is a notice!");
+        notice.setContent("这是一个通知!");
         notice.setGmtModified(new Date());
         return notice;
     }

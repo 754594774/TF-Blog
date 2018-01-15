@@ -7,48 +7,40 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+    <!--spring配置文件-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:beans.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!--spring mvc配置文件-->
     <servlet>
-        <servlet-name>LinkServlet</servlet-name>
-        <servlet-class>com.linn.home.servlet.LinkServlet</servlet-class>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LinkServlet</servlet-name>
-        <url-pattern>/linkServlet</url-pattern>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>NoticeServlet</servlet-name>
-        <servlet-class>com.linn.home.servlet.NoticeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NoticeServlet</servlet-name>
-        <url-pattern>/noticeServlet</url-pattern>
-    </servlet-mapping>
-
-  <servlet>
-    <servlet-name>CategoryServlet</servlet-name>
-    <servlet-class>com.linn.home.servlet.CategoryServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CategoryServlet</servlet-name>
-    <url-pattern>/categoryServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>ArticleServlet</servlet-name>
-    <servlet-class>com.linn.home.servlet.ArticleServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ArticleServlet</servlet-name>
-    <url-pattern>/articleServlet</url-pattern>
-  </servlet-mapping>
-
+    <!--中文乱码过滤器-->
     <filter>
         <filter-name>encodingFilter</filter-name>
-        <filter-class>com.linn.frame.filter.EncodingFilter</filter-class>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
-            <param-name>charset</param-name>
-            <param-value>utf-8</param-value>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
         </init-param>
     </filter>
     <filter-mapping>

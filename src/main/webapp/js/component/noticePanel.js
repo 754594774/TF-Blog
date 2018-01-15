@@ -16,12 +16,9 @@ Vue.component('blog-notice', {
 function getNoticeData(){
     var resp = null;
     $.ajax({
-        url : 'noticeServlet',
+        url : 'toNoticeDetail',
         type : 'POST',
         async : false,
-        data : {
-            action:'findNotice'
-        },
         success : function(data) {
             resp = $.parseJSON(data);
         },

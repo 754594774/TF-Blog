@@ -19,12 +19,9 @@ Vue.component('blog-link', {
 function getlinkData(){
     var resp = null;
     $.ajax({
-        url : 'linkServlet',
+        url : 'toLinkList',
         type : 'POST',
         async : false,
-        data : {
-            action:'findLinkList'
-        },
         success : function(data) {
             resp = $.parseJSON(data);
         },
