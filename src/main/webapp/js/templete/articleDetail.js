@@ -34,10 +34,10 @@ const articleDetail = Vue.extend({
                     articleId:this.$route.params.id
                 },
                 success : function(data) {
-                    resp = $.parseJSON(data );
+                    resp = data;
                 },
                 error : function() {
-                    resp = $.parseJSON(data);
+                    resp = data;
                 }
             });
             this.item = resp;

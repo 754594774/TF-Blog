@@ -39,10 +39,10 @@ const categoryList = Vue.extend({
                     archiveDate:archiveDate
                 },
                 success : function(data) {
-                    resp = $.parseJSON(data);
+                    resp = data;
                 },
                 error : function() {
-                    resp = $.parseJSON(data);
+                    resp = data;
                 }
             });
             this.items = resp;

@@ -28,26 +28,4 @@ public class BaseController
      **/
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * 返回json格式字符串数据
-     * 字符编码：text/html;charset=utf-8
-     * @param response
-     * @param obj
-     */
-    protected void responseJson(HttpServletResponse response, Object obj)
-    {
-        String content = JSON.toJSONString(obj);
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = null;
-        try {
-            out = response.getWriter();
-        } catch (IOException e) {
-            logger.error(e.getMessage(),e);
-        }
-        out.write(content);
-        out.flush();
-        out.close();
-    }
-
-
 }

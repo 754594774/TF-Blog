@@ -35,7 +35,7 @@ public class ArticleController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("toArticleList")
-    public String toArticleList(HttpServletRequest request, HttpServletResponse response) {
+    public List<Article> toArticleList(HttpServletRequest request, HttpServletResponse response) {
         List<Article> articles = null;
         try {
             String categoryId = request.getParameter("categoryId");
@@ -56,12 +56,12 @@ public class ArticleController extends BaseController {
             logger.error(e.getMessage(), e);
         }
 
-        return JSON.toJSONString(articles);
+        return articles;
     }
 
     @ResponseBody
     @RequestMapping("toArticleDetail")
-    private String toArticleDetail(HttpServletRequest request, HttpServletResponse response) {
+    private Article toArticleDetail(HttpServletRequest request, HttpServletResponse response) {
         String articleId = request.getParameter("articleId");
         Article article = null;
         try {
@@ -69,13 +69,13 @@ public class ArticleController extends BaseController {
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
-        return JSON.toJSONString(article);
+        return article;
 
     }
 
     @ResponseBody
     @RequestMapping("getArchiveList")
-    private String getArchiveList(HttpServletRequest request, HttpServletResponse response) {
+    private List<Archive> getArchiveList(HttpServletRequest request, HttpServletResponse response) {
         List<Archive> archives = null;
         try {
             archives = articleService.selectAllArchive();
@@ -83,6 +83,6 @@ public class ArticleController extends BaseController {
             logger.error(e.getMessage(), e);
         }
 
-        return JSON.toJSONString(archives);
+        return archives;
     }
 }

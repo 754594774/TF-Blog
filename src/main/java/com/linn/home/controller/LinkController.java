@@ -26,7 +26,7 @@ public class LinkController extends BaseController{
 
     @ResponseBody
     @RequestMapping("toLinkList")
-    private String toLinkList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private List<Link> toLinkList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Link> links = new ArrayList<Link>();
         try {
             links = linkService.findLinkList();
@@ -34,6 +34,6 @@ public class LinkController extends BaseController{
             logger.error(e.getMessage(),e);
         }
 
-        return JSON.toJSONString(links);
+        return links;
     }
 }

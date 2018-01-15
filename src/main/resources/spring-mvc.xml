@@ -14,14 +14,27 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop
-		http://www.springframework.org/schema/aop/spring-aop.xsd"
-       default-lazy-init="false">
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--扫描该包下的注解-->
     <context:component-scan base-package="com.linn"/>
 
-    <mvc:annotation-driven/>
+    <!-- mvc:annotation-driven使用注解功能 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!--json处理-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
+    <!--静态资源-->
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/css/**" location="/css/" />
     <mvc:resources mapping="/resources/**" location="/resources/" />

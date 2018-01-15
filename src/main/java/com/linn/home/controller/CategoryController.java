@@ -18,11 +18,11 @@ import java.util.List;
 public class CategoryController extends BaseController{
 
     @Resource
-    private CategoryService categoryService = null;
+    private CategoryService categoryService;
 
     @ResponseBody
     @RequestMapping("toCategoryList")
-    public String toCategoryList() {
+    public List<Category> toCategoryList() {
 
         List<Category> categorys = null;
         try {
@@ -30,7 +30,7 @@ public class CategoryController extends BaseController{
         }catch (Exception e){
             logger.error(e.getMessage(),e);
         }
-        return JSON.toJSONString(categorys);
+        return categorys;
 
     }
 }

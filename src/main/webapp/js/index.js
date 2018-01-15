@@ -27,10 +27,10 @@ $(document).ready(function () {
                 //action:'getCategoryList'
             },
             success : function(data) {
-                resp = $.parseJSON(data);
+                resp = data;
             },
             error : function() {
-                resp = $.parseJSON(data);
+                resp = data;
             }
         });
         vm.categorys = resp;
@@ -45,10 +45,10 @@ $(document).ready(function () {
             type : 'POST',
             async : false,
             success : function(data) {
-                resp = $.parseJSON(data);
+                resp = data;
             },
             error : function() {
-                resp = $.parseJSON(data);
+                resp = data;
             }
         });
         vm.archives = resp;

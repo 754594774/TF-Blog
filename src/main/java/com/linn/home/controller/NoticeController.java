@@ -24,13 +24,13 @@ public class NoticeController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/toNoticeDetail")
-    private String toNoticeDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private Notice toNoticeDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Notice notice = null;
         try {
             notice = noticeService.findLastNotice();
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
         }
-        return JSON.toJSONString(notice);
+        return notice;
     }
 }

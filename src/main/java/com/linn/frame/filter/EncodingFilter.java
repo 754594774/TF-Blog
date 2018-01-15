@@ -15,15 +15,15 @@ import java.io.UnsupportedEncodingException;
  */
 public class EncodingFilter implements Filter {
     private static Logger logger = LoggerFactory.getLogger(EncodingFilter.class);
-    private String charset;
+    private String encoding;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        charset = filterConfig.getInitParameter("charset");
+        encoding = filterConfig.getInitParameter("encoding");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setCharacterEncoding(charset);
+        servletRequest.setCharacterEncoding(encoding);
         filterChain.doFilter(new HttpServletRequestWrapper((HttpServletRequest) servletRequest) {
             @Override
             public String getParameter(String name) {
@@ -32,7 +32,7 @@ public class EncodingFilter implements Filter {
 
                     if (value != null) {
                         try {
-                            value = new String(value.getBytes("iso8859-1"), charset);
+                            value = new String(value.getBytes("iso8859-1"), encoding);
                         } catch (UnsupportedEncodingException e) {
                             logger.error(e.getMessage(),e);
                         }
@@ -45,6 +45,6 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void destroy() {
-        charset = null;
+        encoding = null;
     }
 }
