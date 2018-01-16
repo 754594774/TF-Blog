@@ -35,25 +35,23 @@ public class ArticleController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("toArticleList")
-    public List<Article> toArticleList(HttpServletRequest request, HttpServletResponse response) {
+    public List<Article> toArticleList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         List<Article> articles = null;
-        try {
-            String categoryId = request.getParameter("categoryId");
-            String archiveDate = request.getParameter("archiveDate");
-            if (categoryId != null && !categoryId.equals("")) {
-                articles = articleService.selectArticleByCategoryId(Integer.parseInt(categoryId));
-            } else if (archiveDate != null && !archiveDate.equals("")) {
-                Date firstDay = DateUtils.firstDayByMonth(archiveDate);
-                Date lastDay = DateUtils.lastDayByMonth(archiveDate);
-                HashMap<String, Date> hashMap = new HashMap<String, Date>();
-                hashMap.put("firstDay", firstDay);
-                hashMap.put("lastDay", lastDay);
-                articles = articleService.selectArticleByArchiveDate(hashMap);
-            } else {
-                //failed
-            }
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+        String categoryId = request.getParameter("categoryId");
+        String archiveDate = request.getParameter("archiveDate");
+
+        if (categoryId != null && !categoryId.equals("")) {
+            articles = articleService.selectArticleByCategoryId(Integer.parseInt(categoryId));
+        } else if (archiveDate != null && !archiveDate.equals("")) {
+            Date firstDay = DateUtils.firstDayByMonth(archiveDate);
+            Date lastDay = DateUtils.lastDayByMonth(archiveDate);
+            HashMap<String, Date> hashMap = new HashMap<String, Date>();
+            hashMap.put("firstDay", firstDay);
+            hashMap.put("lastDay", lastDay);
+            articles = articleService.selectArticleByArchiveDate(hashMap);
+        } else {
+            //failed
         }
 
         return articles;
@@ -61,27 +59,19 @@ public class ArticleController extends BaseController {
 
     @ResponseBody
     @RequestMapping("toArticleDetail")
-    private Article toArticleDetail(HttpServletRequest request, HttpServletResponse response) {
+    private Article toArticleDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String articleId = request.getParameter("articleId");
-        Article article = null;
-        try {
-            article = articleService.selectArticleById(Integer.parseInt(articleId));
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
+        Article article = articleService.selectArticleById(Integer.parseInt(articleId));
         return article;
 
     }
 
     @ResponseBody
     @RequestMapping("getArchiveList")
-    private List<Archive> getArchiveList(HttpServletRequest request, HttpServletResponse response) {
+    private List<Archive> getArchiveList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Archive> archives = null;
-        try {
-            archives = articleService.selectAllArchive();
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
+
+        archives = articleService.selectAllArchive();
 
         return archives;
     }

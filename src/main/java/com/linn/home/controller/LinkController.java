@@ -26,14 +26,9 @@ public class LinkController extends BaseController{
 
     @ResponseBody
     @RequestMapping("toLinkList")
-    private List<Link> toLinkList(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<Link> links = new ArrayList<Link>();
-        try {
-            links = linkService.findLinkList();
-        } catch (Exception e) {
-            logger.error(e.getMessage(),e);
-        }
+    private List<Link> toLinkList() throws Exception {
 
+        List<Link> links = linkService.findLinkList();
         return links;
     }
 }

@@ -24,13 +24,9 @@ public class NoticeController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/toNoticeDetail")
-    private Notice toNoticeDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Notice notice = null;
-        try {
-            notice = noticeService.findLastNotice();
-        } catch (Exception e) {
-            logger.error(e.getMessage(),e);
-        }
+    private Notice toNoticeDetail() throws Exception {
+
+        Notice notice = noticeService.findLastNotice();
         return notice;
     }
 }

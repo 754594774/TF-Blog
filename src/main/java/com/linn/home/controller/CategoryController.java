@@ -22,15 +22,9 @@ public class CategoryController extends BaseController{
 
     @ResponseBody
     @RequestMapping("toCategoryList")
-    public List<Category> toCategoryList() {
+    public List<Category> toCategoryList() throws Exception {
 
-        List<Category> categorys = null;
-        try {
-            categorys = categoryService.findCategoryList();
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
-        }
+        List<Category>  categorys = categoryService.findCategoryList();
         return categorys;
-
     }
 }
