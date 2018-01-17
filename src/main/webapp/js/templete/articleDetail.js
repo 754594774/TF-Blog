@@ -16,31 +16,28 @@ const articleDetail = Vue.extend({
     created:function () {
         // 组件创建完后获取数据，
         // 此时 data 已经被 observed 了
-        this.fetchData()
+        this.fetchData(this)
     },
     watch: {
         // 如果路由有变化，会再次执行该方法
         '$route': 'fetchData'
     },
     methods: {
-        fetchData:function(){
-            this.item = null;
-            var resp = {};
+        fetchData:function(vm){
+            vm.item = "";
             $.ajax({
                 url : 'toArticleDetail',
                 type : 'POST',
-                async : false,
                 data : {
                     articleId:this.$route.params.id
                 },
                 success : function(data) {
-                    resp = data;
+                    vm.item = data;
                 },
                 error : function() {
-                    resp = data;
+                   alert("error");
                 }
             });
-            this.item = resp;
         }
     }
 })

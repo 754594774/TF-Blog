@@ -17,41 +17,34 @@ $(document).ready(function () {
 
     function getCategoryList(vm) {
         // `this` 指向 vm 实例
-        vm.categorys = null;
-        var resp = null;
+        vm.categorys = "";
         $.ajax({
             url : 'toCategoryList',
             type : 'POST',
-            async : false,
-            data : {
-                //action:'getCategoryList'
-            },
             success : function(data) {
-                resp = data;
+                vm.categorys = data;
             },
             error : function() {
-                resp = data;
+                alert("error");
             }
         });
-        vm.categorys = resp;
     }
 
     function getArchiveList(vm) {
         // `this` 指向 vm 实例
-        vm.archives = null;
-        var resp = null;
+        // 需要将参数赋值为空串(就是实例化)，因为该方法是异步的，方法执行后还未回调
+        vm.archives = "";
         $.ajax({
             url : 'getArchiveList',
             type : 'POST',
-            async : false,
+            //async : false,
             success : function(data) {
-                resp = data;
+                vm.archives = data;
             },
             error : function() {
-                resp = data;
+                alert("error");
             }
         });
-        vm.archives = resp;
     }
 
 });
