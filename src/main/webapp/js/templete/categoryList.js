@@ -26,26 +26,24 @@ const categoryList = Vue.extend({
     },
     methods: {
         fetchData:function(){
-            this.items = null;
-            var resp = null;
+            var vm = this;
+            vm.items = null;
             var categoryId = this.$route.params.id;
             var archiveDate = this.$route.params.date;
             $.ajax({
                 url : 'toArticleList',
                 type : 'POST',
-                async : false,
                 data : {
                     categoryId:categoryId,
                     archiveDate:archiveDate
                 },
                 success : function(data) {
-                    resp = data;
+                    vm.items = data;
                 },
                 error : function() {
-                    resp = data;
+                    alert("err");
                 }
             });
-            this.items = resp;
         }
     }
 })

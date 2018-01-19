@@ -16,14 +16,15 @@ const articleDetail = Vue.extend({
     created:function () {
         // 组件创建完后获取数据，
         // 此时 data 已经被 observed 了
-        this.fetchData(this)
+        this.fetchData()
     },
     watch: {
         // 如果路由有变化，会再次执行该方法
         '$route': 'fetchData'
     },
     methods: {
-        fetchData:function(vm){
+        fetchData:function(){
+            var vm = this;
             vm.item = "";
             $.ajax({
                 url : 'toArticleDetail',
@@ -41,3 +42,8 @@ const articleDetail = Vue.extend({
         }
     }
 })
+
+function  fetchData(vm){
+
+
+}

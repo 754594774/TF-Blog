@@ -9,25 +9,35 @@ Vue.component('blog-link', {
     "   </ul>" +
     "</div>",
     data: function () {
-        var result=getlinkData();
         return {
-            sites:result
+            sites:null
         };
+    },
+    created:function () {
+        // 组件创建完后获取数据，
+        // 此时 data 已经被 observed 了
+        this.fetchData()
+    },
+    watch: {
+        // 如果路由有变化，会再次执行该方法
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData:function(){
+            var vm = this;
+            vm.sites = null;
+            $.ajax({
+                url : 'toLinkList',
+                type : 'POST',
+                success : function(data) {
+                    vm.sites = data;
+                },
+                error : function() {
+                    alert("error");
+                }
+            });
+        }
     }
 });
 
-function getlinkData(){
-    var resp = null;
-    $.ajax({
-        url : 'toLinkList',
-        type : 'POST',
-        async : false,
-        success : function(data) {
-            resp = data;
-        },
-        error : function() {
-            resp = data;
-        }
-    });
-    return resp;
-}
+
