@@ -4,6 +4,7 @@
     <title>Title</title>
     <link href="${pageContext.request.contextPath}/css/mm-vertical.css" rel="stylesheet">
     <%@include file="../common/common.jsp" %>
+    <script src="${pageContext.request.contextPath}/js/admin/index.js"></script>
     <style>
         .col-md-2 {
             padding: 0 0px;
@@ -20,30 +21,42 @@
     </script>
 </head>
 <body>
-<div class="container-fluid">
+<div id="app" class="container-fluid">
     <div class="row">
         <div class="col-md-2">
             <nav class="sidebar-nav" style="background-color: #212529;height: 100%">
                 <ul class="metismenu" id="menu1">
                     <li>
                         <a class="has-arrow" href="#">
-                            <span class="fa fa-fw fa-github fa-2x"></span>
-                            metisMenu
+                            <span class="fa fa-fw fa-edit fa-2x"></span>
+                            文章管理
                         </a>
                         <ul aria-expanded="true">
                             <li>
-                                <a href="https://github.com/onokumus/metisMenu">
-                                    <span class="fa fa-fw fa-code-fork"></span> Fork
+                                <router-link to="/foo">
+                                    <span class="fa fa-circle-o fa-fw"></span>
+                                    文章分类
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link to="/bar">
+                                    <span class="fa fa-circle-o fa-fw"></span>
+                                    发布文章
+                                </router-link>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span>
+                                    文章列表
                                 </a>
                             </li>
                             <li>
-                                <a href="https://github.com/onokumus/metisMenu">
-                                    <span class="fa fa-fw fa-star fa-2x"></span> Star
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span>
+                                    文章留言
                                 </a>
                             </li>
                             <li>
-                                <a href="https://github.com/onokumus/metisMenu/issues">
-                                    <span class="fa fa-fw fa-exclamation-triangle"></span> Issues
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span>
+                                    文章归档
                                 </a>
                             </li>
                         </ul>
@@ -51,55 +64,44 @@
                     <li>
                         <a class="has-arrow" href="#" aria-expanded="false">
                             <span class="fa fa-fw fa-code-fork fa-2x"></span>
-                            Menu 0
+                            友链分类
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">item 0.1</a></li>
-                            <li><a href="#">item 0.2</a></li>
-                            <li><a href="http://onokumus.com">onokumus</a></li>
-                            <li><a href="#">item 0.4</a></li>
-                        </ul>
-                    </li>
-                    <li id="removable">
-                        <a class="has-arrow" href="#" aria-expanded="false">
-                            <span class="fa fa-fw fa-snapchat fa-2x"></span>
-                             Menu 1
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="#">item 1.1</a></li>
-                            <li><a href="#">item 1.2</a></li>
                             <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
-                                    <span class="fa fa-fw fa-exclamation-triangle"></span>Menu 1.3
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span>
+                                    友链列表
                                 </a>
-                                <ul aria-expanded="false">
-                                    <li><a href="#">item 1.3.1</a></li>
-                                    <li><a href="#">item 1.3.2</a></li>
-                                    <li><a href="#">item 1.3.3</a></li>
-                                    <li><a href="#">item 1.3.4</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">item 1.4</a></li>
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">Menu 1.5</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="#">item 1.5.1</a></li>
-                                    <li><a href="#">item 1.5.2</a></li>
-                                    <li><a href="#">item 1.5.3</a></li>
-                                    <li><a href="#">item 1.5.4</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="#" aria-expanded="false">
-                            <span class="fa fa-fw fa-star fa-2x"></span> Menu 2
+                            <span class="fa fa-fw fa-user fa-2x"></span>
+                            用户管理
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">item 2.1</a></li>
-                            <li><a href="#">item 2.2</a></li>
-                            <li><a href="#">item 2.3</a></li>
-                            <li><a href="#">item 2.4</a></li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span>
+                                    用户列表
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-fw fa-cog fa-2x"></span>
+                            系统管理
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span>
+                                    邮件列表
+                                </a></li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span>
+                                    公告管理
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -125,19 +127,19 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="fa fa-user"></span>
-                                John Doe
+                                Admin
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">setting</a></li>
-                                <li><a href="#">logout</a></li>
+                                <li><a href="#">设置</a></li>
+                                <li><a href="#">登出</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </nav>
             <div class="container">
-
+                <router-view></router-view>
             </div>
         </div>
     </div>

@@ -42,8 +42,3 @@ const articleDetail = Vue.extend({
         }
     }
 })
-
-function  fetchData(vm){
-
-
-}
