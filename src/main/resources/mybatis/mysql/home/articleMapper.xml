@@ -21,6 +21,11 @@
         <result property="date" column="pubtime"/>
         <result property="count" column="cnt"/>
     </resultMap>
+
+    <select id="findArticleListAdmin"  resultMap="articleResultMap">
+        select * from blog_article order by id desc;
+    </select>
+
     <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">
         select * from blog_article where category_id = #{categoryId} order by id desc;
     </select>

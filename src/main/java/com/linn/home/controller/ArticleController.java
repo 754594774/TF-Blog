@@ -2,6 +2,7 @@ package com.linn.home.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.linn.frame.controller.BaseController;
 import com.linn.frame.util.DateUtils;
 import com.linn.home.entity.Archive;
@@ -31,6 +32,19 @@ public class ArticleController extends BaseController {
     private ArticleService articleService;
 
     /**
+     * 查找所有文章
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("toArticleListAdmin")
+    public List<Article> toArticleListAdmin() throws Exception {
+
+        List<Article> articles = articleService.findArticleListAdmin();
+        return articles;
+    }
+
+    /**
      * 跳转到文章列表
      *
      * @return
@@ -51,8 +65,6 @@ public class ArticleController extends BaseController {
             hashMap.put("firstDay", firstDay);
             hashMap.put("lastDay", lastDay);
             articles = articleService.selectArticleByArchiveDate(hashMap);
-        }else {
-            //failed
         }
         return articles;
     }

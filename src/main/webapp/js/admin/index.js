@@ -1,6 +1,6 @@
 //angularJs路由
 angular.module('myApp', ['ngRoute'])
-    .controller('catgsCtrl', function($scope,$routeParams) {
+    .controller('menuCtrl', function($scope,$routeParams) {
         $scope.params = $routeParams;
     })
     .config(['$routeProvider', function($routeProvider) {
@@ -10,7 +10,11 @@ angular.module('myApp', ['ngRoute'])
             })
             .when('/catgList', {
                 templateUrl: 'html/admin/catgList.html',
-                controller: 'catgsCtrl'
+                controller: 'menuCtrl'
+            })
+            .when('/articleList', {
+                templateUrl: 'html/admin/articleList.html',
+                controller: 'menuCtrl'
             })
             .otherwise({
                 redirectTo: '/'

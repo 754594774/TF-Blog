@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../plugins/bs-table/bootstrap-table.css" />
+    <script src="../../plugins/bs-table/bootstrap-table.js"></script>
+    <script src="../../plugins/bs-table/bootstrap-table-zh-CN.js"></script>
+    <script src="../../js/admin/articleList.js"></script>
+</head>
+<body>
+<div class="panel panel-info">
+    <!--面板标题-->
+    <div class="panel-heading">
+        <h3 class="panel-title">文章列表</h3>
+    </div>
+
+    <div class="panel-body">
+        <div id="toolbar">
+            <button id="btnAdd" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button id="btnChange" class="btn btn-default">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button id="btnDel" class="btn btn-default">
+                <span class="glyphicon glyphicon-minus"></span>
+            </button>
+            <button id="btnRefresh" class="btn btn-default">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+        </div>
+        <table id="table"
+               data-toggle="table"
+               data-height="428"
+               data-pagination="true"
+               data-page-list="[5, 10, 15, 20]"
+               data-search="true"
+               data-show-columns="true"
+               data-click-to-select="true"
+               data-striped="true"
+               data-id-field="id"
+               data-toolbar="#toolbar"
+               data-url="/toArticleListAdmin">
+            <thead>
+            <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="index" data-formatter="indexFormatter" >序号</th>
+                <th data-field="title">标题</th>
+                <th data-field="author">作者</th>
+                <th data-field="isStick">置顶</th>
+                <th data-field="isDraft">草稿</th>
+                <th data-field="isDeleted">删除</th>
+                <th data-field="gmtCreate" data-formatter="formatDateTime">创建时间</th>
+                <th data-field="gmtModified" data-formatter="formatDateTime">修改时间</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -39,5 +39,9 @@ public interface ArticleDao {
      */
     List<Archive> selectAllArchive() throws Exception;
 
-
+    /**
+     * 查找文章归档
+     * @return
+     */
+    List<Article> findArticleListAdmin() throws Exception;
 }

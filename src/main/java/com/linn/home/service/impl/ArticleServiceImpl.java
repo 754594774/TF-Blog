@@ -40,4 +40,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleDao.selectAllArchive();
     }
 
+    @Override
+    public List<Article> findArticleListAdmin() throws Exception {
+        return articleDao.findArticleListAdmin();
+    }
+
 }
