@@ -1,50 +1,90 @@
-$(document).ready(function () {
-// 4. 创建和挂载根实例。
-    const app = new Vue({
-        el: '#app',
-        router: router,
-        data: {
-            categorys: null,
-            archives:  null,
-            categoryRoutePath:categoryRoutePath,
-            archivesRoutePath:archiveRoutePath
-        },
-        created: function () {
-            getCategoryList(this);
-            getArchiveList(this);
-        }
-    }).$mount('#app')
+angular.module('myApp', ['ngRoute'])
+    .controller('noticeCtrl', function ($scope,$http) {
+        $http({
+            method: 'GET',
+            url: 'toNoticeDetail'
+        }).then(function successCallback(response) {
+            $scope.notice = response.data;
 
-    function getCategoryList(vm) {
-        // `this` 指向 vm 实例
-        vm.categorys = "";
-        $.ajax({
-            url : 'toCategoryList',
-            type : 'POST',
-            success : function(data) {
-                vm.categorys = data;
-            },
-            error : function() {
-                alert("error");
-            }
+        }, function errorCallback(response) {
+            // 请求失败执行代码
         });
-    }
+    })
+    .controller('catgsCtrl', function ($scope,$http) {
+        $http({
+            method: 'GET',
+            url: 'toCategoryList'
+        }).then(function successCallback(response) {
+            $scope.catgs = response.data;
 
-    function getArchiveList(vm) {
-        // `this` 指向 vm 实例
-        // 需要将参数赋值为空串(就是实例化)，因为该方法是异步的，方法执行后还未回调
-        vm.archives = "";
-        $.ajax({
-            url : 'getArchiveList',
-            type : 'POST',
-            //async : false,
-            success : function(data) {
-                vm.archives = data;
-            },
-            error : function() {
-                alert("error");
-            }
+        }, function errorCallback(response) {
+            // 请求失败执行代码
         });
-    }
+    })
+    .controller('archsCtrl', function ($scope,$http) {
+        $http({
+            method: 'GET',
+            url: 'getArchiveList'
+        }).then(function successCallback(response) {
+            $scope.archs = response.data;
 
-});
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+    })
+    .controller('linksCtrl', function ($scope,$http) {
+        $http({
+            method: 'GET',
+            url: 'toLinkList'
+        }).then(function successCallback(response) {
+            $scope.links = response.data;
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+    })
+    .controller('articlesCtrl', function ($scope, $routeParams,$http) {
+        $http({
+            method: 'POST',
+            url: 'toArticleList',
+            data: {
+                categoryId: $routeParams.id,
+                date:$routeParams.date
+            }
+        }).then(function successCallback(response) {
+            console.log(response.data);
+            $scope.articles = response.data;
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+    })
+    .controller('articleDetailCtrl', function ($scope, $routeParams,$http) {
+        $http({
+            method: 'POST',
+            url: 'toArticleDetail',
+            data: {
+                id: $routeParams.id
+            }
+        }).then(function successCallback(response) {
+            $scope.article = response.data;
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+    })//可选参数 /:date? ///article?type&id
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'html/welcome.html'
+            })
+            .when('/articleList/:id?/:date?', {
+                templateUrl: 'html/articleList.html',
+                controller: 'articlesCtrl'
+            })
+            .when('/articleDetail/:id', {
+                templateUrl: 'html/articleDetail.html',
+                controller: 'articleDetailCtrl'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    }]);

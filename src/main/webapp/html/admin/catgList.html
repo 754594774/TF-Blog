@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../plugins/bs-table/bootstrap-table.css" />
+    <script src="../../plugins/bs-table/bootstrap-table.js"></script>
+    <script src="../../plugins/bs-table/bootstrap-table-zh-CN.js"></script>
+    <script src="../../js/admin/catgList.js"></script>
+</head>
+<body>
+<div class="panel panel-info">
+    <!--面板标题-->
+    <div class="panel-heading">
+        <h3 class="panel-title">文章分类</h3>
+    </div>
+
+    <div class="panel-body">
+        <div id="toolbar">
+            <button id="btnAdd" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button id="btnChange" class="btn btn-default">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button id="btnDel" class="btn btn-default">
+                <span class="glyphicon glyphicon-minus"></span>
+            </button>
+            <button id="btnRefresh" class="btn btn-default">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+        </div>
+        <table id="table"
+               data-toggle="table"
+               data-height="428"
+               data-pagination="true"
+               data-page-list="[2, 3, 5, 10]"
+               data-search="true"
+               data-show-columns="true"
+               data-click-to-select="true"
+               data-striped="true"
+               data-id-field="id"
+               data-toolbar="#toolbar"
+               data-url="/toCategoryList">
+            <thead>
+            <tr>
+                <th data-field="state" data-checkbox="true"></th>
+                <th data-field="index" data-formatter="indexFormatter" >序号</th>
+                <!--<th data-field="id">ID</th>-->
+                <th data-field="name">类别名称</th>
+                <th data-field="description">类别描述</th>
+                <th data-field="gmtCreate" data-formatter="formatDateTime">创建时间</th>
+                <th data-field="gmtModified" data-formatter="formatDateTime">修改时间</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    {{addOrChange}}类别
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="id" class="col-md-2 control-label">id</label>
+                        <div class="col-md-9">
+                            <input ng-model="catg.id" id="id" type="text" class="form-control" placeholder="主键">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="catgName" class="col-md-2 control-label">类别名称</label>
+                        <div class="col-md-9">
+                            <input ng-model="catg.name" id="catgName" type="text" class="form-control" placeholder="请输入名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc" class="col-md-2 control-label">描述信息</label>
+                        <div class="col-md-9">
+                            <input ng-model="catg.desc" id="desc" type="text" class="form-control" placeholder="请输入描述">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button id="btnOk" type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+</body>
+</html>

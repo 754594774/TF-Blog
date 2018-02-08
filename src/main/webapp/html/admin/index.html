@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理页面</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../css/mm-vertical.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="../../plugins/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../plugins/metismenu/metisMenu.css" />
+    <!--警告框插件-->
+    <link href="../../plugins/toastr/toastr.min.css" rel="stylesheet">
+    <style>
+        .col-md-2 {
+            padding: 0 0px;
+        }
+
+        .col-md-10 {
+            padding: 0 0px;
+        }
+    </style>
+
+</head>
+<body ng-app="myApp" style="background-color: #eeeeee">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" ng-controller="catgsCtrl">
+            <nav class="sidebar-nav">
+                <ul class="metismenu" id="menu1">
+                    <li>
+                        <a class="has-arrow" href="#">
+                            <span class="fa fa-fw fa-edit fa-2x"></span> 文章管理
+                        </a>
+                        <ul aria-expanded="true">
+                            <li>
+                                <a href="#/catgList"><span class="fa fa-circle-o fa-fw"></span> 文章分类
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 发布文章
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 文章列表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 文章留言
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 文章归档
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-fw fa-code-fork fa-2x"></span> 友链分类
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 友链列表
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-fw fa-user fa-2x"></span> 用户管理
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 用户列表
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-fw fa-cog fa-2x"></span> 系统管理
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 邮件列表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-circle-o fa-fw"></span> 公告管理
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-10 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+            <nav class="navbar navbar-default navbar-collapse" role="navigation">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-bars fa-2x"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-envelope-o"></span>
+                                <span class="badge">3</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="fa fa-user"></span> Admin
+                                <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">设置</a>
+                                </li>
+                                <li>
+                                    <a href="#">登出</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <div ng-view="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../../plugins/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../plugins/angularJs/angular.min.js"></script>
+    <script src="../../plugins/angularJs/angular-route.js"></script>
+    <script src="../../plugins/metismenu/metisMenu.js"></script>
+    <script src="../../js/admin/index.js"></script>
+    <script src="../../plugins/toastr/toastr.min.js"></script>
+    <script>
+        $(function() {
+            $('#menu1').metisMenu({toggle: false});
+        });
+    </script>
+</body>
+</html>

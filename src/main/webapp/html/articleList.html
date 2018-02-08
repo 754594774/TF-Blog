@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="list-group" ng-controller="articlesCtrl">
+			<a href="#/articleDetail/{{a.id}}" class="list-group-item" ng-repeat="a in articles">
+				<h4 class="list-group-item-heading">
+                	{{ a.title }}
+            	</h4>
+				<span class="text-muted">{{ a.desc }}</span>
+			</a>
+		</div>
+	</body>
+</html>

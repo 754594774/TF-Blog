@@ -42,10 +42,15 @@
     <mvc:resources mapping="/css/**" location="/css/" />
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:resources mapping="/plugins/**" location="/plugins/" />
+    <mvc:resources mapping="/html/**" location="/html/" />
 
     <!--定义视图解析器-->
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/WEB-INF/jsp/"/>-->
+        <!--<property name="suffix" value=".jsp"/>-->
+    <!--</bean>-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/html/"/>
+        <property name="suffix" value=".html"/>
     </bean>
 </beans>

@@ -1,12 +1,15 @@
 package com.linn.home.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.linn.frame.controller.BaseController;
 import com.linn.frame.util.DateUtils;
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
 import com.linn.home.service.ArticleService;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by admin on 2018/1/14.
@@ -29,39 +33,37 @@ public class ArticleController extends BaseController {
     /**
      * 跳转到文章列表
      *
-     * @param request
-     * @param response
      * @return
      */
     @ResponseBody
     @RequestMapping("toArticleList")
-    public List<Article> toArticleList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+    public List<Article> toArticleList(@RequestBody Map<String, String> map) throws Exception {
         List<Article> articles = null;
-        String categoryId = request.getParameter("categoryId");
-        String archiveDate = request.getParameter("archiveDate");
-
-        if (categoryId != null && !categoryId.equals("")) {
-            articles = articleService.selectArticleByCategoryId(Integer.parseInt(categoryId));
-        } else if (archiveDate != null && !archiveDate.equals("")) {
-            Date firstDay = DateUtils.firstDayByMonth(archiveDate);
-            Date lastDay = DateUtils.lastDayByMonth(archiveDate);
+        if(map.containsKey("categoryId") && !StringUtils.isEmpty(map.get("categoryId"))){
+            Integer categoryId = Integer.parseInt(map.get("categoryId"));
+            articles = articleService.selectArticleByCategoryId(categoryId);
+        }
+        if(map.containsKey("date") && !StringUtils.isEmpty(map.get("date")) ){
+            String date = map.get("date");
+            Date firstDay = DateUtils.firstDayByMonth(date);
+            Date lastDay = DateUtils.lastDayByMonth(date);
             HashMap<String, Date> hashMap = new HashMap<String, Date>();
             hashMap.put("firstDay", firstDay);
             hashMap.put("lastDay", lastDay);
             articles = articleService.selectArticleByArchiveDate(hashMap);
-        } else {
+        }else {
             //failed
         }
-
         return articles;
     }
 
     @ResponseBody
     @RequestMapping("toArticleDetail")
-    private Article toArticleDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String articleId = request.getParameter("articleId");
-        Article article = articleService.selectArticleById(Integer.parseInt(articleId));
+    private Article toArticleDetail(@RequestBody Article article) throws Exception {
+
+        if(article != null) {
+            article = articleService.selectArticleById(article.getId());
+        }
         return article;
 
     }

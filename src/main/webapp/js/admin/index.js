@@ -1,31 +1,37 @@
-$(document).ready(function () {
-    // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
-
-    // 1. 定义（路由）组件。
-    // 可以从其他文件 import 进来
-    const Foo = { template: '<div>foo</div>' }
-    const Bar = { template: '<div>bar</div>' }
-
-    // 2. 定义路由
-    // 每个路由应该映射一个组件。 其中"component" 可以是
-    // 通过 Vue.extend() 创建的组件构造器，
-    // 或者，只是一个组件配置对象。
-    // 我们晚点再讨论嵌套路由。
-    const routes = [
-        { path: '/foo', component: Foo },
-        { path: '/bar', component: Bar }
-    ]
-
-    // 3. 创建 router 实例，然后传 `routes` 配置
-    // 你还可以传别的配置参数, 不过先这么简单着吧。
-    const router = new VueRouter({
-        routes: routes // （缩写）相当于 routes: routes
+//angularJs路由
+angular.module('myApp', ['ngRoute'])
+    .controller('catgsCtrl', function($scope,$routeParams) {
+        $scope.params = $routeParams;
     })
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'html/admin/welcome.html'
+            })
+            .when('/catgList', {
+                templateUrl: 'html/admin/catgList.html',
+                controller: 'catgsCtrl'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    }])
 
-    // 4. 创建和挂载根实例。
-    // 记得要通过 router 配置参数注入路由，
-    // 从而让整个应用都有路由功能
-    const app = new Vue({
-        router:router
-    }).$mount('#app')
+$(function () {
+    //弹出提示框
+    toastr.options = {
+        closeButton: false,//是否显示关闭按钮（提示框右上角关闭按钮）
+        debug: false,//是否为调试
+        progressBar: true,//是否显示进度条（设置关闭的超时时间进度条）
+        positionClass: "toast-top-right",//消息框在页面显示的位置
+        onclick: null,//点击消息框自定义事件
+        showDuration: "300",//显示动作时间
+        hideDuration: "1000",//隐藏动作时间
+        timeOut: "5000",//自动关闭超时时间
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",//显示的方式，和jquery相同
+        hideMethod: "fadeOut"//隐藏的方式，和jquery相同
+    };
 });
