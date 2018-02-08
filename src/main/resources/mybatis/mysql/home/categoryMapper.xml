@@ -14,4 +14,19 @@
     <select id="selectAllCategory" resultMap="categoryResultMap">
         select * from blog_category;
     </select>
+
+    <insert id="addCategory"  keyProperty="id">
+        INSERT INTO blog_category (name, description, gmt_create, gmt_modified)
+        VALUES (#{name}, #{description}, #{gmtCreate}, #{gmtModified})
+    </insert>
+
+    <update id="updateCategoryById">
+        UPDATE blog_category
+        SET name  = #{name}, description = #{description},gmt_modified = #{gmtModified}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteCategoryById">
+        delete from blog_category where id = #{id}
+    </delete>
 </mapper>

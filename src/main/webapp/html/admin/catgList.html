@@ -34,7 +34,7 @@
                data-toggle="table"
                data-height="428"
                data-pagination="true"
-               data-page-list="[2, 3, 5, 10]"
+               data-page-list="[5, 10, 15, 20]"
                data-search="true"
                data-show-columns="true"
                data-click-to-select="true"
@@ -46,7 +46,6 @@
             <tr>
                 <th data-field="state" data-checkbox="true"></th>
                 <th data-field="index" data-formatter="indexFormatter" >序号</th>
-                <!--<th data-field="id">ID</th>-->
                 <th data-field="name">类别名称</th>
                 <th data-field="description">类别描述</th>
                 <th data-field="gmtCreate" data-formatter="formatDateTime">创建时间</th>
@@ -73,7 +72,7 @@
                     <div class="form-group">
                         <label for="id" class="col-md-2 control-label">id</label>
                         <div class="col-md-9">
-                            <input ng-model="catg.id" id="id" type="text" class="form-control" placeholder="主键">
+                            <input ng-model="catg.id" id="id" type="text" class="form-control" placeholder="主键" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -85,7 +84,7 @@
                     <div class="form-group">
                         <label for="desc" class="col-md-2 control-label">描述信息</label>
                         <div class="col-md-9">
-                            <input ng-model="catg.desc" id="desc" type="text" class="form-control" placeholder="请输入描述">
+                            <input ng-model="catg.description" id="desc" type="text" class="form-control" placeholder="请输入描述">
                         </div>
                     </div>
                 </form>

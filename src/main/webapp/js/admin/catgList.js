@@ -21,7 +21,7 @@ $(function () {
         var scope = $(e.target).scope();
         scope.addOrChange = "修改";
         scope.catg = row[0];
-        scope.$apply();//刷新数据;
+        scope.$apply();//刷新数据
         $('#myModal').modal('show');
 
     });
@@ -29,7 +29,7 @@ $(function () {
         var row = $table.bootstrapTable('getSelections');
         if(row.length <= 0){
             return;
-        }
+        };
         if(confirm("真的要删除吗?")){
             var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
                 return row.id;
@@ -38,7 +38,26 @@ $(function () {
                 field: 'id',
                 values: ids
             });
-        }
+        };
+        console.log(JSON.stringify(ids));
+        $.ajax({
+            url: 'delCategory',
+            type: 'POST',
+            traditional:true,
+            data:{ids:ids},
+            success: function (data) {
+                if(data.errNo == 0){
+                    toastr.success(data.errMsg);
+                }else {
+                    toastr.error(data.errMsg);
+                    $table.bootstrapTable('refresh');
+                }
+            },
+            error: function () {
+                toastr.error('删除失败');
+                $table.bootstrapTable('refresh');
+            }
+        });
     });
     $btnRefresh.click(function () {
         $table.bootstrapTable('refresh');
@@ -57,8 +76,29 @@ $(function () {
             });
         }
         $('#myModal').modal('hide');
-        //发送ajax请求
 
+        //发送ajax请求
+        $.ajax({
+            url: 'addOrUpdateCatg',
+            type: 'POST',
+            data: {
+                id: scope.catg.id,
+                name:scope.catg.name,
+                description:scope.catg.description
+            },
+            success: function (data) {
+                if(data.errNo == 0){
+                    toastr.success(data.errMsg);
+                }else {
+                    toastr.error(data.errMsg);
+                    $table.bootstrapTable('refresh');
+                }
+            },
+            error: function () {
+                toastr.error('添加失败');
+                $table.bootstrapTable('refresh');
+            }
+        });
     });
 });
 

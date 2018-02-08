@@ -1,5 +1,7 @@
 package com.linn.home.entity;
 
+import com.linn.frame.entity.BaseEntity;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,17 +11,17 @@ import java.util.Date;
  */
 public class Category implements Serializable{
 
-	private int id;
+	private Integer id;
 	private String description;
 	private String name;
 	private Date gmtCreate;
 	private Date gmtModified;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
