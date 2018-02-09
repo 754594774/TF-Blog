@@ -83,8 +83,8 @@ $(function () {
             type: 'POST',
             data: {
                 id: scope.catg.id,
-                name:scope.catg.name,
-                description:scope.catg.description
+                title:scope.catg.title,
+                intro:scope.catg.intro
             },
             success: function (data) {
                 if(data.errNo == 0){

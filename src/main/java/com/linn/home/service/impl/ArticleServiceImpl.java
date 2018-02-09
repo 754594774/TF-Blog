@@ -45,4 +45,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleDao.findArticleListAdmin();
     }
 
+    @Override
+    public int addArticle(Article article) throws Exception {
+        return articleDao.addArticle(article);
+    }
+
 }

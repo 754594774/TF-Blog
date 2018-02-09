@@ -18,4 +18,6 @@ public interface ArticleService {
     List<Archive> selectAllArchive() throws Exception;
 
     List<Article> findArticleListAdmin() throws Exception;
+
+    int addArticle(Article article) throws Exception;
 }

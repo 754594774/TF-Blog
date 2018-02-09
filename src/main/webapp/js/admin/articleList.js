@@ -7,23 +7,22 @@ var $btnOk = $('#btnOk');
 $(function () {
     $btnAdd.click(function (e) {
         var scope = $(e.target).scope();
-        scope.catg = null;
+        scope.article = null;
         scope.addOrChange = "添加";
         scope.$apply();//刷新数据;
 
     });
     $btnChange.click(function (e) {
         var row = $table.bootstrapTable('getSelections');
+        console.log(row);
         if(row.length != 1){
             toastr.warning('请选择一行！');
-            return;
+            return false;//阻止跳转
         }
-        var scope = $(e.target).scope();
-        scope.addOrChange = "修改";
-        scope.catg = row[0];
-        scope.$apply();//刷新数据
-        $('#myModal').modal('show');
-
+        //var scope = $(e.target).scope();
+        //scope.addOrChange = "修改";
+        //scope.article = row[0];
+        //scope.$apply();//刷新数据
     });
     $btnDel.click(function () {
         var row = $table.bootstrapTable('getSelections');
@@ -39,66 +38,65 @@ $(function () {
                 values: ids
             });
         };
-        console.log(JSON.stringify(ids));
-        $.ajax({
-            url: 'delCategory',
-            type: 'POST',
-            traditional:true,
-            data:{ids:ids},
-            success: function (data) {
-                if(data.errNo == 0){
-                    toastr.success(data.errMsg);
-                }else {
-                    toastr.error(data.errMsg);
-                    $table.bootstrapTable('refresh');
-                }
-            },
-            error: function () {
-                toastr.error('删除失败');
-                $table.bootstrapTable('refresh');
-            }
-        });
+        //$.ajax({
+        //    url: 'delArticle',
+        //    type: 'POST',
+        //    traditional:true,
+        //    data:{ids:ids},
+        //    success: function (data) {
+        //        if(data.errNo == 0){
+        //            toastr.success(data.errMsg);
+        //        }else {
+        //            toastr.error(data.errMsg);
+        //            $table.bootstrapTable('refresh');
+        //        }
+        //    },
+        //    error: function () {
+        //        toastr.error('删除失败');
+        //        $table.bootstrapTable('refresh');
+        //    }
+        //});
     });
     $btnRefresh.click(function () {
         $table.bootstrapTable('refresh');
     });
     $btnOk.click(function (e) {//点击确认按钮
         var scope = $(e.target).scope();
-        if(scope.catg!=null && scope.catg.id !=null){//修改
+        if(scope.article!=null && scope.article.id !=null){//修改
             $table.bootstrapTable('updateRow', {
                 //index:0,
-                row:scope.catg
+                row:scope.article
             });
         } else {
             $table.bootstrapTable('insertRow', {
                 index: 0,
-                row:scope.catg
+                row:scope.article
             });
         }
         $('#myModal').modal('hide');
 
         //发送ajax请求
-        $.ajax({
-            url: 'addOrUpdateCatg',
-            type: 'POST',
-            data: {
-                id: scope.catg.id,
-                name:scope.catg.name,
-                description:scope.catg.description
-            },
-            success: function (data) {
-                if(data.errNo == 0){
-                    toastr.success(data.errMsg);
-                }else {
-                    toastr.error(data.errMsg);
-                    $table.bootstrapTable('refresh');
-                }
-            },
-            error: function () {
-                toastr.error('添加失败');
-                $table.bootstrapTable('refresh');
-            }
-        });
+        //$.ajax({
+        //    url: 'addOrUpdateArticle',
+        //    type: 'POST',
+        //    data: {
+        //        //id: scope.catg.id,
+        //        //name:scope.catg.name,
+        //        //description:scope.catg.description
+        //    },
+        //    success: function (data) {
+        //        if(data.errNo == 0){
+        //            toastr.success(data.errMsg);
+        //        }else {
+        //            toastr.error(data.errMsg);
+        //            $table.bootstrapTable('refresh');
+        //        }
+        //    },
+        //    error: function () {
+        //        toastr.error('添加失败');
+        //        $table.bootstrapTable('refresh');
+        //    }
+        //});
     });
 });
 

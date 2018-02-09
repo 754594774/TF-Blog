@@ -9,6 +9,7 @@
         <result property="categoryId" column="category_id"/>
         <result property="title" column="title"/>
         <result property="author" column="author"/>
+        <result property="intro" column="intro"/>
         <result property="content" column="content"/>
         <result property="gmtCreate" column="gmt_create"/>
         <result property="gmtModified" column="gmt_modified"/>
@@ -41,4 +42,9 @@
     <select id="selectAllArchive" resultMap="archivesResultMap">
         SELECT DATE_FORMAT(`gmt_create`,'%Y%m') AS pubtime, COUNT(*) AS cnt FROM blog_article GROUP BY pubtime DESC;
     </select>
+
+    <insert id="addArticle"  keyProperty="id">
+        INSERT INTO blog_article (category_id, title,intro, author, content,gmt_create, gmt_modified)
+        VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{content}, #{gmtCreate}, #{gmtModified})
+    </insert>
 </mapper>

@@ -44,4 +44,12 @@ public interface ArticleDao {
      * @return
      */
     List<Article> findArticleListAdmin() throws Exception;
+
+    /**
+     * 添加文章
+     * @param article
+     * @return
+     * @throws Exception
+     */
+    int addArticle(Article article) throws Exception;
 }

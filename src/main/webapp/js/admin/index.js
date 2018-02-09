@@ -3,6 +3,12 @@ angular.module('myApp', ['ngRoute'])
     .controller('menuCtrl', function($scope,$routeParams) {
         $scope.params = $routeParams;
     })
+    .controller('pubArticleCtrl', function($scope) {
+        $scope.publish = function() {
+            //console.log($scope.article);
+            toastr.success("发布成功");
+        }
+    })
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', {
@@ -14,6 +20,10 @@ angular.module('myApp', ['ngRoute'])
             })
             .when('/articleList', {
                 templateUrl: 'html/admin/articleList.html',
+                controller: 'menuCtrl'
+            })
+            .when('/publishArticle', {
+                templateUrl: 'html/admin/publishArticle.html',
                 controller: 'menuCtrl'
             })
             .otherwise({

@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.linn.frame.controller.BaseController;
+import com.linn.frame.entity.ResultBean;
 import com.linn.frame.util.DateUtils;
+import com.linn.frame.util.SysContent;
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
 import com.linn.home.service.ArticleService;
@@ -30,6 +32,19 @@ public class ArticleController extends BaseController {
 
     @Resource
     private ArticleService articleService;
+
+    /**
+     * 发布文章
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("publishArticle")
+    public ResultBean publishArticle(@RequestBody Article article) throws Exception {
+
+        int ret = articleService.addArticle(article);
+        return new ResultBean(SysContent.SUCCESS,"发布成功");
+    }
 
     /**
      * 查找所有文章

@@ -1,7 +1,5 @@
 package com.linn.home.entity;
 
-import com.linn.frame.entity.BaseEntity;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,8 +10,8 @@ import java.util.Date;
 public class Category implements Serializable{
 
 	private Integer id;
-	private String description;
-	private String name;
+	private String intro;
+	private String title;
 	private Date gmtCreate;
 	private Date gmtModified;
 
@@ -25,20 +23,20 @@ public class Category implements Serializable{
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getIntro() {
+		return intro;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Date getGmtCreate() {
@@ -61,8 +59,8 @@ public class Category implements Serializable{
 	public String toString() {
 		return "Category{" +
 				"id=" + id +
-				", description='" + description + '\'' +
-				", name='" + name + '\'' +
+				", intro='" + intro + '\'' +
+				", title='" + title + '\'' +
 				", gmtCreate=" + gmtCreate +
 				", gmtModified=" + gmtModified +
 				'}';
