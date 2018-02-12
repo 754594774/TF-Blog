@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -39,7 +40,7 @@ public class ArticleController extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("publishArticle")
+    @RequestMapping(value = "publishArticle",method = RequestMethod.POST)
     public ResultBean publishArticle(@RequestBody Article article) throws Exception {
 
         int ret = articleService.addArticle(article);

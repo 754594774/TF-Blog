@@ -18,7 +18,7 @@
 
     <insert id="addCategory"  keyProperty="id">
         INSERT INTO blog_category (title, intro, gmt_create, gmt_modified)
-        VALUES (#{titel}, #{intro}, #{gmtCreate}, #{gmtModified})
+        VALUES (#{title}, #{intro}, #{gmtCreate}, #{gmtModified})
     </insert>
 
     <update id="updateCategoryById">

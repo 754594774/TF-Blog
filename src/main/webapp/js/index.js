@@ -52,7 +52,7 @@ angular.module('myApp', ['ngRoute'])
                 date:$routeParams.date
             }
         }).then(function successCallback(response) {
-            console.log(response.data);
+
             $scope.articles = response.data;
         }, function errorCallback(response) {
             // 请求失败执行代码

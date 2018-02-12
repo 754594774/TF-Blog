@@ -44,7 +44,7 @@
     </select>
 
     <insert id="addArticle"  keyProperty="id">
-        INSERT INTO blog_article (category_id, title,intro, author, content,gmt_create, gmt_modified)
-        VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{content}, #{gmtCreate}, #{gmtModified})
+        INSERT INTO blog_article (category_id, title,intro, author, content)
+        VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{content)
     </insert>
 </mapper>
