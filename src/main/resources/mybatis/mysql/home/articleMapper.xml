@@ -45,6 +45,6 @@
 
     <insert id="addArticle"  keyProperty="id">
         INSERT INTO blog_article (category_id, title,intro, author, content)
-        VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{content)
+        VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{content})
     </insert>
 </mapper>

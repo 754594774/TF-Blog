@@ -41,7 +41,7 @@ public class ArticleController extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = "publishArticle",method = RequestMethod.POST)
-    public ResultBean publishArticle(@RequestBody Article article) throws Exception {
+    public ResultBean publishArticle(Article article) throws Exception {
 
         int ret = articleService.addArticle(article);
         return new ResultBean(SysContent.SUCCESS,"发布成功");

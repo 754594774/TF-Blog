@@ -5,24 +5,24 @@ var $btnDel = $('#btnDel');
 var $btnRefresh = $('#btnRefresh');
 var $btnOk = $('#btnOk');
 $(function () {
-    $btnAdd.click(function (e) {
-        var scope = $(e.target).scope();
-        scope.article = null;
-        scope.addOrChange = "添加";
-        scope.$apply();//刷新数据;
-
+    $btnAdd.click(function () {
+        //全局rootScope
+        var $body = angular.element(document.body);   // 1
+        var $rootScope = $body.scope().$root;         // 2
+        $rootScope.article = null;
+        $rootScope.$apply();
     });
     $btnChange.click(function (e) {
         var row = $table.bootstrapTable('getSelections');
-        console.log(row);
         if(row.length != 1){
             toastr.warning('请选择一行！');
             return false;//阻止跳转
         }
-        //var scope = $(e.target).scope();
-        //scope.addOrChange = "修改";
-        //scope.article = row[0];
-        //scope.$apply();//刷新数据
+       //全局rootScope
+        var $body = angular.element(document.body);   // 1
+        var $rootScope = $body.scope().$root;         // 2
+        $rootScope.article = row[0];
+        $rootScope.$apply();
     });
     $btnDel.click(function () {
         var row = $table.bootstrapTable('getSelections');

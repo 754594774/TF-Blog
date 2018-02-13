@@ -3,35 +3,26 @@ angular.module('myApp', ['ngRoute'])
     .controller('menuCtrl', function($scope,$routeParams) {
         $scope.params = $routeParams;
     })
-    .controller('pubArticleCtrl', function($scope,$http) {
+    .controller('pubArticleCtrl', function($scope,$http,$rootScope) {
         $http({
             method: 'GET',
             url: 'toCategoryList',
         }).then(function successCallback(response) {
 
             $scope.catgs = response.data;
+            $scope.selectedCatg = $scope.catgs[0];//分类默认选择第一个
+            if($rootScope.article != undefined){
+                $.each(response.data,function(index,value){
+                    if(value.id == $rootScope.article.categoryId)
+                    {
+                        $scope.selectedCatg = value;
+                    }
+                });
+            }
         }, function errorCallback(response) {
             // 请求失败执行代码
             toastr.error("请求分类数据失败");
         });
-        $scope.publish = function() {
-            $http({
-                method: 'POST',
-                url: 'publishArticle',
-                data: {
-                    id: $scope.article.id,
-                    categoryId:$scope.selectedCatg.id,
-                    title:$scope.article.title,
-                    author:$scope.article.author,
-                    content:$scope.article.content
-                }
-            }).then(function successCallback(response) {
-                toastr.success(response.data.errMsg);
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-                toastr.error("添加失败");
-            });
-        }
     })
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
