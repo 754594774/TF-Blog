@@ -68,7 +68,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" id="catgForm">
                     <div class="form-group">
                         <label for="id" class="col-md-2 control-label">id</label>
                         <div class="col-md-9">
@@ -78,13 +78,13 @@
                     <div class="form-group">
                         <label for="catgTitle" class="col-md-2 control-label">类别名称</label>
                         <div class="col-md-9">
-                            <input ng-model="catg.title" id="catgTitle" type="text" class="form-control" placeholder="请输入名称">
+                            <input ng-model="catg.title" id="catgTitle" name="title" type="text" class="form-control" placeholder="请输入名称">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="desc" class="col-md-2 control-label">描述信息</label>
                         <div class="col-md-9">
-                            <input ng-model="catg.intro" id="desc" type="text" class="form-control" placeholder="请输入描述">
+                            <input ng-model="catg.intro" id="desc" name="intro" type="text" class="form-control" placeholder="请输入描述">
                         </div>
                     </div>
                 </form>

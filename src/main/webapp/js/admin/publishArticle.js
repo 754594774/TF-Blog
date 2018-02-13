@@ -1,9 +1,9 @@
 // 初始化验证
-$('#catgForm').validator({
+$('#articleForm').validator({
     timely:3,
     theme:'yellow_top',
     fields: {
-        'articleTitle': '标题:required;length(3~16)',
+        'articleTitle': '标题:required',
         'articleAuthor':'作者:required',
         'selectedCatg':'分类:required',
         'articleContent':'内容:required'

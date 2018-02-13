@@ -17,13 +17,13 @@
     </select>
 
     <insert id="addCategory"  keyProperty="id">
-        INSERT INTO blog_category (title, intro, gmt_create, gmt_modified)
-        VALUES (#{title}, #{intro}, #{gmtCreate}, #{gmtModified})
+        INSERT INTO blog_category (title, intro)
+        VALUES (#{title}, #{intro})
     </insert>
 
     <update id="updateCategoryById">
         UPDATE blog_category
-        SET title  = #{titel}, intro = #{intro},gmt_modified = #{gmtModified}
+        SET title  = #{title}, intro = #{intro},gmt_modified = #{gmtModified}
         WHERE id = #{id}
     </update>
 
