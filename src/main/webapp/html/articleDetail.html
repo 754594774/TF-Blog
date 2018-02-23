@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>文章详情</title>
 	</head>
 
 	<body>
-		<div class="panel panel-default">
+		<div ng-controller="articleDetailCtrl" class="panel panel-default" >
 			<div class="panel-body">
+				<input id="articleId" type="text" ng-model="article.id">
 				<h2>{{article.title}}</h2>
 				<span class="text-muted">{{article.gmtCreate}} by {{article.author}}</span>
 				<p>{{article.content}}</p>
+			</div>
+		</div>
+		<!--留言区-->
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					留言区：
+				</h3>
+			</div>
+			<div class="panel-body">
+				<ul id="pn">
+
+				</ul>
 			</div>
 		</div>
 	</body>

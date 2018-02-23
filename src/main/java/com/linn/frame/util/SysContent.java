@@ -7,4 +7,8 @@ package com.linn.frame.util;
 public class SysContent {
     public static final int SUCCESS = 0;
     public static final int ERROR = -1;
+
+    public static final int YES = 0;
+    public static final int NO = 1;
+
 }

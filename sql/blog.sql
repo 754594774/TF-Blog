@@ -20,3 +20,13 @@ CREATE TABLE blog_article (
   is_deleted TINYINT(1) UNSIGNED ZEROFILL DEFAULT 0 COMMENT '是否删除',
   FOREIGN KEY(category_id) REFERENCES blog_category(id)
 )
+CREATE TABLE blog_comment (
+  id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  pid INT(10) DEFAULT 0 COMMENT '父id',
+  rootid INT(10) DEFAULT 0 COMMENT '根id',
+  member_name VARCHAR(20) DEFAULT NULL COMMENT '用户名',
+  content VARCHAR(200) NOT NULL COMMENT '评论',
+  pdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '评论时间',
+  isleaf INT(10) DEFAULT 0 COMMENT '是否叶子节点',
+  article_id INT(10) DEFAULT NULL COMMENT '文章id'
+)
