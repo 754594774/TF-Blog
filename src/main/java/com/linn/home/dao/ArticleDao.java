@@ -52,4 +52,12 @@ public interface ArticleDao {
      * @throws Exception
      */
     int addArticle(Article article) throws Exception;
+
+    /**
+     * 删除文章
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    int deleteArticleById(int id) throws Exception;
 }

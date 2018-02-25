@@ -18,7 +18,7 @@ $(function () {
             toastr.warning('请选择一行！');
             return false;//阻止跳转
         }
-       //全局rootScope
+        //全局rootScope
         var $body = angular.element(document.body);   // 1
         var $rootScope = $body.scope().$root;         // 2
         $rootScope.article = row[0];
@@ -38,24 +38,24 @@ $(function () {
                 values: ids
             });
         };
-        //$.ajax({
-        //    url: 'delArticle',
-        //    type: 'POST',
-        //    traditional:true,
-        //    data:{ids:ids},
-        //    success: function (data) {
-        //        if(data.errNo == 0){
-        //            toastr.success(data.errMsg);
-        //        }else {
-        //            toastr.error(data.errMsg);
-        //            $table.bootstrapTable('refresh');
-        //        }
-        //    },
-        //    error: function () {
-        //        toastr.error('删除失败');
-        //        $table.bootstrapTable('refresh');
-        //    }
-        //});
+        $.ajax({
+            url: 'delArticle',
+            type: 'POST',
+            traditional:true,
+            data:{ids:ids},
+            success: function (data) {
+                if(data.errNo == 0){
+                    toastr.success(data.errMsg);
+                }else {
+                    toastr.error(data.errMsg);
+                    $table.bootstrapTable('refresh');
+                }
+            },
+            error: function () {
+                toastr.error('删除失败');
+                $table.bootstrapTable('refresh');
+            }
+        });
     });
     $btnRefresh.click(function () {
         $table.bootstrapTable('refresh');

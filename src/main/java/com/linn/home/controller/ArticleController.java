@@ -105,4 +105,16 @@ public class ArticleController extends BaseController {
 
         return archives;
     }
+
+    @ResponseBody
+    @RequestMapping("delArticle")
+    public ResultBean delArticle(int[] ids) throws Exception {
+
+        if(ids!=null && ids.length > 0){
+            for (int id: ids) {
+                int ret = articleService.delArticle(id);
+            }
+        }
+        return new ResultBean(SysContent.SUCCESS,"删除成功");
+    }
 }

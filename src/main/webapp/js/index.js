@@ -85,6 +85,11 @@ angular.module('myApp', ['ngRoute'])
         });
 
     })//可选参数 /:date? ///article?type&id
+    .filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {

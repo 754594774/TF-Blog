@@ -13,20 +13,20 @@
     <link href="../../plugins/toastr/toastr.min.css" rel="stylesheet">
 
     <style>
-        .col-md-2 {
+        .col-sm-2 {
             padding: 0 0px;
         }
 
-        .col-md-10 {
+        .col-sm-10 {
             padding: 0 0px;
         }
     </style>
 
 </head>
-<body ng-app="myApp" style="background-color: #eeeeee">
+<body ng-app="myApp">
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar" ng-controller="menuCtrl">
+        <div class="col-sm-2 sidebar" ng-controller="menuCtrl">
             <nav class="sidebar-nav">
                 <ul class="metismenu" id="menu1">
                     <li>
@@ -97,7 +97,7 @@
             </nav>
         </div>
 
-        <div class="col-md-10 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+        <div class="col-sm-10 col-sm-offset-2">
             <nav class="navbar navbar-default navbar-collapse" role="navigation">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav navbar-left">
@@ -139,23 +139,23 @@
     </div>
 </div>
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="../../plugins/jquery.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../plugins/angularJs/angular.min.js"></script>
-    <script src="../../plugins/angularJs/angular-route.js"></script>
-    <script src="../../plugins/metismenu/metisMenu.js"></script>
-    <script src="../../js/admin/index.js"></script>
-    <script src="../../plugins/toastr/toastr.min.js"></script>
-    <script src="../../js/global.js"></script>
-    <script src="../../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="../../plugins/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugins/angularJs/angular.min.js"></script>
+<script src="../../plugins/angularJs/angular-route.js"></script>
+<script src="../../plugins/metismenu/metisMenu.js"></script>
+<script src="../../js/admin/index.js"></script>
+<script src="../../plugins/toastr/toastr.min.js"></script>
+<script src="../../js/global.js"></script>
+<script src="../../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
 
-    <script>
-        $(function() {
-            $('#menu1').metisMenu({toggle: false});
-        });
-    </script>
+<script>
+    $(function() {
+        $('#menu1').metisMenu({toggle: false});
+    });
+</script>
 
 </body>
 </html>

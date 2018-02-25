@@ -18,6 +18,7 @@ public class Article implements Serializable{
 	private Date gmtCreate;
 	private Date gmtModified;
 	private Integer sortNo;
+	private Integer allowComment;
 	private Integer isStick;
 	private Integer isDraft;
 	private Integer isDeleted;
@@ -118,6 +119,14 @@ public class Article implements Serializable{
 		this.intro = intro;
 	}
 
+	public Integer getAllowComment() {
+		return allowComment;
+	}
+
+	public void setAllowComment(Integer allowComment) {
+		this.allowComment = allowComment;
+	}
+
 	@Override
 	public String toString() {
 		return "Article{" +
@@ -130,6 +139,7 @@ public class Article implements Serializable{
 				", gmtCreate=" + gmtCreate +
 				", gmtModified=" + gmtModified +
 				", sortNo=" + sortNo +
+				", allowComment=" + allowComment +
 				", isStick=" + isStick +
 				", isDraft=" + isDraft +
 				", isDeleted=" + isDeleted +

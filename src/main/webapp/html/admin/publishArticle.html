@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="../../plugins/ckeditor/ckeditor.js"></script>
     <script src="../../js/admin/publishArticle.js"></script>
 </head>
 <body>
@@ -11,32 +12,35 @@
         <div class="panel-body">
             <form class="form-horizontal" id="articleForm" role="form">
                 <div class="form-group">
-                    <div class="col-sm-10">
+                    <div class="col-sm-8">
                         <input type="hidden" ng-model="article.id" class="form-control">
                         <input type="text" ng-model="article.title" class="form-control" name="articleTitle" placeholder="请输入标题">
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <input type="text" ng-model="article.author" class="form-control" name="articleAuthor" placeholder="请输入作者">
                     </div>
-                    <div class="col-sm-5">
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <input type="text" ng-model="article.intro" class="form-control" name="articleIntro" placeholder="请输入简介">
+                    </div>
+                    <div class="col-sm-4">
                         <select  ng-model="selectedCatg"  ng-options="c.title for c in catgs"
-                                name="selectedCatg" class="form-control" >
+                                 name="selectedCatg" class="form-control" >
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <textarea class="form-control" ng-model="article.content" rows="12" name="articleContent" placeholder="这里输入正文...">
+                        <textarea class="form-control" ng-model="article.content" rows="12" id="articleContent" name="articleContent" placeholder="这里输入正文...">
                         </textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-10">
+                    <div class="col-sm-11">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox">禁止留言
+                                <input id="chkComment" ng-init="myVar = article.allowComment==1" ng-model="myVar" type="checkbox">禁止留言
                             </label>
                         </div>
                     </div>

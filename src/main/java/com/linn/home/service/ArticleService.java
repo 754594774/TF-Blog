@@ -20,4 +20,6 @@ public interface ArticleService {
     List<Article> findArticleListAdmin() throws Exception;
 
     int addArticle(Article article) throws Exception;
+
+    int delArticle(int id) throws Exception;
 }

@@ -1,16 +1,28 @@
+// Replace the <textarea id="editor1"> with a CKEditor
+// instance, using default configuration.
+var editor = CKEDITOR.replace( 'articleContent' );
+
 // 初始化验证
 $('#articleForm').validator({
-    timely:3,
+    beforeSubmit: function(){
+        editor.updateElement();
+    },
+    timely:0,//0：关闭实时验证，只在提交表单的时候执行验证
     theme:'yellow_top',
     fields: {
         'articleTitle': '标题:required',
         'articleAuthor':'作者:required',
+        'articleIntro':'简介:required',
         'selectedCatg':'分类:required',
         'articleContent':'内容:required'
     },
     valid: function(form){
         var $scope = $('div[ng-controller="pubArticleCtrl"]').scope();
-        console.log($scope);
+        //判断checkbox 是否选中
+        var allowComment = 0;//是否允许评论
+        if($scope.myVar){
+            allowComment = 1;
+        }
         var me = this;
         // Before submitting the form, hold form, to prevent duplicate submission.
         me.holdSubmit();
@@ -21,7 +33,9 @@ $('#articleForm').validator({
                 categoryId:$scope.selectedCatg.id,
                 title:$scope.article.title,
                 author:$scope.article.author,
-                content:$scope.article.content
+                intro:$scope.article.intro,
+                allowComment:allowComment,
+                content:editor.getData()
             },
             type: "POST",
             success: function(response){
@@ -35,6 +49,7 @@ $('#articleForm').validator({
                 var $rootScope = $body.scope().$root;         // 2
                 $rootScope.article = null;
                 $rootScope.$apply();
+                editor.setData('');
 
                 me.holdSubmit(false);//防止重复提交
             },
