@@ -8,6 +8,7 @@
 	<body>
 		<div ng-controller="articleDetailCtrl" class="panel panel-default" >
 			<div class="panel-body">
+				<input id="articleId" type="hidden" value="{{article.id}}">
 				<h3 class="text-center">{{article.title}}
 				</h3>
 				<span class="text-muted center-block text-center">{{article.gmtCreate | date:"yyyy-MM-dd HH:mm:ss"}} by {{article.author}}</span>

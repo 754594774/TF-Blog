@@ -29,4 +29,14 @@ public class CommentServiceImpl implements CommentService{
 
         return commentDao.findCommentListByPid(pid);
     }
+
+    @Override
+    public int addComment(Comment comment) throws Exception {
+        return commentDao.addComment(comment);
+    }
+
+    @Override
+    public int updateCommentById(Comment comment) throws Exception {
+        return commentDao.updateCommentById(comment);
+    }
 }

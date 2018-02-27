@@ -24,5 +24,21 @@ public interface CommentDao {
      * @param pid
      * @return
      */
-    List<Comment> findCommentListByPid(Integer pid);
+    List<Comment> findCommentListByPid(Integer pid) throws Exception;
+
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     * @throws Exception
+     */
+    int addComment(Comment comment) throws Exception;
+
+    /**
+     * 更新叶子节点
+     * @param comment
+     * @return
+     */
+    int updateCommentById(Comment comment)throws Exception;
+
 }

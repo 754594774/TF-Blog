@@ -22,4 +22,15 @@
     <select id="findCommentListByPid" parameterType="int" resultMap="commentResultMap">
         select * from blog_comment where pid = #{pid} order by id asc;
     </select>
+
+    <insert id="addComment"  keyProperty="id">
+        INSERT INTO blog_comment (pid, member_name,content,isleaf,article_id)
+        VALUES (#{pid}, #{memberName},#{content},#{isleaf},#{articleId})
+    </insert>
+
+    <update id="updateCommentById">
+        UPDATE blog_comment
+        SET isleaf  = #{isleaf}
+        WHERE id = #{id}
+    </update>
 </mapper>
