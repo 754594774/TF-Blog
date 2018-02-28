@@ -79,6 +79,7 @@ angular.module('myApp', ['ngRoute'])
             url: 'toCommentList',
             params:{articleId:$routeParams.id}
         }).then(function successCallback(response) {
+
             loadCommentList(response.data);
         }, function errorCallback(response) {
             // 请求失败执行代码
@@ -109,6 +110,7 @@ angular.module('myApp', ['ngRoute'])
     }]);
 
 function loadCommentList(data){
+
     $("#pn").empty();
     var innerHtml = '';
     for(var i=0;i<data.length;i++){
@@ -117,14 +119,13 @@ function loadCommentList(data){
         var comment = data[i];
         //非叶子节点 查看回复
         if(comment.isleaf == 0){
-
             tree(comment.childCommentList,comment.memberName);
         }
         innerHtml +=
             "<li class=\"list0\"> <a class=\"close\" href=\"javascript:;\">X</a>\n" +
             "  <div class=\"head\"><img src=\"../resources/images/foot.png\" alt=\"\"></div>\n" +
             "  <div class=\"content\">\n" +
-            "    <p class=\"text\"><span class=\"name\">" + comment.memberName + "：</span>" + comment.content + "</p>\n" +
+            "    <p class=\"text\"><span class=\"name\" rootId=" + comment.id + ">" + comment.memberName + "：</span>" + comment.content + "</p>\n" +
             "    <div class=\"good\"><span class=\"date\">" + comment.pdate + "</span><a class=\"dzan\" href=\"javascript:;\">赞</a></div>\n" +
             "    <div class=\"people\" total=\"0\" style=\"display: none;\"></div>\n" +
             "    <div class=\"comment-list\">\n" +
@@ -137,6 +138,7 @@ function loadCommentList(data){
             "  </div>\n" +
             "</li>";
     }
+
     $("#pn").append(innerHtml);
     initCommentEvent();
 }
@@ -167,6 +169,7 @@ function initCommentEvent() {
     var pn = document.getElementById("pn");
     var lists = pn.children;
     var pid =0;
+    var rootId =0;
     //删除当前节点
     function remove(node) {
         node.parentNode.removeChild(node);
@@ -201,6 +204,7 @@ function initCommentEvent() {
     }
     //回复评论
     function reply(box) {
+        var replyId = 0;
         //获取评论框
         var textarea = box.getElementsByTagName("textarea")[0];
         //获取包含所有评论的容器
@@ -209,8 +213,10 @@ function initCommentEvent() {
         var commentStr = "";
         if(content.length == 2){
             commentStr = content[1];
+            replyId = pid;
         }else {
             commentStr = content[0];
+            replyId = rootId;
         }
 
         ////发送ajax请求
@@ -218,7 +224,7 @@ function initCommentEvent() {
             url: 'addComment',
             type: 'POST',
             data: {
-                pid: pid,
+                pid: replyId,
                 content:commentStr,
                 memberName:'游客',
                 articleId:$("#articleId").val()
@@ -234,6 +240,9 @@ function initCommentEvent() {
                 alert("添加失败");
             }
         });
+        //初始化pid
+        pid = 0;
+        rootId = 0;
 
         //创建新的评论div
         var div = document.createElement("div");
@@ -346,6 +355,7 @@ function initCommentEvent() {
                     break;
                 //回复评论
                 case "hf-btn hf-btn-on":
+                    rootId = $(el).parent().siblings("p.text").children(".name").attr("rootId");
                     reply(el.parentNode.parentNode.parentNode);
                     break;
                 //每条评论中点赞
@@ -354,7 +364,6 @@ function initCommentEvent() {
                     break;
                 case "comment-dele":
                     pid =  $(el).parent().prev().children(".user").attr("pid");
-
                     operateReply(el);
                     break;
             }
@@ -362,11 +371,13 @@ function initCommentEvent() {
         var textarea = lists[i].getElementsByClassName("hf-text")[0];
         //焦点事件
         textarea.onfocus = function() {
+
             this.parentNode.className = 'hf hf-on';
             this.value = this.value == '评论…' ? '' : this.value;
         }
         //失焦事件
         textarea.onblur = function() {
+
             if (this.value == '') {
                 this.parentNode.className = 'hf';
                 this.value = '评论…';

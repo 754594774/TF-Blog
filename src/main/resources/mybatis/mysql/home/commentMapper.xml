@@ -16,11 +16,11 @@
     </resultMap>
 
     <select id="findCommentListByArticleId" parameterType="int" resultMap="commentResultMap">
-        select * from blog_comment where pid = 0 and article_id = #{articleId} order by id asc;
+        select * from blog_comment where pid = 0 and article_id = #{articleId} order by id desc;
     </select>
 
     <select id="findCommentListByPid" parameterType="int" resultMap="commentResultMap">
-        select * from blog_comment where pid = #{pid} order by id asc;
+        select * from blog_comment where pid = #{pid} order by id desc;
     </select>
 
     <insert id="addComment"  keyProperty="id">
