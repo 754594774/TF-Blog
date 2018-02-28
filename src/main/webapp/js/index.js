@@ -126,7 +126,7 @@ function loadCommentList(data){
             "  <div class=\"head\"><img src=\"../resources/images/foot.png\" alt=\"\"></div>\n" +
             "  <div class=\"content\">\n" +
             "    <p class=\"text\"><span class=\"name\" rootId=" + comment.id + ">" + comment.memberName + "：</span>" + comment.content + "</p>\n" +
-            "    <div class=\"good\"><span class=\"date\">" + comment.pdate + "</span><a class=\"dzan\" href=\"javascript:;\">赞</a></div>\n" +
+            "    <div class=\"good\"><span class=\"date\">" + formatDateTime(comment.pdate) + "</span><a class=\"dzan\" href=\"javascript:;\">赞</a></div>\n" +
             "    <div class=\"people\" total=\"0\" style=\"display: none;\"></div>\n" +
             "    <div class=\"comment-list\">\n" +
             str +
@@ -156,7 +156,7 @@ function tree(comments,toUser){
             "        <div class=\"comment-left\"><img src=\"../resources/images/foot.png\" alt=\"\"></div>\n" +
             "        <div class=\"comment-right\">\n" +
             "          <div class=\"comment-text\"><span class=\"user\" pid=" + comment.id + ">" +comment.memberName  + "：</span>" + replayUser + comment.content + "</div>\n" +
-            "          <div class=\"comment-date\">" + comment.pdate + " <a class=\"comment-zan\" href=\"javascript:;\" total=\"286\" my=\"1\">286 取消赞</a> <a class=\"comment-dele\" href=\"javascript:;\">回复</a> </div>\n" +
+            "          <div class=\"comment-date\">" + formatDateTime(comment.pdate) + " <a class=\"comment-zan\" href=\"javascript:;\" total=\"286\" my=\"1\">286 取消赞</a> <a class=\"comment-dele\" href=\"javascript:;\">回复</a> </div>\n" +
             "        </div>\n" +
             "      </div>\n";
         if(comment.isleaf == 0) {

@@ -43,6 +43,10 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl: 'html/admin/publishArticle.html',
                 controller: 'menuCtrl'
             })
+            .when('/linkList', {
+                templateUrl: 'html/admin/linkList.html',
+                controller: 'menuCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

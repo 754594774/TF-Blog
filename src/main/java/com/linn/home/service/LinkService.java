@@ -15,4 +15,28 @@ public interface LinkService {
      * @throws Exception
      */
     List<Link> findLinkList() throws Exception;
+
+    /**
+     * 添加友链
+     * @param link
+     * @return
+     * @throws Exception
+     */
+    int addLink(Link link) throws Exception;
+
+    /**
+     * 修改友链
+     * @param link
+     * @return
+     * @throws Exception
+     */
+    int updateLink(Link link) throws Exception;
+
+    /**
+     * 删除友链
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    int deleteLink(int id) throws Exception;
 }

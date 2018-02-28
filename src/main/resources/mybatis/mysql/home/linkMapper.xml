@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.linn.home.dao.LinkDao">
+    <resultMap id="linkResultMap" type="com.linn.home.entity.Link">
+        <id property="id" column="id" />
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="remark" column="remark"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+
+    <select id="findLinkList" resultMap="linkResultMap">
+        select * from blog_link;
+    </select>
+
+    <insert id="addLink"  keyProperty="id">
+        INSERT INTO blog_link (title, url,remark)
+        VALUES (#{title}, #{url},#{remark})
+    </insert>
+
+    <update id="updateLinkById">
+        UPDATE blog_link
+        SET title  = #{title}, url = #{url},remark = #{remark} gmt_modified = #{gmtModified}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteLinkById">
+        delete from blog_link where id = #{id}
+    </delete>
+</mapper>

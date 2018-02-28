@@ -30,3 +30,11 @@ CREATE TABLE blog_comment (
   isleaf INT(10) DEFAULT 0 COMMENT '是否叶子节点',
   article_id INT(10) DEFAULT NULL COMMENT '文章id'
 )
+CREATE TABLE blog_link (
+  id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  title VARCHAR(30) NOT NULL COMMENT '名称',
+  url VARCHAR(20) NOT NULL COMMENT '链接地址',
+  remark VARCHAR(200) NOT NULL COMMENT '备注',
+  gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
+  gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
+)
