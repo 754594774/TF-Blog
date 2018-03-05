@@ -16,8 +16,12 @@ $('#noticeForm').validator({
 $btnOk.click(function (e) {//点击确认按钮
 
     $('#noticeForm').isValid(function(){
-        //var isActive = $("input[name='radio']:checked").val();
         var scope = $(e.target).scope();
+        var isActive = scope.notice.isActive;
+        if(isActive==undefined || isActive==null){
+            isActive = 0;
+        }
+
         if(scope.notice!=null && scope.notice.id !=null){//修改
             $table.bootstrapTable('updateRow', {
                 //index:0,
@@ -39,7 +43,7 @@ $btnOk.click(function (e) {//点击确认按钮
                 id: scope.notice.id,
                 title:scope.notice.title,
                 content:scope.notice.content,
-                isActive:scope.notice.isActive
+                isActive:isActive
             },
             success: function (data) {
                 if(data.errNo == 0){

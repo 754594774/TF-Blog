@@ -4,8 +4,11 @@ angular.module('myApp', ['ngRoute'])
             method: 'GET',
             url: 'toNoticeDetail'
         }).then(function successCallback(response) {
-            $scope.notice = response.data;
-
+            //x上限，y下限
+            var x = response.data.length-1;
+            var y = 0;
+            var rand = parseInt(Math.random() * (x - y + 1) + y);
+            $scope.notice = response.data[rand];
         }, function errorCallback(response) {
             // 请求失败执行代码
         });
@@ -108,6 +111,17 @@ angular.module('myApp', ['ngRoute'])
                 redirectTo: '/'
             });
     }]);
+
+//创建一个函数，用于返回一个无参数函数
+function _loopNotice(date){
+    return function(){
+        loopNotice(date);
+    }
+}
+function loopNotice(date){
+
+    console.log(date);
+}
 
 function loadCommentList(data){
 
