@@ -16,7 +16,7 @@ public class NoticeServiceImpl implements NoticeService {
     private NoticeDao noticeDao;
 
     @Override
-    public Notice findActiveNotice() throws Exception {
+    public List<Notice> findActiveNotice() throws Exception {
 
         return noticeDao.findActiveNotice();
     }

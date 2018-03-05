@@ -12,7 +12,7 @@ public class Notice implements Serializable{
 	private String title;
 	private String content;
 	private String author;
-	private Integer isActice;
+	private Integer isActive;
 	private Date gmtCreate;
 	private Date gmtModified;
 
@@ -64,12 +64,12 @@ public class Notice implements Serializable{
 		this.gmtModified = gmtModified;
 	}
 
-	public Integer getIsActice() {
-		return isActice;
+	public Integer getIsActive() {
+		return isActive;
 	}
 
-	public void setIsActice(Integer isActice) {
-		this.isActice = isActice;
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class Notice implements Serializable{
 				", title='" + title + '\'' +
 				", content='" + content + '\'' +
 				", author='" + author + '\'' +
-				", isActice='" + isActice + '\'' +
+				", isActive='" + isActive + '\'' +
 				", gmtCreate=" + gmtCreate +
 				", gmtModified=" + gmtModified +
 				'}';

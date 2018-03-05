@@ -46,9 +46,10 @@
             <tr>
                 <th data-field="state" data-checkbox="true"></th>
                 <th data-field="index" data-formatter="indexFormatter" >序号</th>
-                <th data-field="title">友链名称</th>
-                <th data-field="url">友链地址</th>
-                <th data-field="remark">备注</th>
+                <th data-field="title">通知标题</th>
+                <th data-field="content">通知内容</th>
+                <th data-field="author">作者</th>
+                <th data-field="isActive">是否显示</th>
             </tr>
             </thead>
         </table>
@@ -63,33 +64,40 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    {{addOrChange}}类别
+                    {{addOrChange}}通知
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" id="linkForm">
+                <form class="form-horizontal" role="form" id="noticeForm">
                     <div class="form-group">
                         <label for="id" class="col-md-2 control-label">id</label>
                         <div class="col-md-9">
-                            <input ng-model="link.id" id="id" type="text" class="form-control" placeholder="主键" disabled>
+                            <input ng-model="notice.id" id="id" type="text" class="form-control" placeholder="主键" disabled>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="linkTitle" class="col-md-2 control-label">链接名称</label>
+                        <label for="noticeTitle" class="col-md-2 control-label">通知标题</label>
                         <div class="col-md-9">
-                            <input ng-model="link.title" id="linkTitle" name="title" type="text" class="form-control" placeholder="请输入名称">
+                            <input ng-model="notice.title" id="noticeTitle" name="title" type="text" class="form-control" placeholder="请输入标题">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="linkUrl" class="col-md-2 control-label">链接地址</label>
+                        <label for="noticeContent" class="col-md-2 control-label">通知内容</label>
                         <div class="col-md-9">
-                            <input ng-model="link.url" id="linkUrl" name="url" type="text" class="form-control" placeholder="请输入url地址">
+                            <input ng-model="notice.content" id="noticeContent" name="content" type="text" class="form-control" placeholder="请输入内容">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="linkRemark" class="col-md-2 control-label">描述信息</label>
+                        <label for="noticeContent" class="col-md-2 control-label">是否显示</label>
                         <div class="col-md-9">
-                            <input ng-model="link.remark" id="linkRemark" name="remark" type="text" class="form-control" placeholder="请输入描述">
+                            <label class="radio-inline">
+                                <input ng-checked="notice.isActive!=0" value="1" name="radio" ng-model="notice.isActive"
+                                       type="radio" name="optionsRadiosinline" id="optionsRadios1"> 显示
+                            </label>
+                            <label class="radio-inline">
+                                <input ng-checked="notice.isActive==0" value="0" name="radio" ng-model="notice.isActive"
+                                       type="radio" name="optionsRadiosinline" id="optionsRadios2"> 不显示
+                            </label>
                         </div>
                     </div>
                 </form>

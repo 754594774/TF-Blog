@@ -14,7 +14,7 @@ public interface NoticeService {
      * @return 实体
      * @throws Exception
      */
-    Notice findActiveNotice() throws Exception;
+    List<Notice> findActiveNotice() throws Exception;
 
     /**
      * 查找通知列表

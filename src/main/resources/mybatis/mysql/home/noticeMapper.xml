@@ -9,27 +9,27 @@
         <result property="title" column="title"/>
         <result property="content" column="content"/>
         <result property="author" column="author"/>
-        <result property="isActice" column="is_actice"/>
+        <result property="isActive" column="is_active"/>
         <result property="gmtCreate" column="gmt_create"/>
         <result property="gmtModified" column="gmt_modified"/>
     </resultMap>
 
     <select id="findActiveNotice" resultMap="noticeResultMap">
-        select * from blog_notice where is_active = 1;
+        select * from blog_notice where is_active = 1 order by id desc;
     </select>
 
     <select id="findNoticeList" resultMap="noticeResultMap">
-        select * from blog_notice;
+        select * from blog_notice order by id desc;
     </select>
 
     <insert id="addNotice"  keyProperty="id">
-        INSERT INTO blog_notice (title, content,author,isActice)
-        VALUES (#{title}, #{content},#{author},#{isActice})
+        INSERT INTO blog_notice (title, content,author,is_active)
+        VALUES (#{title}, #{content},#{author},#{isActive})
     </insert>
 
     <update id="updateNoticeById">
         UPDATE blog_notice
-        SET title  = #{title}, content = #{content},author = #{author},is_actice = #{isActice}, gmt_modified = #{gmtModified}
+        SET title  = #{title}, content = #{content},author = #{author},is_active = #{isActive}, gmt_modified = #{gmtModified}
         WHERE id = #{id}
     </update>
 

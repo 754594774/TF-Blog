@@ -7,6 +7,7 @@ import com.linn.frame.util.SysContent;
 import com.linn.home.entity.Notice;
 import com.linn.home.service.NoticeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,10 +29,10 @@ public class NoticeController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/toNoticeDetail")
-    private Notice toNoticeDetail() throws Exception {
+    private List<Notice> toNoticeDetail() throws Exception {
 
-        Notice notice = noticeService.findActiveNotice();
-        return notice;
+        List<Notice> noticeList = noticeService.findActiveNotice();
+        return noticeList;
     }
 
     @ResponseBody
@@ -49,5 +51,33 @@ public class NoticeController extends BaseController {
         return new ResultBean(SysContent.SUCCESS,"删除成功");
     }
 
+    @ResponseBody
+    @RequestMapping("addOrUpdateNotice")
+    public ResultBean addOrUpdateNotice(Notice notice) throws Exception {
+        if(StringUtils.isEmpty(notice.getId())) {
+            //添加
+            notice.setGmtCreate(new Date());
+            notice.setGmtModified(new Date());
+            int ret = noticeService.addNotice(notice);
+        }else {
+            //更新
+            notice.setGmtModified(new Date());
+            int ret = noticeService.updateNotice(notice);
+        }
+
+        return new ResultBean(SysContent.SUCCESS,"操作成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("delNotice")
+    public ResultBean delNotice(int[] ids) throws Exception {
+
+        if(ids!=null && ids.length > 0){
+            for (int id: ids) {
+                int ret = noticeService.deleteNoticeById(id);
+            }
+        }
+        return new ResultBean(SysContent.SUCCESS,"删除成功");
+    }
 
 }
