@@ -7,7 +7,8 @@
     <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link  href="../css/evalute.css" rel="stylesheet" type="text/css">
     <link href="../css/blog.css" rel="stylesheet" type="text/css"/>
-
+    <!--警告框插件-->
+    <link href="../plugins/toastr/toastr.min.css" rel="stylesheet">
 </head>
 <body  ng-app="myApp">
 <div class="container">
@@ -42,13 +43,13 @@
     </nav>
 
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <!-- 路由出口 -->
             <div ng-view="">
             </div>
         </div>
 
-        <div class="col-sm-3 col-sm-offset-1">
+        <div class="col-sm-3">
             <!-- 通知面板 -->
             <div class="panel panel-primary" ng-controller="noticeCtrl">
                 <div class="panel-heading">
@@ -93,11 +94,7 @@
             </div>
         </div>
     </div>
-    <!--翻页-->
-    <ul class="pager">
-        <li><a href="#">Previous</a></li>
-        <li><a href="#">Next</a></li>
-    </ul>
+
     <!--底部链接-->
     <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>

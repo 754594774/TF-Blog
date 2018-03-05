@@ -17,9 +17,8 @@ $btnOk.click(function (e) {//点击确认按钮
 
     $('#noticeForm').isValid(function(){
         var scope = $(e.target).scope();
-        var isActive = scope.notice.isActive;
-        if(isActive==undefined || isActive==null){
-            isActive = 0;
+        if(scope.notice.isActive==undefined || scope.notice.isActive==null){
+            scope.notice.isActive = 1;
         }
 
         if(scope.notice!=null && scope.notice.id !=null){//修改
@@ -43,7 +42,7 @@ $btnOk.click(function (e) {//点击确认按钮
                 id: scope.notice.id,
                 title:scope.notice.title,
                 content:scope.notice.content,
-                isActive:isActive
+                isActive:scope.notice.isActive
             },
             success: function (data) {
                 if(data.errNo == 0){
