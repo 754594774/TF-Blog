@@ -2,6 +2,8 @@ package com.linn.home.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.linn.frame.controller.BaseController;
+import com.linn.frame.entity.ResultBean;
+import com.linn.frame.util.SysContent;
 import com.linn.home.entity.Notice;
 import com.linn.home.service.NoticeService;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by admin on 2018/1/15.
@@ -26,7 +29,25 @@ public class NoticeController extends BaseController {
     @RequestMapping("/toNoticeDetail")
     private Notice toNoticeDetail() throws Exception {
 
-        Notice notice = noticeService.findLastNotice();
+        Notice notice = noticeService.findActiveNotice();
         return notice;
     }
+
+    @ResponseBody
+    @RequestMapping("/toNoticeList")
+    private List<Notice> toNoticeList() throws Exception {
+
+        List<Notice> noticeList = noticeService.toNoticeList();
+        return noticeList;
+    }
+
+    @ResponseBody
+    @RequestMapping("/addNotice")
+    private ResultBean addNotice(Notice notice) throws Exception {
+
+        noticeService.addNotice(notice);
+        return new ResultBean(SysContent.SUCCESS,"删除成功");
+    }
+
+
 }

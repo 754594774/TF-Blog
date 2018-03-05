@@ -45,25 +45,25 @@ $(function () {
                 field: 'id',
                 values: ids
             });
-        };
-        $.ajax({
-            url: 'delLink',
-            type: 'POST',
-            traditional:true,
-            data:{ids:ids},
-            success: function (data) {
-                if(data.errNo == 0){
-                    toastr.success(data.errMsg);
-                }else {
-                    toastr.error(data.errMsg);
+            $.ajax({
+                url: 'delLink',
+                type: 'POST',
+                traditional:true,
+                data:{ids:ids},
+                success: function (data) {
+                    if(data.errNo == 0){
+                        toastr.success(data.errMsg);
+                    }else {
+                        toastr.error(data.errMsg);
+                        $table.bootstrapTable('refresh');
+                    }
+                },
+                error: function () {
+                    toastr.error('删除失败');
                     $table.bootstrapTable('refresh');
                 }
-            },
-            error: function () {
-                toastr.error('删除失败');
-                $table.bootstrapTable('refresh');
-            }
-        });
+            });
+        };
     });
     $btnRefresh.click(function () {
         $table.bootstrapTable('refresh');

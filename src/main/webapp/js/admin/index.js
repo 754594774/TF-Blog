@@ -8,7 +8,6 @@ angular.module('myApp', ['ngRoute'])
             method: 'GET',
             url: 'toCategoryList',
         }).then(function successCallback(response) {
-
             $scope.catgs = response.data;
             $scope.selectedCatg = $scope.catgs[0];//分类默认选择第一个
             if($rootScope.article != undefined){
@@ -45,6 +44,10 @@ angular.module('myApp', ['ngRoute'])
             })
             .when('/linkList', {
                 templateUrl: 'html/admin/linkList.html',
+                controller: 'menuCtrl'
+            })
+            .when('/noticeList', {
+                templateUrl: 'html/admin/noticeList.html',
                 controller: 'menuCtrl'
             })
             .otherwise({

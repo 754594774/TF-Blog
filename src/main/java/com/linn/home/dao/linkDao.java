@@ -1,18 +1,20 @@
-package com.linn.home.service;
+package com.linn.home.dao;
 
 import com.linn.home.entity.Link;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 友链service层
+ * 友链dao层
+ * Created by Administrator on 2018-02-28.
  */
-public interface LinkService {
-
+@Repository("linkDao")
+public interface LinkDao {
     /**
-     * 查找最新的通知
-     * @return 实体
-     * @throws Exception
+     * 查找文章下的所有评论
+     * @param
+     * @return
      */
     List<Link> findLinkList() throws Exception;
 
@@ -22,10 +24,10 @@ public interface LinkService {
      * @return
      * @throws Exception
      */
-    int addLink(Link link) throws Exception;
+    int addLink(Link link) throws  Exception;
 
     /**
-     * 修改友链
+     * 更新友链
      * @param link
      * @return
      * @throws Exception

@@ -47,9 +47,8 @@ public class LinkController extends BaseController{
         }else {
             //更新
             link.setGmtModified(new Date());
-            int ret = linkService.updateLink(link);
+            int ret = linkService.updateLinkById(link);
         }
-
         return new ResultBean(SysContent.SUCCESS,"操作成功");
     }
 
@@ -59,7 +58,7 @@ public class LinkController extends BaseController{
 
         if(ids!=null && ids.length > 0){
             for (int id: ids) {
-                int ret = linkService.deleteLink(id);
+                int ret = linkService.deleteLinkById(id);
             }
         }
         return new ResultBean(SysContent.SUCCESS,"删除成功");

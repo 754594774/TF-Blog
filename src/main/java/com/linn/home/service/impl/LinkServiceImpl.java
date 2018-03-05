@@ -28,12 +28,12 @@ public class LinkServiceImpl implements LinkService {
     }
 
     @Override
-    public int updateLink(Link link) throws Exception {
-        return linkDao.updateLink(link);
+    public int updateLinkById(Link link) throws Exception {
+        return linkDao.updateLinkById(link);
     }
 
     @Override
-    public int deleteLink(int id) throws Exception {
-        return linkDao.deleteLink(id);
+    public int deleteLinkById(int id) throws Exception {
+        return linkDao.deleteLinkById(id);
     }
 }
