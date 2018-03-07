@@ -17,7 +17,7 @@ $btnLogin.click(function () {
         var rememberMe = $("#rememberMe").prop('checked');
         //发送ajax请求
         $.ajax({
-            url: 'login',
+            url: '/admin/index',
             type: 'POST',
             data: {
                 userName: userName,
@@ -25,16 +25,17 @@ $btnLogin.click(function () {
                 rememberMe: rememberMe
             },
             success: function (data) {
-                console.log(data);
+
                 if (data.errNo == 0) {
-                    var time = 5;
+                    $("#btnLogin").addClass("disabled");
+                    var time = 3;
                     var timer = setInterval(function () {
-                        var msg = "登录成功，将在" + time + "秒后跳转";
+                        var msg = "登录成功，将在" + time + "秒后跳转到主页面";
                         $("#message").text(msg);
                         time--;
                         if (time==0) {
                             clearInterval(timer);
-                            window.location.href="admin/index.html";
+                            window.location.href="/admin";
                         }
                     }, 1000);
                     //window.location.href="输入另一个页面的链接";

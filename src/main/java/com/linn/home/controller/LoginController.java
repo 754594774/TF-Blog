@@ -26,32 +26,19 @@ public class LoginController {
     private UserService userService ;
 
     @RequestMapping("/admin")
-    private String toAdmin(HttpSession session, HttpServletRequest request) throws Exception {
-        User user = (User)session.getAttribute("user");
-        if(user == null){
-            return "admin/login";
-        }
+    private String toAdmin() throws Exception {
         return "admin/index";
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    private ResultBean toLogin(HttpSession session, HttpServletRequest request) throws Exception {
-        return login(session,request);
+    @RequestMapping("/admin/login")
+    private String toAdminLogin() throws Exception {
+        return "admin/login";
     }
 
     @ResponseBody
-    @RequestMapping(value = "admin/login",method = RequestMethod.POST)
-    private ResultBean toAdminLogin(HttpSession session, HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/admin/index",method = RequestMethod.POST)
+    private ResultBean toAdminIndex(HttpSession session, HttpServletRequest request) throws Exception {
 
-       return login(session,request);
-    }
-
-    /**
-     * 登录
-     * @return
-     */
-    private ResultBean login( HttpSession session, HttpServletRequest request){
         String userName = request.getParameter("userName");
         String passWord = request.getParameter("passWord");
         String rememberMe = request.getParameter("rememberMe");
@@ -67,10 +54,12 @@ public class LoginController {
             return new ResultBean(SysContent.ERROR,"用户名或密码不正确!");
         }
 
-        if(rememberMe.equals("true")){//记住我
-            session.setMaxInactiveInterval(2*60*60);//过期时间-2小时
-            session.setAttribute("user",user);
-        }
+        session.setMaxInactiveInterval(2*60*60);//过期时间-2小时
+        session.setAttribute("user",user);
+//        if(rememberMe.equals("true")){//记住我
+//添加cookie
+//        }
         return new ResultBean(SysContent.SUCCESS,"登陆成功!");
     }
+
 }

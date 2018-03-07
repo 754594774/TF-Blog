@@ -35,7 +35,7 @@
     </mvc:annotation-driven>
 
     <!--统一异常处理-->
-    <bean id="exceptionHandler" class="com.linn.frame.interceptor.MyMappingExceptionResolver"></bean>
+    <bean id="exceptionHandler" class="com.linn.frame.interceptor.MyMappingExceptionResolver"/>
 
     <!--静态资源-->
     <mvc:resources mapping="/js/**" location="/js/" />
@@ -53,4 +53,16 @@
         <property name="prefix" value="/html/"/>
         <property name="suffix" value=".html"/>
     </bean>
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 多个拦截器，顺序执行 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <mvc:exclude-mapping path="/admin/login/**"/>
+            <mvc:exclude-mapping path="/admin/index/**"/>
+            <bean class="com.linn.frame.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
