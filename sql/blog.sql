@@ -38,3 +38,10 @@ CREATE TABLE blog_link (
   gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
   gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
 )
+CREATE TABLE blog_user (
+  id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  user_name VARCHAR(30) NOT NULL COMMENT '用户名',
+  pass_word VARCHAR(30) NOT NULL COMMENT '密码',
+  gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
+  gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
+)

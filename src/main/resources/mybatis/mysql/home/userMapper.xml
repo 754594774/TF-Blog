@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.linn.home.dao.UserDao">
+    <resultMap id="userResultMap" type="com.linn.home.entity.User">
+        <id property="id" column="id" />
+        <result property="userName" column="user_name"/>
+        <result property="passWord" column="pass_word"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+
+    <select id="findUserByNameAndPwd" resultMap="userResultMap">
+        select * from blog_user where 1=1 and user_name = #{userName} and pass_word = #{passWord};
+    </select>
+
+
+</mapper>

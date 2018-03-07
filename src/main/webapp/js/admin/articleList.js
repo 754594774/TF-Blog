@@ -75,28 +75,7 @@ $(function () {
         }
         $('#myModal').modal('hide');
 
-        //发送ajax请求
-        //$.ajax({
-        //    url: 'addOrUpdateArticle',
-        //    type: 'POST',
-        //    data: {
-        //        //id: scope.catg.id,
-        //        //name:scope.catg.name,
-        //        //description:scope.catg.description
-        //    },
-        //    success: function (data) {
-        //        if(data.errNo == 0){
-        //            toastr.success(data.errMsg);
-        //        }else {
-        //            toastr.error(data.errMsg);
-        //            $table.bootstrapTable('refresh');
-        //        }
-        //    },
-        //    error: function () {
-        //        toastr.error('添加失败');
-        //        $table.bootstrapTable('refresh');
-        //    }
-        //});
+
     });
 });
 
