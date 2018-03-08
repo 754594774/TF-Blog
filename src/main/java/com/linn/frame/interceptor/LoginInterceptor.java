@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,15 @@ public class LoginInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         System.out.println("preHandle...");
+        //获取cookie
+        Cookie[] cookies = request.getCookies();
+        if(cookies!=null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("user")) {
+                    return true;
+                }
+            }
+        }
         //获取Session
         User user = (User)request.getSession().getAttribute("user");
         if(user != null){

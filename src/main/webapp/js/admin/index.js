@@ -1,12 +1,23 @@
 //angularJs路由
 angular.module('myApp', ['ngRoute'])
+    .controller('userCtrl', function($scope,$rootScope,$http,$location) {
+        $http({
+            method: 'GET',
+            url: 'findLoginUser'
+        }).then(function successCallback(response) {
+            $rootScope.user = response.data;
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+            toastr.error("请求登录用户数据失败");
+        });
+    })
     .controller('menuCtrl', function($scope,$routeParams) {
         $scope.params = $routeParams;
     })
     .controller('pubArticleCtrl', function($scope,$http,$rootScope) {
         $http({
             method: 'GET',
-            url: 'toCategoryList',
+            url: 'toCategoryList'
         }).then(function successCallback(response) {
             $scope.catgs = response.data;
             $scope.selectedCatg = $scope.catgs[0];//分类默认选择第一个
@@ -28,7 +39,8 @@ angular.module('myApp', ['ngRoute'])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'html/admin/welcome.html'
+                templateUrl: 'html/admin/welcome.html',
+                controller: 'userCtrl'
             })
             .when('/catgList', {
                 templateUrl: 'html/admin/catgList.html',
@@ -54,4 +66,3 @@ angular.module('myApp', ['ngRoute'])
                 redirectTo: '/'
             });
     }]);
-
