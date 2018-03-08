@@ -12,9 +12,30 @@
         <result property="gmtModified" column="gmt_modified"/>
     </resultMap>
 
+    <select id="findUserByName" resultMap="userResultMap">
+        select * from blog_user where 1=1 and user_name = #{userName};
+    </select>
+
     <select id="findUserByNameAndPwd" resultMap="userResultMap">
         select * from blog_user where 1=1 and user_name = #{userName} and pass_word = #{passWord};
     </select>
 
+    <insert id="addUser"  keyProperty="id">
+        INSERT INTO blog_user (user_name, pass_word)
+        VALUES (#{userName}, #{passWord})
+    </insert>
 
+    <select id="findUserList" resultMap="userResultMap">
+        select * from blog_user order by id desc;
+    </select>
+
+    <update id="updateUserByUserName">
+        UPDATE blog_user
+        SET pass_word  = #{passWord},gmt_modified = #{gmtModified}
+        WHERE user_name = #{userName}
+    </update>
+
+    <delete id="deleteUserById">
+        delete from blog_user where id = #{id}
+    </delete>
 </mapper>

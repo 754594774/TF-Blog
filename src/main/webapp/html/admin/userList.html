@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../../plugins/bs-table/bootstrap-table.css" />
-    <script src="../../plugins/bs-table/bootstrap-table.js"></script>
-    <script src="../../plugins/bs-table/bootstrap-table-zh-CN.js"></script>
-    <script src="../../js/admin/noticeList.js"></script>
+
 </head>
 <body>
 <div class="panel panel-info">
     <!--面板标题-->
     <div class="panel-heading">
-        <h3 class="panel-title">通知列表</h3>
+        <h3 class="panel-title">用户列表</h3>
     </div>
 
     <div class="panel-body">
@@ -34,23 +32,21 @@
                data-toggle="table"
                data-height="428"
                data-pagination="true"
-               data-page-list="[7, 15, 20, 30]"
-               data-page-size="7"
+               data-page-list="[5, 10, 15, 20]"
                data-search="true"
                data-show-columns="true"
                data-click-to-select="true"
                data-striped="true"
                data-id-field="id"
                data-toolbar="#toolbar"
-               data-url="/toNoticeList">
+               data-url="/toUserList">
             <thead>
             <tr>
                 <th data-field="state" data-checkbox="true"></th>
                 <th data-field="index" data-formatter="indexFormatter" >序号</th>
-                <th data-field="title">通知标题</th>
-                <th data-field="content">通知内容</th>
-                <th data-field="author">作者</th>
-                <th data-field="isActive">是否显示</th>
+                <th data-field="userName">用户名称</th>
+                <th data-field="gmtCreate" data-formatter="formatDateTime">创建时间</th>
+                <th data-field="gmtModified" data-formatter="formatDateTime">修改时间</th>
             </tr>
             </thead>
         </table>
@@ -65,40 +61,28 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    {{addOrChange}}通知
+                    {{addOrChange}}用户
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" id="noticeForm">
+                <form class="form-horizontal" role="form" id="userForm">
                     <div class="form-group">
                         <label for="id" class="col-md-2 control-label">id</label>
                         <div class="col-md-9">
-                            <input ng-model="notice.id" id="id" type="text" class="form-control" placeholder="主键" disabled>
+                            <input ng-model="user.id" id="id" type="text" class="form-control" placeholder="主键" disabled>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="noticeTitle" class="col-md-2 control-label">通知标题</label>
+                        <label for="userName" class="col-md-2 control-label">用户名称</label>
                         <div class="col-md-9">
-                            <input ng-model="notice.title" id="noticeTitle" name="title" type="text" class="form-control" placeholder="请输入标题">
+                            <input ng-model="user.userName" id="userName" name="userName" type="text"
+                                   class="form-control" placeholder="请输入名称" ng-readonly="addOrChange=='修改'">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="noticeContent" class="col-md-2 control-label">通知内容</label>
+                        <label for="passWord" class="col-md-2 control-label">用户密码</label>
                         <div class="col-md-9">
-                            <input ng-model="notice.content" id="noticeContent" name="content" type="text" class="form-control" placeholder="请输入内容">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="noticeContent" class="col-md-2 control-label">是否显示</label>
-                        <div class="col-md-9">
-                            <label class="radio-inline">
-                                <input ng-checked="notice.isActive!=0" value="1" name="radio" ng-model="notice.isActive"
-                                       type="radio" name="optionsRadiosinline" id="optionsRadios1"> 显示
-                            </label>
-                            <label class="radio-inline">
-                                <input ng-checked="notice.isActive==0" value="0" name="radio" ng-model="notice.isActive"
-                                       type="radio" name="optionsRadiosinline" id="optionsRadios2"> 不显示
-                            </label>
+                            <input ng-model="user.passWord" id="passWord" name="userName" type="text" class="form-control" placeholder="请输入密码">
                         </div>
                     </div>
                 </form>
@@ -113,5 +97,10 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="../../plugins/jquery.min.js"></script>
+<script src="../../plugins/bs-table/bootstrap-table.js"></script>
+<script src="../../plugins/bs-table/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../js/admin/userList.js"></script>
 </body>
 </html>

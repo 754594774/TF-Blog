@@ -45,3 +45,4 @@ CREATE TABLE blog_user (
   gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
   gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
 )
+CREATE UNIQUE INDEX uk_name ON blog_user(user_name);

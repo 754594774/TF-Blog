@@ -1,20 +1,14 @@
 //angularJs路由
 angular.module('myApp', ['ngRoute'])
-    .controller('userCtrl', function($scope,$rootScope,$http,$location) {
-        $http({
-            method: 'GET',
-            url: 'findLoginUser'
-        }).then(function successCallback(response) {
-            $rootScope.user = response.data;
-        }, function errorCallback(response) {
-            // 请求失败执行代码
-            toastr.error("请求登录用户数据失败");
-        });
+    .controller('userCtrl', function(userService) {
+        userService.getUser();
     })
-    .controller('menuCtrl', function($scope,$routeParams) {
+    .controller('menuCtrl', function($scope,$routeParams,userService) {
+        userService.getUser();
         $scope.params = $routeParams;
     })
-    .controller('pubArticleCtrl', function($scope,$http,$rootScope) {
+    .controller('pubArticleCtrl', function($scope,$http,$rootScope,userService) {
+        userService.getUser();
         $http({
             method: 'GET',
             url: 'toCategoryList'
@@ -36,6 +30,19 @@ angular.module('myApp', ['ngRoute'])
             toastr.error("请求分类数据失败");
         });
     })
+    .service('userService', function($rootScope, $http) {
+        this.getUser = function () {
+            $http({
+                method: 'GET',
+                url: 'findLoginUser'
+            }).then(function successCallback(response) {
+                $rootScope.user = response.data;
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                window.location.href="/admin/login";
+            });
+        }
+    })
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', {
@@ -56,6 +63,10 @@ angular.module('myApp', ['ngRoute'])
             })
             .when('/linkList', {
                 templateUrl: 'html/admin/linkList.html',
+                controller: 'menuCtrl'
+            })
+            .when('/userList', {
+                templateUrl: 'html/admin/userList.html',
                 controller: 'menuCtrl'
             })
             .when('/noticeList', {
