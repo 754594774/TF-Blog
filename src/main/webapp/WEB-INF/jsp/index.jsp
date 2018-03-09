@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <link rel="icon" href="plugins/bootstrap-3.3.7/favicon.ico">
+    <link rel="icon" href="../../resources/images/favicon.ico">
     <title>BootStrap</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">

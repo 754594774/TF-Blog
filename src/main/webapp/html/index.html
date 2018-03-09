@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>lnn blog</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link  href="../css/evalute.css" rel="stylesheet" type="text/css">
@@ -17,7 +18,9 @@
     </style>
 </head>
 <body  ng-app="myApp">
+
 <div class="container">
+
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div>
@@ -35,13 +38,13 @@
     </nav>
 
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-xs-9">
             <!-- 路由出口 -->
             <div ng-view="">
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <!-- 通知面板 -->
             <div class="panel panel-primary" ng-controller="noticeCtrl">
                 <div class="panel-heading">
