@@ -6,11 +6,11 @@ function leaveMsg(){
     var msg = $("#msg").val().trim();
     var articleId = $("#articleId").val();
     if(name=="" || name == null || name == undefined){
-        toastr.error('请输入姓名');
+        swal("提示!", "请输入姓名!", "warning");
         return;
     }
     if(msg=="" || msg == null || msg == undefined){
-        toastr.error('请输入留言信息');
+        swal("提示!", "请输入留言信息!", "warning");
         return;
     }
     var innerHtml =

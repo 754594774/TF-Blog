@@ -245,13 +245,13 @@ function initCommentEvent() {
             },
             success: function (data) {
                 if(data.errNo == 0){
-
+                    swal("成功!", "添加评论成功:)!", "success")
                 }else {
-                    alert("系统错误");
+                    swal("失败!", data.errMsg, "error")
                 }
             },
             error: function () {
-                alert("添加失败");
+                swal("评论失败", "添加评论时出错了！", "error");
             }
         });
         //初始化pid

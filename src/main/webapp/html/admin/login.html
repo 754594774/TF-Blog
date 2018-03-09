@@ -11,6 +11,12 @@
     <!-- Custom styles for this template -->
     <link href="../../css/signin.css" rel="stylesheet">
   </head>
+  <style type="text/css">
+    body,html {
+      background: url('../../resources/images/bg2.jpg') no-repeat;
+      background-size: cover;
+    }
+  </style>
 
   <body ng-app="myApp">
 
@@ -24,7 +30,7 @@
         <input type="password" id="inputPassword"  ng-model="user.passWord" name="passWord"  class="form-control" placeholder="密码" required>
         <div class="checkbox">
           <label>
-            <input id="rememberMe" ng-model="user.rememberMe" type="checkbox"> 记住我
+            <input id="rememberMe" ng-model="user.rememberMe" type="checkbox"> <span style="color: white;font-weight:bold">记住我</span>
           </label>
         </div>
         <button id="btnLogin" class="btn btn-lg btn-primary btn-block" ng-click="toggle()" type="button">登录</button>
