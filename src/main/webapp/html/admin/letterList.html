@@ -7,22 +7,19 @@
     <script src="../../plugins/bs-table/bootstrap-table.js"></script>
     <script src="../../plugins/bs-table/bootstrap-table-zh-CN.js"></script>
     <script src="../../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
-    <script src="../../js/admin/noticeList.js"></script>
+    <script src="../../js/admin/letterList.js"></script>
 </head>
 <body>
 <div class="panel panel-info">
     <!--面板标题-->
     <div class="panel-heading">
-        <h3 class="panel-title">通知列表</h3>
+        <h3 class="panel-title">信件列表</h3>
     </div>
 
     <div class="panel-body">
         <div id="toolbar">
-            <button id="btnAdd" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-            <button id="btnChange" class="btn btn-default">
-                <span class="glyphicon glyphicon-pencil"></span>
+            <button id="btnLook" class="btn btn-default">
+                <span class="glyphicon glyphicon-eye-open"></span>
             </button>
             <button id="btnDel" class="btn btn-default">
                 <span class="glyphicon glyphicon-minus"></span>
@@ -43,15 +40,15 @@
                data-striped="true"
                data-id-field="id"
                data-toolbar="#toolbar"
-               data-url="/toNoticeList">
+               data-url="/toLetterList">
             <thead>
             <tr>
                 <th data-field="state" data-checkbox="true"></th>
                 <th data-field="index" data-formatter="indexFormatter" >序号</th>
-                <th data-field="title">通知标题</th>
-                <th data-field="content">通知内容</th>
-                <th data-field="author">作者</th>
-                <th data-field="isActive">是否显示</th>
+                <th data-field="userName">发件人</th>
+                <th data-field="contactWay">联系方式</th>
+                <th data-field="gmtCreate" data-formatter="formatDateTime">创建时间</th>
+                <th data-field="gmtModified" data-formatter="formatDateTime">修改时间</th>
             </tr>
             </thead>
         </table>
@@ -59,56 +56,40 @@
 </div>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width:70%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    {{addOrChange}}通知
+                    查看信件
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" id="noticeForm">
+                <form class="form-horizontal" role="form" id="letterForm">
                     <div class="form-group">
-                        <label for="id" class="col-md-2 control-label">id</label>
+                        <label for="userName" class="col-md-2 control-label">发件人</label>
                         <div class="col-md-9">
-                            <input ng-model="notice.id" id="id" type="text" class="form-control" placeholder="主键" disabled>
+                            <input ng-model="letter.userName" id="userName" name="userName" type="text" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="noticeTitle" class="col-md-2 control-label">通知标题</label>
+                        <label for="contactWay" class="col-md-2 control-label">联系方式</label>
                         <div class="col-md-9">
-                            <input ng-model="notice.title" id="noticeTitle" name="title" type="text" class="form-control" placeholder="请输入标题">
+                            <input ng-model="letter.contactWay" id="contactWay" name="contactWay" type="text" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="noticeContent" class="col-md-2 control-label">通知内容</label>
+                        <label for="content" class="col-md-2 control-label">信件内容</label>
                         <div class="col-md-9">
-                            <input ng-model="notice.content" id="noticeContent" name="content" type="text" class="form-control" placeholder="请输入内容">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="noticeContent" class="col-md-2 control-label">是否显示</label>
-                        <div class="col-md-9">
-                            <label class="radio-inline">
-                                <input ng-checked="notice.isActive!=0" value="1" name="radio" ng-model="notice.isActive"
-                                       type="radio" name="optionsRadiosinline" id="optionsRadios1"> 显示
-                            </label>
-                            <label class="radio-inline">
-                                <input ng-checked="notice.isActive==0" value="0" name="radio" ng-model="notice.isActive"
-                                       type="radio" name="optionsRadiosinline" id="optionsRadios2"> 不显示
-                            </label>
+                            <textarea ng-model="letter.content"  name="content" id="content" class="form-control" rows="10" readonly></textarea>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button id="btnOk" type="button" class="btn btn-primary">
-                    提交更改
                 </button>
             </div>
         </div><!-- /.modal-content -->

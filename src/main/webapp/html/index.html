@@ -22,24 +22,10 @@
         <div class="container-fluid">
             <div>
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active">
+                    <li>
                         <a href="#/">首页</a>
                     </li>
-                    <li><a href="#">联系我</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            传送门
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">文章</a></li>
-                            <li><a href="#">友链</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                    <li><a href="/admin"><span class="glyphicon glyphicon-log-in"></span>后台管理</a></li>
+                    <li><a href="#/contactMe">联系我</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -103,10 +89,9 @@
 
     <!--底部链接-->
     <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p class="pull-right"><back-Top-Directive></back-Top-Directive></p>
         <p style="color: white">&copy; 2018 Design by &middot; <a href="https://github.com/754594774/blog">李难难</a>
             &middot;<a href="    http://www.miitbeian.gov.cn/.">皖ICP备17026796号-1</a>
-
     </footer>
 </div>
 
@@ -117,8 +102,10 @@
 <script src="../plugins/angularJs/angular.min.js"></script>
 <script src="../plugins/angularJs/angular-route.js"></script>
 <script src="../plugins/sweetalert/sweetalert.js"></script>
+<script src="../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
 <script src="../js/global.js"></script>
 <script src="../js/index.js"></script>
+<script src="../js/myDirective.js"></script>
 
 </body>
 </html>

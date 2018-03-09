@@ -107,6 +107,9 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl: 'html/articleDetail.html',
                 controller: 'articleDetailCtrl'
             })
+            .when('/contactMe', {
+                templateUrl: 'html/contactMe.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });

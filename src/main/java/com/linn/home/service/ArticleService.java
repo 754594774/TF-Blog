@@ -22,4 +22,6 @@ public interface ArticleService {
     int addArticle(Article article) throws Exception;
 
     int delArticle(int id) throws Exception;
+
+    int updateArticle(Article article) throws Exception;
 }

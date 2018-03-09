@@ -54,4 +54,9 @@ public class ArticleServiceImpl implements ArticleService {
     public int delArticle(int id) throws Exception {
         return articleDao.deleteArticleById(id);
     }
+
+    @Override
+    public int updateArticle(Article article) throws Exception {
+        return articleDao.updateArticle(article);
+    }
 }

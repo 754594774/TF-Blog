@@ -69,6 +69,10 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl: 'html/admin/userList.html',
                 controller: 'menuCtrl'
             })
+            .when('/letterList', {
+                templateUrl: 'html/admin/letterList.html',
+                controller: 'menuCtrl'
+            })
             .when('/noticeList', {
                 templateUrl: 'html/admin/noticeList.html',
                 controller: 'menuCtrl'

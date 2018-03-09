@@ -49,6 +49,13 @@
         VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{allowComment}, #{content})
     </insert>
 
+    <insert id="updateArticle"  keyProperty="id">
+        UPDATE blog_article
+        SET category_id  = #{categoryId}, title = #{title},intro = #{intro},author = #{author},
+        allow_comment=#{allowComment},content=#{content}
+        WHERE id = #{id}
+    </insert>
+
     <delete id="deleteArticleById">
         delete from blog_article where id = #{id}
     </delete>

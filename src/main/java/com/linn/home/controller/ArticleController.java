@@ -43,7 +43,17 @@ public class ArticleController extends BaseController {
     @RequestMapping(value = "publishArticle",method = RequestMethod.POST)
     public ResultBean publishArticle(Article article) throws Exception {
 
-        int ret = articleService.addArticle(article);
+        if(StringUtils.isEmpty(article.getId())) {
+            //添加
+            article.setGmtCreate(new Date());
+            article.setGmtModified(new Date());
+            int ret = articleService.addArticle(article);
+        }else {
+            //更新
+            article.setGmtModified(new Date());
+            int ret = articleService.updateArticle(article);
+        }
+
         return new ResultBean(SysContent.SUCCESS,"发布成功");
     }
 

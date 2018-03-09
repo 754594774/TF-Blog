@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jQuery制作带有微信二维码扫描的页面返回顶部代码</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<script type="text/javascript" src="../plugins/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 页面浮动面板
+		$("#floatPanel > .ctrolPanel > a.arrow").eq(0).click(function(){
+			$("html,body").animate({scrollTop :0}, 800);
+			return false;
+		});
+		$("#floatPanel > .ctrolPanel > a.arrow").eq(1).click(function(){
+			$("html,body").animate({scrollTop : $(document).height()}, 800);
+			return false;
+		});
+
+		var objPopPanel = $("#floatPanel > .popPanel");
+		var w = objPopPanel.outerWidth();
+
+		$("#floatPanel > .ctrolPanel > a.qrcode").bind({mouseover:function(){
+			objPopPanel.css("width","0px").show();
+			objPopPanel.animate({"width" : w + "px"},300);
+			return false;
+		},mouseout : function(){
+			objPopPanel.animate({"width" : "0px"},300);
+			return false;
+			objPopPanel.css("width",w + "px");
+		}
+		});
+
+	});
+</script>
+<!--start-->
+<div id="floatPanel">
+	<div class="ctrolPanel">
+		<a class="arrow" href="#"><span>顶部</span></a>
+		<a class="contact" href="#" target="_blank"><span>反馈</span></a>
+		<a class="qrcode" href="#"><span>微信二维码</span></a>
+		<a class="arrow" href="#"><span>底部</span></a>
+	</div>
+	<div class="popPanel">
+		<div class="popPanel-inner">
+			<div class="qrcodePanel"><img src="../resources/images/weixin.jpg" /><span> 扫描二维码关注我为好友</span></div>
+			<div class="arrowPanel">
+				<div class="arrow01"></div>
+				<div class="arrow02"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--end-->
+</body>
+</html>

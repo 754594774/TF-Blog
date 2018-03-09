@@ -46,3 +46,11 @@ CREATE TABLE blog_user (
   gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
 )
 CREATE UNIQUE INDEX uk_name ON blog_user(user_name);
+CREATE TABLE blog_letter (
+  id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  user_name VARCHAR(30) NOT NULL COMMENT '用户名',
+  contact_way VARCHAR(30) NOT NULL COMMENT '联系方式',
+  content TEXT NOT NULL COMMENT '正文',
+  gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
+  gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
+)
