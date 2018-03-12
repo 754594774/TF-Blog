@@ -24,4 +24,6 @@ public interface ArticleService {
     int delArticle(int id) throws Exception;
 
     int updateArticle(Article article) throws Exception;
+
+    List<Article> selectArticleBySearch(String searchContent) throws Exception;
 }

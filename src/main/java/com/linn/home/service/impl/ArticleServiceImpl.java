@@ -59,4 +59,9 @@ public class ArticleServiceImpl implements ArticleService {
     public int updateArticle(Article article) throws Exception {
         return articleDao.updateArticle(article);
     }
+
+    @Override
+    public List<Article> selectArticleBySearch(String searchContent) throws Exception {
+        return articleDao.selectArticleBySearch(searchContent);
+    }
 }

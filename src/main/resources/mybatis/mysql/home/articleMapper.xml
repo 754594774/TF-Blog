@@ -28,6 +28,14 @@
         select * from blog_article order by id desc;
     </select>
 
+    <select id="selectArticleBySearch"  parameterType="string" resultMap="articleResultMap">
+        select * from blog_article t where 1=1
+        and t.title like CONCAT('%',trim(#{value}),'%')
+        or t.author like  CONCAT('%',trim(#{value}),'%')
+        or t.intro like  CONCAT('%',trim(#{value}),'%')
+        order by id desc;
+    </select>
+
     <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">
         select * from blog_article where category_id = #{categoryId} order by id desc;
     </select>

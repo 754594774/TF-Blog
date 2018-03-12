@@ -21,7 +21,7 @@
 
 <div class="container">
 
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation" ng-controller="searchCtrl">
         <div class="container-fluid">
             <div>
                 <ul class="nav navbar-nav navbar-left">
@@ -30,8 +30,9 @@
                     </li>
                     <li><a href="#/contactMe">联系我</a></li>
                 </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
+                <form class="navbar-form navbar-right" role="form">
+                        <input type="text" class="form-control" ng-model="searchContent" placeholder="Search...">
+                        <button type="submit" ng-click="toggle()" id="btnSearch" class="btn btn-info btn-sm">搜索</button>
                 </form>
             </div>
         </div>
@@ -72,7 +73,7 @@
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="a in archs">
-                        <a href="#/articleList//{{a.date}}">{{ a.date }} ({{a.count}})</a>
+                        <a href="#/articleList/{{''}}/{{a.date}}">{{ a.date }} ({{a.count}})</a>
                     </li>
                 </ul>
             </div>
@@ -93,8 +94,9 @@
     <!--底部链接-->
     <footer>
         <p class="pull-right"><back-Top-Directive></back-Top-Directive></p>
-        <p style="color: white">&copy; 2018 Design by &middot; <a href="https://github.com/754594774/blog">李难难</a>
-            &middot;<a href="    http://www.miitbeian.gov.cn/.">皖ICP备17026796号-1</a>
+        <p style="color: white">&copy; 2018 Design by &middot; <a href="https://github.com/754594774/blog" target="_blank">李难难</a>
+            &middot;<a href="http://www.miitbeian.gov.cn/." target="_blank">皖ICP备17026796号-1</a>
+        </p>
     </footer>
 </div>
 

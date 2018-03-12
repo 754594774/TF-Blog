@@ -1,4 +1,12 @@
 angular.module('myApp', ['ngRoute'])
+    .controller('searchCtrl', function ($scope,$http,$location) {//搜索
+        $scope.toggle = function() {
+            var searchContent = $scope.searchContent;
+            if(searchContent != '' && searchContent!=null && searchContent!=undefined) {
+                $location.url('/articleList///' + searchContent);
+            }
+        }
+    })
     .controller('noticeCtrl', function ($scope,$http) {
         $http({
             method: 'GET',
@@ -47,20 +55,37 @@ angular.module('myApp', ['ngRoute'])
         });
     })
     .controller('articlesCtrl', function ($scope, $routeParams,$http) {
-        $http({
-            method: 'POST',
-            url: 'toArticleList',
-            data: {
-                categoryId: $routeParams.id,
-                date:$routeParams.date
-            }
-        }).then(function successCallback(response) {
+        var categoryId =  $routeParams.id;
+        var date = $routeParams.date;
+        var searchContent = $routeParams.searchContent;
 
-            $scope.articles = response.data;
-        }, function errorCallback(response) {
-            // 请求失败执行代码
-        });
+        if((categoryId=='' || categoryId==null || categoryId==undefined) && (date=='' || date==null || date==undefined)){
+            $http({
+                method: 'POST',
+                url: 'searchArticleList',
+                data: {
+                    searchContent: searchContent
+                }
+            }).then(function successCallback(response) {
+                $scope.articles = response.data;
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }else{
+            $http({
+                method: 'POST',
+                url: 'toArticleList',
+                data: {
+                    categoryId: $routeParams.id,
+                    date:$routeParams.date
+                }
+            }).then(function successCallback(response) {
 
+                $scope.articles = response.data;
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
     })
     .controller('articleDetailCtrl', function ($scope, $routeParams,$http) {
         //文章详细
@@ -99,7 +124,7 @@ angular.module('myApp', ['ngRoute'])
             .when('/', {
                 templateUrl: 'html/welcome.html'
             })
-            .when('/articleList/:id?/:date?', {
+            .when('/articleList/:id?/:date?/:searchContent?', {
                 templateUrl: 'html/articleList.html',
                 controller: 'articlesCtrl'
             })

@@ -40,7 +40,7 @@ public class ArticleController extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "publishArticle",method = RequestMethod.POST)
+    @RequestMapping(value = "/publishArticle",method = RequestMethod.POST)
     public ResultBean publishArticle(Article article) throws Exception {
 
         if(StringUtils.isEmpty(article.getId())) {
@@ -63,7 +63,7 @@ public class ArticleController extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("toArticleListAdmin")
+    @RequestMapping("/toArticleListAdmin")
     public List<Article> toArticleListAdmin() throws Exception {
 
         List<Article> articles = articleService.findArticleListAdmin();
@@ -76,7 +76,7 @@ public class ArticleController extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("toArticleList")
+    @RequestMapping("/toArticleList")
     public List<Article> toArticleList(@RequestBody Map<String, String> map) throws Exception {
         List<Article> articles = null;
         if(map.containsKey("categoryId") && !StringUtils.isEmpty(map.get("categoryId"))){
@@ -96,7 +96,7 @@ public class ArticleController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("toArticleDetail")
+    @RequestMapping("/toArticleDetail")
     private Article toArticleDetail(@RequestBody Article article) throws Exception {
 
         if(article != null) {
@@ -107,7 +107,7 @@ public class ArticleController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("getArchiveList")
+    @RequestMapping("/getArchiveList")
     private List<Archive> getArchiveList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Archive> archives = null;
 
@@ -117,7 +117,7 @@ public class ArticleController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("delArticle")
+    @RequestMapping("/delArticle")
     public ResultBean delArticle(int[] ids) throws Exception {
 
         if(ids!=null && ids.length > 0){
@@ -126,5 +126,16 @@ public class ArticleController extends BaseController {
             }
         }
         return new ResultBean(SysContent.SUCCESS,"删除成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/searchArticleList")
+    private List<Article> searchArticleList(@RequestBody Map<String, String> map) throws Exception {
+        if(map.containsKey("searchContent") && !StringUtils.isEmpty(map.get("searchContent"))){
+            String searchContent = map.get("searchContent");
+            List<Article>  articles = articleService.selectArticleBySearch(searchContent);
+            return articles;
+        }
+        return null;
     }
 }

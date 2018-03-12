@@ -68,4 +68,11 @@ public interface ArticleDao {
      * @throws Exception
      */
     int updateArticle(Article article) throws Exception;
+
+    /**
+     * 搜索
+     * @param searchContent
+     * @return
+     */
+    List<Article> selectArticleBySearch(String searchContent);
 }
