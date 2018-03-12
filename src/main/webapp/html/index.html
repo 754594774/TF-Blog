@@ -91,6 +91,11 @@
         </div>
     </div>
 
+    <div>
+        <ul id='example'></ul>
+    </div>
+
+
     <!--底部链接-->
     <footer>
         <p class="pull-right"><back-Top-Directive></back-Top-Directive></p>
@@ -108,9 +113,36 @@
 <script src="../plugins/angularJs/angular-route.js"></script>
 <script src="../plugins/sweetalert/sweetalert.js"></script>
 <script src="../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
+<script src="../plugins/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="../js/global.js"></script>
 <script src="../js/index.js"></script>
 <script src="../js/myDirective.js"></script>
-
+<script type="text/javascript">
+    $(function(){
+        var options = {
+            bootstrapMajorVersion:3,
+            currentPage: 1,
+            totalPages: 100,
+            tooltipTitles: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "上一页";
+                    case "next":
+                        return "下一页";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return "转到第" + page + "页";
+                }
+            },
+            pageUrl: function(type, page, current){
+                return "#/articleList/"+page;
+            }
+        };
+        $('#example').bootstrapPaginator(options);
+    });
+</script>
 </body>
 </html>

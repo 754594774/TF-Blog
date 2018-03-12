@@ -2,9 +2,7 @@ angular.module('myApp', ['ngRoute'])
     .controller('searchCtrl', function ($scope,$http,$location) {//搜索
         $scope.toggle = function() {
             var searchContent = $scope.searchContent;
-            if(searchContent != '' && searchContent!=null && searchContent!=undefined) {
-                $location.url('/articleList///' + searchContent);
-            }
+            $location.url('/articleList///' + searchContent);
         }
     })
     .controller('noticeCtrl', function ($scope,$http) {
@@ -60,6 +58,10 @@ angular.module('myApp', ['ngRoute'])
         var searchContent = $routeParams.searchContent;
 
         if((categoryId=='' || categoryId==null || categoryId==undefined) && (date=='' || date==null || date==undefined)){
+            if(searchContent == '' || searchContent==null || searchContent==undefined) {
+                $scope.articles = null;
+                return;
+            }
             $http({
                 method: 'POST',
                 url: 'searchArticleList',
