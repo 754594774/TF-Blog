@@ -3,6 +3,7 @@ package com.linn.home.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.github.pagehelper.PageInfo;
 import com.linn.frame.controller.BaseController;
 import com.linn.frame.entity.ResultBean;
 import com.linn.frame.util.DateUtils;
@@ -77,11 +78,24 @@ public class ArticleController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/toArticleList")
-    public List<Article> toArticleList(@RequestBody Map<String, String> map) throws Exception {
-        List<Article> articles = null;
+    public PageInfo toArticleList(@RequestBody Map<String, String> map) throws Exception {
+        PageInfo pageInfo = new PageInfo();
+        if(map.containsKey("pageNum") && !StringUtils.isEmpty(map.get("pageNum"))){
+            Integer pageNum = Integer.parseInt(map.get("pageNum"));
+            pageInfo.setPageNum(pageNum);
+        }else{
+            pageInfo.setPageNum(1);
+        }
+        if(map.containsKey("pageSize") && !StringUtils.isEmpty(map.get("pageSize"))){
+            Integer pageSize = Integer.parseInt(map.get("pageSize"));
+            pageInfo.setPageSize(pageSize);
+        }else{
+            pageInfo.setPageSize(15);
+        }
+
         if(map.containsKey("categoryId") && !StringUtils.isEmpty(map.get("categoryId"))){
             Integer categoryId = Integer.parseInt(map.get("categoryId"));
-            articles = articleService.selectArticleByCategoryId(categoryId);
+            pageInfo = articleService.selectArticleByCategoryId(categoryId,pageInfo);
         }
         if(map.containsKey("date") && !StringUtils.isEmpty(map.get("date")) ){
             String date = map.get("date");
@@ -90,9 +104,10 @@ public class ArticleController extends BaseController {
             HashMap<String, Date> hashMap = new HashMap<String, Date>();
             hashMap.put("firstDay", firstDay);
             hashMap.put("lastDay", lastDay);
-            articles = articleService.selectArticleByArchiveDate(hashMap);
+            pageInfo = articleService.selectArticleByArchiveDate(hashMap);
         }
-        return articles;
+
+        return pageInfo;
     }
 
     @ResponseBody

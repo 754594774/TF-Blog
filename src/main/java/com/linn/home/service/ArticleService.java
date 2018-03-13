@@ -1,5 +1,6 @@
 package com.linn.home.service;
 
+import com.github.pagehelper.PageInfo;
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
 
@@ -9,9 +10,9 @@ import java.util.List;
 
 public interface ArticleService {
 
-    List<Article> selectArticleByCategoryId(int categoryId) throws Exception;
+    PageInfo selectArticleByCategoryId(int categoryId,PageInfo page) throws Exception;
 
-    List<Article> selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception;
+    PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception;
 
     Article selectArticleById(int articleId) throws Exception;
 

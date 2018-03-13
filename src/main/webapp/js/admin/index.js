@@ -1,5 +1,5 @@
 //angularJs路由
-angular.module('myApp', ['ngRoute'])
+angular.module('backApp', ['ngRoute'])
     .controller('userCtrl', function(userService) {
         userService.getUser();
     })

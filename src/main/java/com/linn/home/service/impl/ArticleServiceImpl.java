@@ -1,5 +1,7 @@
 package com.linn.home.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.linn.home.dao.ArticleDao;
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
@@ -17,15 +19,23 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleDao articleDao;
 
     @Override
-    public List<Article> selectArticleByCategoryId(int categoryId) throws Exception {
+    public PageInfo selectArticleByCategoryId(int categoryId,PageInfo page) throws Exception {
 
-        return articleDao.selectArticleByCategoryId(categoryId);
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        //紧跟着的第一个select方法会被分页
+        List<Article> articles = articleDao.selectArticleByCategoryId(categoryId);
+        //用PageInfo对结果进行包装
+        page = new PageInfo(articles);
+        return page;
     }
 
     @Override
-    public List<Article> selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception {
-
-        return articleDao.selectArticleByArchiveDate(hashMap);
+    public PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception {
+        PageHelper.startPage(1, 3);
+        List<Article> articles = articleDao.selectArticleByArchiveDate(hashMap);
+        //用PageInfo对结果进行包装
+        PageInfo page = new PageInfo(articles);
+        return page;
     }
 
     @Override

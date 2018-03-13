@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute'])
+angular.module('frontApp', ['ngRoute','tm.pagination'])
     .controller('searchCtrl', function ($scope,$http,$location) {//搜索
         $scope.toggle = function() {
             var searchContent = $scope.searchContent;
@@ -53,41 +53,56 @@ angular.module('myApp', ['ngRoute'])
         });
     })
     .controller('articlesCtrl', function ($scope, $routeParams,$http) {
-        var categoryId =  $routeParams.id;
-        var date = $routeParams.date;
-        var searchContent = $routeParams.searchContent;
+        $scope.paginationConf = {
+            currentPage: 1,
+            totalItems: 800,
+            itemsPerPage: 15,
+            pagesLength: 15,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function(){
+                var categoryId =  $routeParams.id;
+                var date = $routeParams.date;
+                var searchContent = $routeParams.searchContent;
 
-        if((categoryId=='' || categoryId==null || categoryId==undefined) && (date=='' || date==null || date==undefined)){
-            if(searchContent == '' || searchContent==null || searchContent==undefined) {
-                $scope.articles = null;
-                return;
+                if((categoryId=='' || categoryId==null || categoryId==undefined) && (date=='' || date==null || date==undefined)){
+                    if(searchContent == '' || searchContent==null || searchContent==undefined) {
+                        $scope.articles = null;
+                        return;
+                    }
+                    $http({
+                        method: 'POST',
+                        url: 'searchArticleList',
+                        data: {
+                            searchContent: searchContent,
+                            pageNum:$scope.paginationConf.currentPage,
+                            pageSize:$scope.paginationConf.pagesLength
+                        }
+                    }).then(function successCallback(response) {
+                        $scope.articles = response.data.list;
+                        $scope.paginationConf.totalItems = response.data.total;
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                    });
+                }else{
+                    $http({
+                        method: 'POST',
+                        url: 'toArticleList',
+                        data: {
+                            categoryId: $routeParams.id,
+                            date:$routeParams.date,
+                            pageNum:$scope.paginationConf.currentPage,
+                            pageSize:$scope.paginationConf.pagesLength
+                        }
+                    }).then(function successCallback(response) {
+                        $scope.articles = response.data.list;
+                        $scope.paginationConf.totalItems = response.data.total;
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                        $scope.articles =null;
+                    });
+                }
             }
-            $http({
-                method: 'POST',
-                url: 'searchArticleList',
-                data: {
-                    searchContent: searchContent
-                }
-            }).then(function successCallback(response) {
-                $scope.articles = response.data;
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-        }else{
-            $http({
-                method: 'POST',
-                url: 'toArticleList',
-                data: {
-                    categoryId: $routeParams.id,
-                    date:$routeParams.date
-                }
-            }).then(function successCallback(response) {
-
-                $scope.articles = response.data;
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-        }
+        };
     })
     .controller('articleDetailCtrl', function ($scope, $routeParams,$http) {
         //文章详细
@@ -141,6 +156,9 @@ angular.module('myApp', ['ngRoute'])
                 redirectTo: '/'
             });
     }]);
+
+
+
 
 //创建一个函数，用于返回一个无参数函数
 function _loopNotice(date){

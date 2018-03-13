@@ -7,7 +7,7 @@ $('#loginForm').validator({
         'passWord': '密码:required'
     }
 });
-angular.module('myApp', ['ngRoute'])
+angular.module('loginApp', ['ngRoute'])
     .controller('loginCtrl', function($scope, $http) {
         $scope.toggle = function() {
             $('#loginForm').isValid(function() {

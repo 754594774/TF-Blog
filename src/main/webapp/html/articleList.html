@@ -5,8 +5,8 @@
 		<title></title>
 	</head>
 
-	<body>
-		<div class="list-group" ng-controller="articlesCtrl">
+	<body ng-controller="articlesCtrl">
+		<div class="list-group" >
 			<a href="#/articleDetail/{{a.id}}" class="list-group-item" ng-repeat="a in articles">
 				<h4 class="list-group-item-heading">
                 	{{ a.title }}
@@ -14,5 +14,12 @@
 				<span class="text-muted">{{ a.intro }}</span>
 			</a>
 		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<tm-pagination conf="paginationConf"></tm-pagination>
+			</div>
+		</div>
+
 	</body>
 </html>
