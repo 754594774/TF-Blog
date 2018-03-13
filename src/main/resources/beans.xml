@@ -27,8 +27,6 @@
                         <!--使用下面的方式配置参数，一行配置一个 -->
                         <value>
                             reasonable=true
-                            offsetAsPageNum=true
-                            rowBoundsWithCount=true
                         </value>
                     </property>
                 </bean>

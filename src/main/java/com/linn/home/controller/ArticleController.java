@@ -104,7 +104,7 @@ public class ArticleController extends BaseController {
             HashMap<String, Date> hashMap = new HashMap<String, Date>();
             hashMap.put("firstDay", firstDay);
             hashMap.put("lastDay", lastDay);
-            pageInfo = articleService.selectArticleByArchiveDate(hashMap);
+            pageInfo = articleService.selectArticleByArchiveDate(hashMap,pageInfo);
         }
 
         return pageInfo;
@@ -145,12 +145,25 @@ public class ArticleController extends BaseController {
 
     @ResponseBody
     @RequestMapping("/searchArticleList")
-    private List<Article> searchArticleList(@RequestBody Map<String, String> map) throws Exception {
+    private PageInfo searchArticleList(@RequestBody Map<String, String> map) throws Exception {
+        PageInfo pageInfo = new PageInfo();
+        if(map.containsKey("pageNum") && !StringUtils.isEmpty(map.get("pageNum"))){
+            Integer pageNum = Integer.parseInt(map.get("pageNum"));
+            pageInfo.setPageNum(pageNum);
+        }else{
+            pageInfo.setPageNum(1);
+        }
+        if(map.containsKey("pageSize") && !StringUtils.isEmpty(map.get("pageSize"))){
+            Integer pageSize = Integer.parseInt(map.get("pageSize"));
+            pageInfo.setPageSize(pageSize);
+        }else{
+            pageInfo.setPageSize(15);
+        }
+
         if(map.containsKey("searchContent") && !StringUtils.isEmpty(map.get("searchContent"))){
             String searchContent = map.get("searchContent");
-            List<Article>  articles = articleService.selectArticleBySearch(searchContent);
-            return articles;
+            pageInfo = articleService.selectArticleBySearch(searchContent,pageInfo);
         }
-        return null;
+        return pageInfo;
     }
 }

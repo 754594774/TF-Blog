@@ -33,7 +33,7 @@
         and t.title like CONCAT('%',trim(#{value}),'%')
         or t.author like  CONCAT('%',trim(#{value}),'%')
         or t.intro like  CONCAT('%',trim(#{value}),'%')
-        order by id desc;
+        order by id desc
     </select>
 
     <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">

@@ -14,7 +14,7 @@
     </resultMap>
 
     <select id="findLetterList" resultMap="letterResultMap">
-        select * from blog_letter;
+        select * from blog_letter
     </select>
 
     <insert id="addLetter"  keyProperty="id">

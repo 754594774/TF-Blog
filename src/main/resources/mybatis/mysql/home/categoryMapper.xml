@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="selectAllCategory" resultMap="categoryResultMap">
-        select * from blog_category;
+        select * from blog_category
     </select>
 
     <insert id="addCategory"  keyProperty="id">

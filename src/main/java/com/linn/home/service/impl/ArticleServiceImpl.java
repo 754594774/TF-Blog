@@ -30,11 +30,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception {
-        PageHelper.startPage(1, 3);
+    public PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap,PageInfo page) throws Exception {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<Article> articles = articleDao.selectArticleByArchiveDate(hashMap);
         //用PageInfo对结果进行包装
-        PageInfo page = new PageInfo(articles);
+        page = new PageInfo(articles);
         return page;
     }
 
@@ -71,7 +71,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> selectArticleBySearch(String searchContent) throws Exception {
-        return articleDao.selectArticleBySearch(searchContent);
+    public PageInfo selectArticleBySearch(String searchContent,PageInfo pageInfo) throws Exception {
+        PageHelper.startPage(pageInfo.getPageNum(),pageInfo.getPageSize());
+        List<Article>  articles= articleDao.selectArticleBySearch(searchContent);
+        //用PageInfo对结果进行包装
+        pageInfo = new PageInfo(articles);
+        return pageInfo;
     }
 }

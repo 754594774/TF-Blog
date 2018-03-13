@@ -1,6 +1,6 @@
 angular.module('frontApp', ['ngRoute','tm.pagination'])
     .controller('searchCtrl', function ($scope,$http,$location) {//搜索
-        $scope.toggle = function() {
+        $scope.search = function() {
             var searchContent = $scope.searchContent;
             $location.url('/articleList///' + searchContent);
         }
@@ -56,8 +56,8 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
         $scope.paginationConf = {
             currentPage: 1,
             totalItems: 800,
-            itemsPerPage: 15,
-            pagesLength: 15,
+            itemsPerPage: 10,
+            pagesLength: 10,
             perPageOptions: [10, 20, 30, 40, 50],
             onChange: function(){
                 var categoryId =  $routeParams.id;
@@ -82,6 +82,7 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
                         $scope.paginationConf.totalItems = response.data.total;
                     }, function errorCallback(response) {
                         // 请求失败执行代码
+                        $scope.articles =null;
                     });
                 }else{
                     $http({

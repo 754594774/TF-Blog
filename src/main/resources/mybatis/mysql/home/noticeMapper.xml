@@ -15,11 +15,11 @@
     </resultMap>
 
     <select id="findActiveNotice" resultMap="noticeResultMap">
-        select * from blog_notice where is_active = 1 order by id desc;
+        select * from blog_notice where is_active = 1 order by id desc
     </select>
 
     <select id="findNoticeList" resultMap="noticeResultMap">
-        select * from blog_notice order by id desc;
+        select * from blog_notice order by id desc
     </select>
 
     <insert id="addNotice"  keyProperty="id">

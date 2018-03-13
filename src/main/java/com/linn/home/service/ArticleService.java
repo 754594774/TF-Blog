@@ -12,7 +12,7 @@ public interface ArticleService {
 
     PageInfo selectArticleByCategoryId(int categoryId,PageInfo page) throws Exception;
 
-    PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception;
+    PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap,PageInfo page) throws Exception;
 
     Article selectArticleById(int articleId) throws Exception;
 
@@ -26,5 +26,5 @@ public interface ArticleService {
 
     int updateArticle(Article article) throws Exception;
 
-    List<Article> selectArticleBySearch(String searchContent) throws Exception;
+    PageInfo selectArticleBySearch(String searchContent,PageInfo page) throws Exception;
 }
