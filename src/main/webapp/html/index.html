@@ -10,6 +10,9 @@
     <link href="../css/blog.css" rel="stylesheet" type="text/css"/>
     <!--警告框插件-->
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/normalize/3.0.3/normalize.css" rel="stylesheet">
+    <link href="../css/qicaistyle.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
         body,html {
             background: url('../resources/images/bg2.jpg') no-repeat;
@@ -30,7 +33,6 @@
 <body  ng-app="frontApp">
 
 <div class="container">
-
     <nav class="navbar navbar-default" role="navigation" ng-controller="searchCtrl">
         <div class="container-fluid">
             <div>
@@ -48,14 +50,14 @@
         </div>
     </nav>
 
-    <div class="row">
-        <div class="col-xs-9">
+    <div class="row" >
+        <div class="col-sm-9">
             <!-- 路由出口 -->
             <div ng-view="">
             </div>
         </div>
 
-        <div class="col-xs-3">
+        <div class="col-sm-3" id="test">
             <!-- 通知面板 -->
             <div class="panel panel-primary" ng-controller="noticeCtrl">
                 <div class="panel-heading">
@@ -112,6 +114,7 @@
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/browser.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="../plugins/angularJs/angular.min.js"></script>
@@ -123,6 +126,11 @@
 <script src="../js/myDirective.js"></script>
 <script src="../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
 <script src="../js/comment.js"></script>
-
+<script src="../plugins/floatDiv/jquery.floatDiv.js"></script>
+<script type="text/javascript">
+//    $(function(){
+//        $("#test").floatdiv({top:"70px",right:"80px"});//righttop
+//    });
+</script>
 </body>
 </html>

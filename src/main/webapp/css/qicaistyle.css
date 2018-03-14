@@ -1,0 +1,105 @@
+﻿
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+
+.container {
+	max-width: 1440px;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box
+}
+/*2048px和1440px之间*/
+@media only screen and (max-width:  2048px){ 
+	.container {
+		width: 1440px;
+	}
+	.left {
+		width:68%;
+	}
+	.right {
+		width:30%;
+		background:#FF0000;/*红*/
+	}
+}
+/*1440px和1360px之间*/
+@media only screen and (max-width: 1400px){ 
+	.container {
+		width: 1300px;
+	}
+	.left {
+		width:58%;
+	}
+	.right {
+		width:40%;
+		background:#FFA500;/*橙*/
+	}
+}
+/*1360px和1280px之间*/
+@media only screen and (max-width: 1320px){ 
+	.container {
+		width: 1200px;
+	}
+	.left {
+		width:48%;
+	}
+	.right {
+		width:50%;
+		background:#FFFF00;/*黄*/
+	}
+}
+/*1280px和1136px之间*/
+@media only screen and (max-width: 1208px){ 
+	.container {
+		width: 1060px;
+	}
+	.left {
+		width:38%;
+	}
+	.right {
+		width:60%;
+		background:#008000;/*绿*/
+	}
+}
+/*1136px和1024px之间*/
+@media only screen and (max-width: 1080px){ 
+	.container {
+		width: 1000px;
+	}
+	.left {
+		width:28%;
+	}
+	.right {
+		width:70%;
+		background:#0000FF;/*蓝*/
+	}
+}
+/*1024px和960px之间*/
+@media only screen and (max-width: 992px){ 
+	.container {
+		width: 961px;
+	}
+	.left {
+		width:18%;
+	}
+	.right {
+		width:80%;
+		background:#4B0082;/*靛*/
+	}
+}
+/*960px及以下*/
+@media only screen and (max-width: 960px){ 
+	.container {
+		width: 960px;
+	}
+	.left {
+		display:none;
+	}
+	.right {
+		width:100%;
+		background:#800080;/*紫*/
+	}
+}
