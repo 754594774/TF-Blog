@@ -1,6 +1,21 @@
 /**
+ * 文章详情和留言
  * Created by Administrator on 2018-02-28.
  */
+// 初始化验证
+$('#commentForm').validator({
+    timely: 3,
+    theme: 'yellow_top',
+    fields: {
+        'name': '姓名:required',
+        'contactInfo': '联系方式:required',
+        'msg':'内容:required'
+    },
+    valid: function(form){
+        leaveMsg();
+    }
+});
+
 function leaveMsg(){
     var name = $("#name").val().trim();
     var msg = $("#msg").val().trim();
@@ -43,11 +58,11 @@ function leaveMsg(){
             if(data.errNo == 0){
                 //alert("ok");
             }else {
-                alert("系统错误");
+                swal("失败!", data.errMsg, "error")
             }
         },
         error: function () {
-            alert("添加失败");
+            swal("评论失败", "添加评论时出错了！", "error");
         }
     });
 }

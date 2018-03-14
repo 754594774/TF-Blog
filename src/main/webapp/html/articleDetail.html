@@ -1,62 +1,73 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>文章详情</title>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>文章详情</title>
+</head>
 
-	<body>
-		<div ng-controller="articleDetailCtrl" class="panel panel-default" >
-			<div class="panel-body">
-				<input id="articleId" type="hidden" value="{{article.id}}">
-				<h3 class="text-center">{{article.title}}
-				</h3>
-				<span class="text-muted center-block text-center">{{article.gmtCreate | date:"yyyy-MM-dd HH:mm:ss"}} by {{article.author}}</span>
-				<hr style="height:3px;border:none;border-top:3px double green;" />
-				<p ng-bind-html="article.content | to_trusted"></p>
-			</div>
-		</div>
-		<!--&lt;!&ndash;翻页&ndash;&gt;-->
-		<!--<ul class="pager">-->
-			<!--<li><a href="#">Previous</a></li>-->
-			<!--<li><a href="#">Next</a></li>-->
-		<!--</ul>-->
-		<!--留言-->
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">留言：</h3>
-			</div>
-			<div class="panel-body">
-				<div class="row" ng-if="article.allowComment == 0">
-					<div class="col-sm-9 col-sm-offset-1">
-						<input type="text" class="form-control" id="name" placeholder="请输入姓名...">
-						<textarea id="msg" placeholder="请输入留言..." class="form-control" rows="3"></textarea>
-					</div>
-					<div class="col-sm-2">
-						</br></br></br></br></br>
-						<button type="button" class="btn btn-success btn-sm" onclick="leaveMsg()">回复</button>
-					</div>
-				</div>
+<body>
+<div ng-controller="articleDetailCtrl" class="panel panel-default">
+    <div class="panel-body">
+        <input id="articleId" type="hidden" value="{{article.id}}">
+        <h3 class="text-center">{{article.title}}
+        </h3>
+        <span class="text-muted center-block text-center">{{article.gmtCreate | date:"yyyy-MM-dd HH:mm:ss"}} by {{article.author}}</span>
+        <hr style="height:3px;border:none;border-top:3px double green;"/>
+        <p ng-bind-html="article.content | to_trusted"></p>
+    </div>
+</div>
+<!--&lt;!&ndash;翻页&ndash;&gt;-->
+<!--<ul class="pager">-->
+<!--<li><a href="#">Previous</a></li>-->
+<!--<li><a href="#">Next</a></li>-->
+<!--</ul>-->
+<!--留言-->
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">留言：</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" id="commentForm" role="form">
+            <div class="row" ng-if="article.allowComment == 0">
+                <div class="col-sm-9 col-sm-offset-1">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="请输入姓名...">
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="contactInfo" id="contactInfo"
+                                   placeholder="联系方式...">
+                        </div>
+                    </div>
+                    <textarea id="msg" placeholder="请输入留言..." name="msg" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="col-sm-2">
+                    </br></br></br></br></br>
+                    <button type="submit" class="btn btn-success btn-sm">回复</button>
+                </div>
+            </div>
+        </form>
+        <div class="row" ng-if="article.allowComment == 1">
+            <h3 class="text-center">该文章已禁止评论！</h3>
+        </div>
+    </div>
+</div>
 
-				<div class="row" ng-if="article.allowComment == 1">
-					<h3 class="text-center">该文章已禁止评论！</h3>
-				</div>
-			</div>
-		</div>
+<!--历史留言-->
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            历史留言：
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul id="pn">
+        </ul>
+    </div>
+</div>
+<script src="../../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
+<script src="../js/articleDetail.js"></script>
 
-		<!--历史留言-->
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					历史留言：
-				</h3>
-			</div>
-			<div class="panel-body">
-				<ul id="pn">
-				</ul>
-			</div>
-		</div>
-		<script src="../js/articleDetail.js"></script>
-	</body>
+</body>
 
 </html>

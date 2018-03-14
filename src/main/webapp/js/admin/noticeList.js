@@ -11,6 +11,9 @@ $('#noticeForm').validator({
     fields: {
         'title': '标题:required',
         'content': '内容:required'
+    },
+    valid: function(form){
+
     }
 });
 $btnOk.click(function (e) {//点击确认按钮

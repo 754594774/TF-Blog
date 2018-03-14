@@ -55,27 +55,42 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
     .controller('articlesCtrl', function ($scope, $routeParams,$http) {
         $scope.paginationConf = {
             currentPage: 1,
-            totalItems: 800,
+            totalItems: 0,
             itemsPerPage: 10,
             pagesLength: 10,
-            perPageOptions: [10, 20, 30, 40, 50],
+            perPageOptions: [5,10, 20, 30, 40, 50],
             onChange: function(){
+
                 var categoryId =  $routeParams.id;
                 var date = $routeParams.date;
                 var searchContent = $routeParams.searchContent;
 
-                if((categoryId=='' || categoryId==null || categoryId==undefined) && (date=='' || date==null || date==undefined)){
-                    if(searchContent == '' || searchContent==null || searchContent==undefined) {
-                        $scope.articles = null;
-                        return;
-                    }
+                if(!categoryId && !date && searchContent){
                     $http({
                         method: 'POST',
                         url: 'searchArticleList',
                         data: {
                             searchContent: searchContent,
                             pageNum:$scope.paginationConf.currentPage,
-                            pageSize:$scope.paginationConf.pagesLength
+                            pageSize:$scope.paginationConf.itemsPerPage
+                        }
+                    }).then(function successCallback(response) {
+                        $scope.articles = response.data.list;
+                        $scope.paginationConf.totalItems = response.data.total;
+
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                        $scope.articles =null;
+                    });
+                }else if(!categoryId || !date){
+                    $http({
+                        method: 'POST',
+                        url: 'toArticleList',
+                        data: {
+                            categoryId: $routeParams.id,
+                            date:$routeParams.date,
+                            pageNum:$scope.paginationConf.currentPage,
+                            pageSize:$scope.paginationConf.itemsPerPage
                         }
                     }).then(function successCallback(response) {
                         $scope.articles = response.data.list;
@@ -85,22 +100,8 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
                         $scope.articles =null;
                     });
                 }else{
-                    $http({
-                        method: 'POST',
-                        url: 'toArticleList',
-                        data: {
-                            categoryId: $routeParams.id,
-                            date:$routeParams.date,
-                            pageNum:$scope.paginationConf.currentPage,
-                            pageSize:$scope.paginationConf.pagesLength
-                        }
-                    }).then(function successCallback(response) {
-                        $scope.articles = response.data.list;
-                        $scope.paginationConf.totalItems = response.data.total;
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                        $scope.articles =null;
-                    });
+                    $scope.articles = null;
+                    $scope.paginationConf.totalItems = 0;
                 }
             }
         };
@@ -157,20 +158,6 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
                 redirectTo: '/'
             });
     }]);
-
-
-
-
-//创建一个函数，用于返回一个无参数函数
-function _loopNotice(date){
-    return function(){
-        loopNotice(date);
-    }
-}
-function loopNotice(date){
-
-    console.log(date);
-}
 
 function loadCommentList(data){
 
@@ -294,7 +281,7 @@ function initCommentEvent() {
             },
             success: function (data) {
                 if(data.errNo == 0){
-                    swal("成功!", "添加评论成功:)!", "success")
+                    //swal("成功!", "添加评论成功:)!", "success")
                 }else {
                     swal("失败!", data.errMsg, "error")
                 }
