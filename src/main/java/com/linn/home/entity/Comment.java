@@ -23,6 +23,10 @@ public class Comment {
      */
     private String memberName;
     /**
+     * 联系信息
+     */
+    private String contactInfo;
+    /**
      * 评论内容
      */
     private String content;
@@ -115,6 +119,14 @@ public class Comment {
         this.articleId = articleId;
     }
 
+    public String getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -123,6 +135,7 @@ public class Comment {
                 ", rootid=" + rootid +
                 ", memberName='" + memberName + '\'' +
                 ", content='" + content + '\'' +
+                ", contactInfo='" + contactInfo + '\'' +
                 ", pdate=" + pdate +
                 ", isleaf=" + isleaf +
                 ", articleId=" + articleId +

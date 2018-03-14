@@ -4,7 +4,7 @@
  */
 // 初始化验证
 $('#commentForm').validator({
-    timely: 3,
+    timely: 0,
     theme: 'yellow_top',
     fields: {
         'name': '姓名:required',
@@ -20,20 +20,14 @@ function leaveMsg(){
     var name = $("#name").val().trim();
     var msg = $("#msg").val().trim();
     var articleId = $("#articleId").val();
-    if(name=="" || name == null || name == undefined){
-        swal("提示!", "请输入姓名!", "warning");
-        return;
-    }
-    if(msg=="" || msg == null || msg == undefined){
-        swal("提示!", "请输入留言信息!", "warning");
-        return;
-    }
+    var contactInfo = $("#contactInfo").val();
+
     var innerHtml =
         "<li class=\"list0\"> <a class=\"close\" href=\"javascript:;\">X</a>\n" +
         "  <div class=\"head\"><img src=\"../resources/images/foot.png\" alt=\"\"></div>\n" +
         "  <div class=\"content\">\n" +
         "    <p class=\"text\"><span class=\"name\">我：</span>" + msg + "</p>\n" +
-        "    <div class=\"good\"><span class=\"date\">" + getTime() + "</span><a class=\"dzan\" href=\"javascript:;\">赞</a></div>\n" +
+        "    <div class=\"good\"><span class=\"date\">" + getTime() + "</span></div>\n" +
         "    <div class=\"people\" total=\"0\" style=\"display: none;\"></div>\n" +
         "    <div class=\"comment-list\">\n" +
         "    </div>" +
@@ -42,7 +36,6 @@ function leaveMsg(){
 
     $("#pn").prepend(innerHtml);
 
-    $("#name").val("");
     $("#msg").val("");
     //发送ajax请求
     $.ajax({
@@ -52,6 +45,7 @@ function leaveMsg(){
             pid: 0,
             content:msg,
             memberName:name,
+            contactInfo:contactInfo,
             articleId:articleId
         },
         success: function (data) {

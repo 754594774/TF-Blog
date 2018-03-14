@@ -9,6 +9,7 @@
         <result property="pid" column="pid"/>
         <result property="rootid" column="rootid"/>
         <result property="memberName" column="member_name"/>
+        <result property="contactInfo" column="contact_info"/>
         <result property="content" column="content"/>
         <result property="pdate" column="pdate"/>
         <result property="isleaf" column="isleaf"/>
@@ -24,8 +25,8 @@
     </select>
 
     <insert id="addComment"  keyProperty="id">
-        INSERT INTO blog_comment (pid, member_name,content,isleaf,article_id)
-        VALUES (#{pid}, #{memberName},#{content},#{isleaf},#{articleId})
+        INSERT INTO blog_comment (pid, member_name,content,isleaf,article_id,contact_info)
+        VALUES (#{pid}, #{memberName},#{content},#{isleaf},#{articleId},#{contactInfo})
     </insert>
 
     <update id="updateCommentById">
