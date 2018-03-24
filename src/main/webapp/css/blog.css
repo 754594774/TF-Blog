@@ -5,7 +5,9 @@
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #555;
-  background-color: #eeeeee;
+  background-color: #c4ecfd;
+  /*background: url('../resources/images/bg2.jpg') no-repeat;*/
+  /*background-size: cover;*/
 }
 
 h1, .h1,
