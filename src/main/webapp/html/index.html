@@ -17,34 +17,48 @@
     <link rel="stylesheet" type="text/css" href="../css/pager.css">
 </head>
 <body  ng-app="frontApp">
-<div class="jumbotron" style="background-color: #66afe9;padding-bottom: 0">
-    <div class="row">
-        <div class="col-sm-8 col-sm-offset-2" style="padding-bottom: 0;margin-bottom: 0">
-            <nav class="navbar navbar-inverse" role="navigation" ng-controller="searchCtrl">
-                <div class="container-fluid">
-                    <div>
-                        <ul class="nav navbar-nav navbar-left">
-                            <li>
-                                <a href="#/">首页</a>
-                            </li>
-                            <li><a href="#/contactMe">联系我</a></li>
-                        </ul>
-                        <form class="navbar-form navbar-right" role="form">
-                            <input type="text" class="form-control" ng-model="searchContent" placeholder="Search...">
-                            <button type="submit" ng-click="search()" id="btnSearch" class="btn btn-info btn-sm">搜索</button>
-                        </form>
-                    </div>
+
+    <div id="logo" >
+        <img src="../resources/images/2.png" class="img-responsive" alt="Cinque Terre" >
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-2" style="padding-bottom: 0;margin-bottom: 0">
+                    <img src="../resources/images/logo.png" class="img-responsive" alt="Cinque Terre" >
                 </div>
-            </nav>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-2" style="padding-bottom: 0;margin-bottom: 0">
+                <nav class="navbar navbar-default" role="navigation" ng-controller="searchCtrl">
+                    <div class="container-fluid">
+                        <div>
+                            <ul class="nav navbar-nav navbar-left">
+                                <li style="font-size:18px">
+                                    <a href="#/">首页</a>
+                                </li>
+                                <li style="font-size:18px"><a href="#/contactMe">联系我</a></li>
+                            </ul>
+                            <form class="navbar-form navbar-right" role="form">
+                                <input type="text" class="form-control" ng-model="searchContent" placeholder="Search...">
+                                <button type="submit" ng-click="search()" id="btnSearch" class="btn btn-info btn-sm">搜索</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
     <div class="row" >
         <div class="col-sm-2">
             <!--备用空间-->
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-7">
             <!-- 路由出口 -->
             <div ng-view="">
             </div>
@@ -95,7 +109,7 @@
             </div>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             <!--//备用空间-->
         </div>
     </div>
