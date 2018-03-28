@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../../resources/images/favicon.ico">
     <title>登录页面</title>
     <!-- Bootstrap core CSS -->
     <link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -12,18 +11,16 @@
     <link href="../../css/signin.css" rel="stylesheet">
   </head>
   <style type="text/css">
-    body,html {
-      background: url('../../resources/images/bg2.jpg') no-repeat;
+   html body {
+      background: url('../../resources/images/bg1.png') no-repeat;
       background-size: cover;
+      background-color: #f8f7ee;
     }
   </style>
 
   <body ng-app="loginApp">
-
     <div class="container" ng-controller="loginCtrl">
-
       <form class="form-signin" id="loginForm">
-
         <label for="inputUser" class="sr-only">Email address</label>
         <input type="text" id="inputUser" ng-model="user.userName" name="userName" class="form-control" placeholder="用户名" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -36,7 +33,6 @@
         <button id="btnLogin" class="btn btn-lg btn-primary btn-block" ng-click="toggle()" type="button">登录</button>
         <h4 style="color: red" id="message" ng-model="message" class="form-signin-heading"></h4>
       </form>
-
     </div> <!-- /container -->
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
