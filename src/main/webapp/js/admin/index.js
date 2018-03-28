@@ -2,18 +2,21 @@
 angular.module('backApp', ['ngRoute'])
     .controller('userCtrl', function(userService) {
         userService.getUser();
+
     })
     .controller('menuCtrl', function($scope,$routeParams,userService) {
         userService.getUser();
         $scope.params = $routeParams;
+    })
+    .controller('headerCtrl', function($scope,$http) {
         $scope.logout = function() {
-            alert("1");
             $http({
                 method: 'POST',
                 url: '/admin/logout'
             }).then(function successCallback(response) {
+                console.log(response);
                 if(response.data.errNo == 0){
-                    window.location.href="/admin";
+                    window.location.href="/admin/login";
                 }else{
                     $("#message").text(response.data.errMsg);
                 }
@@ -52,7 +55,12 @@ angular.module('backApp', ['ngRoute'])
                 method: 'GET',
                 url: 'findLoginUser'
             }).then(function successCallback(response) {
-                $rootScope.user = response.data;
+                console.log(response);
+                if(response.data.errNo == 0){
+                    $rootScope.user = response.data.data;
+                }else{
+                    window.location.href="/admin/login";
+                }
             }, function errorCallback(response) {
                 // 请求失败执行代码
                 window.location.href="/admin/login";

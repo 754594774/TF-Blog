@@ -63,7 +63,7 @@ public class LoginController {
         //删除Session
         request.getSession().removeAttribute("user");
         //删除session
-        return new ResultBean(SysContent.SUCCESS,"登陆成功!");
+        return new ResultBean(SysContent.SUCCESS,"登出成功!");
     }
 
     /**
@@ -118,7 +118,7 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping("/findLoginUser")
-    private User findLoginUser(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private ResultBean findLoginUser(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
         User user = new User();
         //获取cookie
         Cookie[] cookies = request.getCookies();
@@ -127,14 +127,14 @@ public class LoginController {
                 String nameAndPwd = cookie.getValue();
                 user.setUserName(nameAndPwd.split("_")[0]);
                 user.setPassWord(nameAndPwd.split("_")[1]);
-                return user;
+                return new ResultBean(SysContent.SUCCESS,"成功",user);
             }
         }
         //获取Session
         user = (User)request.getSession().getAttribute("user");
         if(user != null){
-            return user;
+            return new ResultBean(SysContent.SUCCESS,"成功",user);
         }
-        return null;
+        return new ResultBean(SysContent.ERROR,"工人信息不存在！");
     }
 }
