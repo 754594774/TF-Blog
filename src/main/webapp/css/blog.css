@@ -34,4 +34,7 @@ h6, .h6 {
   border-radius: 30px;
 }
 
-
+.blog-description {
+  font-size: 13px;
+  color: #999;
+}

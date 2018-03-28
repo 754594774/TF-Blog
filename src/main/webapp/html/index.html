@@ -7,7 +7,7 @@
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link  href="../css/evalute.css" rel="stylesheet" type="text/css">
-    <link href="../css/blog.css" rel="stylesheet" type="text/css"/>
+
     <!--警告框插件-->
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/normalize/3.0.3/normalize.css" rel="stylesheet">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/ad.css">
     <link rel="stylesheet" type="text/css" href="../css/pager.css">
+    <link href="../css/blog.css" rel="stylesheet" type="text/css"/>
 </head>
 <body  ng-app="frontApp">
 
@@ -29,7 +30,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="container">
 
@@ -66,7 +66,7 @@
 
         <div class="col-sm-2" id="test">
             <!-- 通知面板 -->
-            <div class="panel panel-primary" ng-controller="noticeCtrl">
+            <div class="panel panel-default" ng-controller="noticeCtrl">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{notice.title}}</h3>
                 </div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <!--分类面板-->
-            <div class="panel panel-primary" ng-controller="catgsCtrl">
+            <div class="panel panel-default" ng-controller="catgsCtrl">
                 <div class="panel-heading">
                     <h3 class="panel-title">分类</h3>
                 </div>
@@ -86,7 +86,7 @@
                 </ul>
             </div>
             <!--归档面板-->
-            <div class="panel panel-primary" ng-controller="archsCtrl">
+            <div class="panel panel-default" ng-controller="archsCtrl">
                 <div class="panel-heading">
                     <h3 class="panel-title">归档</h3>
                 </div>
@@ -97,7 +97,7 @@
                 </ul>
             </div>
             <!-- 友链 -->
-            <div class="panel panel-primary" ng-controller="linksCtrl">
+            <div class="panel panel-default" ng-controller="linksCtrl">
                 <div class="panel-heading">
                     <h3 class="panel-title">友链</h3>
                 </div>
@@ -156,7 +156,9 @@
 //    $(function(){
 //        $("#test").floatdiv({top:"70px",right:"80px"});//righttop
 //    });
+    //右下角广告
     var popad=new Pop();
+
 </script>
 </body>
 </html>

@@ -28,6 +28,10 @@
         select * from blog_article order by id desc
     </select>
 
+    <select id="selectArticleList"  resultMap="articleResultMap">
+        select * from blog_article order by id desc
+    </select>
+
     <select id="selectArticleBySearch"  parameterType="string" resultMap="articleResultMap">
         select * from blog_article t where 1=1
         and t.title like CONCAT('%',trim(#{value}),'%')

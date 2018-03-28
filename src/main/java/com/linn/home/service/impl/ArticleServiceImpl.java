@@ -19,6 +19,14 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleDao articleDao;
 
     @Override
+    public PageInfo selectArticleList(PageInfo page) throws Exception {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Article> articles = articleDao.selectArticleList();
+        page = new PageInfo(articles);
+        return page;
+    }
+
+    @Override
     public PageInfo selectArticleByCategoryId(int categoryId,PageInfo page) throws Exception {
 
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
@@ -78,4 +86,5 @@ public class ArticleServiceImpl implements ArticleService {
         pageInfo = new PageInfo(articles);
         return pageInfo;
     }
+
 }

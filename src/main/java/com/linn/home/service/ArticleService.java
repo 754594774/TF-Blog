@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface ArticleService {
 
+    PageInfo selectArticleList(PageInfo page) throws Exception;
+
     PageInfo selectArticleByCategoryId(int categoryId,PageInfo page) throws Exception;
 
     PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap,PageInfo page) throws Exception;

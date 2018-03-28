@@ -163,6 +163,8 @@ public class ArticleController extends BaseController {
         if(map.containsKey("searchContent") && !StringUtils.isEmpty(map.get("searchContent"))){
             String searchContent = map.get("searchContent");
             pageInfo = articleService.selectArticleBySearch(searchContent,pageInfo);
+        }else {//为传入任何条件，则显示最近记录
+            pageInfo = articleService.selectArticleList(pageInfo);
         }
         return pageInfo;
     }

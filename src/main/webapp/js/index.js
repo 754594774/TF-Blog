@@ -1,8 +1,10 @@
 angular.module('frontApp', ['ngRoute','tm.pagination'])
     .controller('searchCtrl', function ($scope,$http,$location) {//搜索
         $scope.search = function() {
-            var searchContent = $scope.searchContent;
-            $location.url('/articleList///' + searchContent);
+            var searchContent = $scope.searchContent.trim();
+            if(searchContent){
+                $location.url('/articleList///' + searchContent);
+            }
         }
     })
     .controller('noticeCtrl', function ($scope,$http) {
@@ -77,12 +79,12 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
                     }).then(function successCallback(response) {
                         $scope.articles = response.data.list;
                         $scope.paginationConf.totalItems = response.data.total;
-
+                        $scope.params = $routeParams;
                     }, function errorCallback(response) {
                         // 请求失败执行代码
                         $scope.articles =null;
                     });
-                }else if(!categoryId || !date){
+                }else if(categoryId || date){
                     $http({
                         method: 'POST',
                         url: 'toArticleList',
@@ -99,9 +101,23 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
                         // 请求失败执行代码
                         $scope.articles =null;
                     });
-                }else{
-                    $scope.articles = null;
-                    $scope.paginationConf.totalItems = 0;
+                }else{//没有搜索条件，则显示最近记录
+                    //$scope.articles = null;
+                    //$scope.paginationConf.totalItems = 0;
+                    $http({
+                        method: 'POST',
+                        url: 'searchArticleList',
+                        data: {
+                            pageNum:$scope.paginationConf.currentPage,
+                            pageSize:$scope.paginationConf.itemsPerPage
+                        }
+                    }).then(function successCallback(response) {
+                        $scope.articles = response.data.list;
+                        $scope.paginationConf.totalItems = response.data.total;
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                        $scope.articles =null;
+                    });
                 }
             }
         };
@@ -141,7 +157,8 @@ angular.module('frontApp', ['ngRoute','tm.pagination'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'html/welcome.html'
+                templateUrl: 'html/articleList.html',
+                controller: 'articlesCtrl'
             })
             .when('/articleList/:id?/:date?/:searchContent?', {
                 templateUrl: 'html/articleList.html',

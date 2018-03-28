@@ -13,6 +13,13 @@ import java.util.List;
 
 @Repository("articleDao")
 public interface ArticleDao {
+
+    /**
+     * 根据文章列表
+     * @return
+     */
+    List<Article> selectArticleList() throws Exception;
+
     /**
      * 根据分类id查找文章
      * @return
