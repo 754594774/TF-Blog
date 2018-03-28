@@ -29,7 +29,7 @@
     </select>
 
     <select id="selectArticleList"  resultMap="articleResultMap">
-        select * from blog_article order by id desc
+        SELECT * FROM blog_article  ORDER BY is_stick DESC,id DESC
     </select>
 
     <select id="selectArticleBySearch"  parameterType="string" resultMap="articleResultMap">
@@ -37,15 +37,16 @@
         and t.title like CONCAT('%',trim(#{value}),'%')
         or t.author like  CONCAT('%',trim(#{value}),'%')
         or t.intro like  CONCAT('%',trim(#{value}),'%')
-        order by id desc
+        ORDER BY is_stick DESC,id DESC
     </select>
 
     <select id="selectArticleByCategoryId"  parameterType="int" resultMap="articleResultMap">
-        select * from blog_article where category_id = #{categoryId} order by id desc
+        select * from blog_article where category_id = #{categoryId} ORDER BY is_stick DESC,id DESC
     </select>
 
     <select id="selectArticleByArchiveDate"  parameterType="hashmap" resultMap="articleResultMap">
-        select * from blog_article where gmt_create &gt; #{firstDay} and  gmt_create &lt; #{lastDay} order by gmt_create desc
+        select * from blog_article where gmt_create &gt; #{firstDay} and  gmt_create &lt; #{lastDay}
+        ORDER BY is_stick DESC,id DESC
     </select>
 
     <select id="selectArticleById"  parameterType="int" resultMap="articleResultMap">
