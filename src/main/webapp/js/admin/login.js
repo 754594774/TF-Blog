@@ -9,7 +9,7 @@ $('#loginForm').validator({
 });
 angular.module('loginApp', ['ngRoute'])
     .controller('loginCtrl', function($scope, $http) {
-        $scope.toggle = function() {
+        $scope.login = function() {
             $('#loginForm').isValid(function() {
                 $http({
                     method: 'POST',

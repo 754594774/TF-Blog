@@ -6,6 +6,22 @@ angular.module('backApp', ['ngRoute'])
     .controller('menuCtrl', function($scope,$routeParams,userService) {
         userService.getUser();
         $scope.params = $routeParams;
+        $scope.logout = function() {
+            alert("1");
+            $http({
+                method: 'POST',
+                url: '/admin/logout'
+            }).then(function successCallback(response) {
+                if(response.data.errNo == 0){
+                    window.location.href="/admin";
+                }else{
+                    $("#message").text(response.data.errMsg);
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                $("#message").text("请求异常");
+            })
+        };
     })
     .controller('pubArticleCtrl', function($scope,$http,$rootScope,userService) {
         userService.getUser();
@@ -30,7 +46,7 @@ angular.module('backApp', ['ngRoute'])
             toastr.error("请求分类数据失败");
         });
     })
-    .service('userService', function($rootScope, $http) {
+    .service('userService', function($rootScope, $http) {//拦截用户登录
         this.getUser = function () {
             $http({
                 method: 'GET',

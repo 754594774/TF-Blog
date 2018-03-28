@@ -29,16 +29,52 @@ public class LoginController {
     @Resource
     private UserService userService ;
 
+    //跳转到后台主页面
     @RequestMapping("/admin")
     private String toAdmin() throws Exception {
         return "admin/index";
     }
 
+    /**
+     * 跳转到登录页面
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/admin/login")
     private String toAdminLogin() throws Exception {
         return "admin/login";
     }
 
+    /**
+     * 登出
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping("/admin/logout")
+    private ResultBean toAdminLogout(HttpSession session,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response) throws Exception {
+        //删除cookie
+        Cookie cookie = new Cookie("user", null);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        //删除Session
+        request.getSession().removeAttribute("user");
+        //删除session
+        return new ResultBean(SysContent.SUCCESS,"登陆成功!");
+    }
+
+    /**
+     * 登录
+     * @param map
+     * @param session
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
     @ResponseBody
     @RequestMapping(value = "/admin/index",method = RequestMethod.POST)
     private ResultBean toAdminIndex(@RequestBody Map<String, String> map,
@@ -72,12 +108,11 @@ public class LoginController {
             if(rememberMe.equals("true")){//记住我
                 //添加cookie
                 Cookie cookie = new Cookie("user",user.getUserName() + "_" + user.getPassWord());
-                cookie.setMaxAge(60*60);//一小时
+                cookie.setMaxAge(60*60*24);//记住我1天
                 cookie.setPath("/");
                 response.addCookie(cookie);
             }
         }
-
         return new ResultBean(SysContent.SUCCESS,"登陆成功!");
     }
 
