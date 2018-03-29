@@ -16,6 +16,8 @@ public class Letter {
 
     private String content;
 
+    private Integer viewStatus;
+
     private Date gmtCreate;
 
     private Date gmtModified;
@@ -68,6 +70,14 @@ public class Letter {
         this.gmtModified = gmtModified;
     }
 
+    public Integer getViewStatus() {
+        return viewStatus;
+    }
+
+    public void setViewStatus(Integer viewStatus) {
+        this.viewStatus = viewStatus;
+    }
+
     @Override
     public String toString() {
         return "Letter{" +
@@ -75,6 +85,7 @@ public class Letter {
                 ", userName='" + userName + '\'' +
                 ", contactWay='" + contactWay + '\'' +
                 ", content='" + content + '\'' +
+                ", viewStatus=" + viewStatus +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 '}';

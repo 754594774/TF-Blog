@@ -20,6 +20,16 @@ public class LetterServiceImpl implements LetterService {
     private LetterDao letterDao;
 
     @Override
+    public int findCountByStatus(int status) throws Exception {
+        return letterDao.findCountByStatus(status);
+    }
+
+    @Override
+    public int updateStatusById(Letter letter) throws Exception {
+        return letterDao.updateStatusById(letter);
+    }
+
+    @Override
     public List<Letter> findLetterList() throws Exception {
         return letterDao.findLetterList();
     }

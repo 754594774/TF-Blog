@@ -46,7 +46,7 @@ public class LetterController extends BaseController{
     }
 
     @ResponseBody
-    @RequestMapping("delLetter")
+    @RequestMapping("/delLetter")
     public ResultBean delLetter(int[] ids) throws Exception {
 
         if(ids!=null && ids.length > 0){
@@ -55,5 +55,27 @@ public class LetterController extends BaseController{
             }
         }
         return new ResultBean(SysContent.SUCCESS,"删除成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/changeViewStatus")
+    public ResultBean changeViewStatus(int[] ids) throws Exception{
+        Letter letter = new Letter();
+        if(ids!=null && ids.length > 0){
+            for (int id: ids) {
+                letter.setId(id);
+                letter.setViewStatus(SysContent.HASREAD);
+                int ret = letterService.updateStatusById(letter);
+            }
+        }
+        return new ResultBean(SysContent.SUCCESS,"更新成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/findCountByStatus")
+    public ResultBean findCountByStatus() throws Exception{
+        //查看未读信件的书来那个
+        int unReadCount = letterService.findCountByStatus(SysContent.UNREAD);
+        return new ResultBean(SysContent.SUCCESS,"未读站内信数量",unReadCount);
     }
 }

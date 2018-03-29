@@ -9,12 +9,23 @@
         <result property="userName" column="user_name"/>
         <result property="contactWay" column="contact_way"/>
         <result property="content" column="content"/>
+        <result property="viewStatus" column="view_status"/>
         <result property="gmtCreate" column="gmt_create"/>
         <result property="gmtModified" column="gmt_modified"/>
     </resultMap>
 
+    <select id="findCountByStatus" parameterType="int" resultType="int">
+        select count(*) from blog_letter WHERE view_status = #{value}
+    </select>
+
+    <update id="updateStatusById">
+        UPDATE blog_letter
+        SET view_status  = #{viewStatus}
+        WHERE id = #{id}
+    </update>
+
     <select id="findLetterList" resultMap="letterResultMap">
-        select * from blog_letter
+        select * from blog_letter ORDER BY view_status ASC,id DESC
     </select>
 
     <insert id="addLetter"  keyProperty="id">

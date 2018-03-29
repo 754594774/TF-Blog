@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../../plugins/metismenu/metisMenu.css" />
     <!--警告框插件-->
     <link href="../../plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <style>
         .col-sm-2 {
             padding: 0 0px;
@@ -20,7 +21,6 @@
             padding: 0 0px;
         }
     </style>
-
 
 </head>
 <body ng-app="backApp">
@@ -105,19 +105,19 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#">
+                            <a href="#/letterList">
                                 <span class="fa fa-envelope-o"></span>
-                                <span class="badge">3</span>
+                                <span class="badge">{{unReadCount}}</span>
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="fa fa-user"></span> {{user.userName}}
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">设置</a>
+                                    <a href="#" data-toggle="modal" data-target="#myModal">修改密码</a>
                                 </li>
                                 <li>
                                     <a href="#"  ng-click="logout()">登出</a>
@@ -135,6 +135,45 @@
     </div>
 </div>
 
+<!-- 模态框（Modal） -->
+<div ng-controller="changePwdCtrl" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改密码
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="changePwdForm">
+                    <div class="form-group">
+                        <label for="oldPwd" class="col-md-2 control-label">原密码</label>
+                        <div class="col-md-9">
+                            <input ng-model="oldPwd" id="oldPwd" name="oldPwd" type="text" class="form-control" placeholder="请输入原密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPwd" class="col-md-2 control-label">新密码</label>
+                        <div class="col-md-9">
+                            <input ng-model="newPwd" id="newPwd" name="newPwd" type="text" class="form-control" placeholder="请输入新密码">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button id="btnOk" type="button" class="btn btn-primary" ng-click="changePwd()">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="../../plugins/jquery.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
@@ -146,7 +185,8 @@
 <script src="../../plugins/toastr/toastr.min.js"></script>
 <script src="../../js/global.js"></script>
 <script src="../../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
-
+<script src="../../plugins/sweetalert/sweetalert.js"></script>
+<script src="../../plugins/layer/layer.js"></script>
 <script>
     $(function() {
         $('#menu1').metisMenu({toggle: false});

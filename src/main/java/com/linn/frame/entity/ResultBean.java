@@ -6,7 +6,7 @@ package com.linn.frame.entity;
 public class ResultBean {
     private Integer errNo;
     private String errMsg;
-    private Object data;
+    private Object obj;
 
     public  ResultBean(){}
 
@@ -15,10 +15,10 @@ public class ResultBean {
         this.errMsg = errMsg;
     }
 
-    public ResultBean(Integer errNo, String errMsg, Object data) {
+    public ResultBean(Integer errNo, String errMsg, Object obj) {
         this.errNo = errNo;
         this.errMsg = errMsg;
-        this.data = data;
+        this.obj = obj;
     }
 
     public Integer getErrNo() {
@@ -37,12 +37,12 @@ public class ResultBean {
         this.errMsg = errMsg;
     }
 
-    public Object getData() {
-        return data;
+    public Object getObj() {
+        return obj;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setObj(Object obj) {
+        this.obj = obj;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ResultBean {
         return "ResultBean{" +
                 "errNo=" + errNo +
                 ", errMsg='" + errMsg + '\'' +
-                ", data=" + data +
+                ", obj=" + obj +
                 '}';
     }
 }

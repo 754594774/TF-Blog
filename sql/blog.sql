@@ -51,6 +51,7 @@ CREATE TABLE blog_letter (
   user_name VARCHAR(30) NOT NULL COMMENT '用户名',
   contact_way VARCHAR(30) NOT NULL COMMENT '联系方式',
   content TEXT NOT NULL COMMENT '正文',
+  view_status TINYINT(1) UNSIGNED ZEROFILL DEFAULT 0 COMMENT '查阅状态',
   gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
   gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
 )

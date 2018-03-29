@@ -1,4 +1,17 @@
 //bootstrap-table表格插件的过滤器
+//显示信件的查阅状态
+function letterStatusFormatter(viewStatus) {
+    if(viewStatus == 0){
+        viewStatus="未读";
+    }else if(viewStatus == 1){
+        viewStatus="已读";
+    }else{
+        viewStatus="未知状态";
+    }
+    return viewStatus;
+}
+
+//bootstrap-table表格插件的过滤器
 // 日期时间的过滤
 //传入时间戳,转为特定格式的字符串
 //默认格式  "yyyy-MM-dd hh:mm:ss"
@@ -28,3 +41,5 @@ function formatDateTime (gmt) { //author: meizz
 function indexFormatter(value, row, index) {
     return index;
 }
+
+

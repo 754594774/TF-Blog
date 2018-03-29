@@ -12,6 +12,22 @@ import java.util.List;
  */
 @Repository("letterDao")
 public interface LetterDao {
+
+    /**
+     * 查看不同状态的信件数量
+     * @return 数量
+     * @throws Exception
+     */
+    int findCountByStatus(int status) throws Exception;
+
+    /**
+     * 更新信件查询状态
+     * @param letter
+     * @return
+     * @throws Exception
+     */
+    int updateStatusById(Letter letter) throws Exception;
+
     /**
      * 查找所有站内信
      * @param

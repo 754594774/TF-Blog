@@ -2,13 +2,61 @@
 angular.module('backApp', ['ngRoute'])
     .controller('userCtrl', function(userService) {
         userService.getUser();
-
     })
     .controller('menuCtrl', function($scope,$routeParams,userService) {
         userService.getUser();
         $scope.params = $routeParams;
     })
+    .controller('changePwdCtrl', function($scope,$http,$rootScope) {
+        // 初始化验证
+        $('#changePwdForm').validator({
+            timely: 3,
+            theme: 'yellow_top',
+            fields: {
+                'oldPwd': '原密码:required',
+                'newPwd': '新密码:required'
+            }
+        });
+        //修改密码
+        $scope.changePwd = function() {
+            $('#changePwdForm').isValid(function(){
+                $http({
+                    method: 'POST',
+                    url: '/changePwd',
+                    data: {
+                        userName: $rootScope.user.userName,
+                        passWord:$scope.oldPwd,
+                        newPwd:$scope.newPwd
+                    }
+                }).then(function successCallback(response) {
+                    if(response.data.errNo == 0){
+                        $('#myModal').modal('hide');
+                        toastr.success(response.data.errMsg);
+                    }else{
+                        toastr.error(response.data.errMsg);
+                    }
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                    toastr.error("修改密码失败");
+                })
+            });
+        };
+    })
     .controller('headerCtrl', function($scope,$http) {
+        $http({
+            method: 'POST',
+            url: '/findCountByStatus'
+        }).then(function successCallback(response) {
+            if(response.data.errNo == 0){
+                $scope.unReadCount = response.data.obj;
+            }else{
+                toastr.error(response.data.errMsg);
+            }
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+            toastr.error("请求未读信件异常");
+        })
+        //登出
         $scope.logout = function() {
             $http({
                 method: 'POST',
@@ -18,11 +66,11 @@ angular.module('backApp', ['ngRoute'])
                 if(response.data.errNo == 0){
                     window.location.href="/admin/login";
                 }else{
-                    $("#message").text(response.data.errMsg);
+                    toastr.error(response.data.errMsg);
                 }
             }, function errorCallback(response) {
                 // 请求失败执行代码
-                $("#message").text("请求异常");
+                toastr.error("请求登出异常");
             })
         };
     })
@@ -55,14 +103,15 @@ angular.module('backApp', ['ngRoute'])
                 method: 'GET',
                 url: 'findLoginUser'
             }).then(function successCallback(response) {
-                console.log(response);
                 if(response.data.errNo == 0){
-                    $rootScope.user = response.data.data;
+                    $rootScope.user = response.data.obj;
                 }else{
+                    $rootScope.user = null;
                     window.location.href="/admin/login";
                 }
             }, function errorCallback(response) {
                 // 请求失败执行代码
+                $rootScope.user = null;
                 window.location.href="/admin/login";
             });
         }
