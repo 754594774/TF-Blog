@@ -30,4 +30,13 @@ public class SysContent {
      * 已读 0
      */
     public static final int HASREAD = 1;
+    /**
+     * 草稿 未发布 1
+     */
+    public static final int ISDRAFT = 1;
+    /**
+     * 非草稿 已发布 0
+     */
+    public static final int NOTDRAFT = 0;
+
 }

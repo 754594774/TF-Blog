@@ -1,8 +1,19 @@
+var $publishArticle = $('#publishArticle');
+var $saveDraft = $('#saveDraft');
+var isDraft = 0;//不是草稿
+$(function () {
+    $publishArticle.click(function (e) {//点击确认按钮
+        isDraft = 0;
+    });
+    $saveDraft.click(function (e) {//点击确认按钮
+        isDraft = 1;
+    });
+});
 // Replace the <textarea id="editor1"> with a CKEditor
 // instance, using default configuration.
 var editor = CKEDITOR.replace( 'articleContent' );
 
-// 初始化验证
+//初始化验证
 $('#articleForm').validator({
     beforeSubmit: function(){
         editor.updateElement();
@@ -40,6 +51,7 @@ $('#articleForm').validator({
                 intro:$scope.article.intro,
                 allowComment:allowComment,
                 isStick:isStick,
+                isDraft:isDraft,
                 content:editor.getData()
             },
             type: "POST",

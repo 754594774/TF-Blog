@@ -1,4 +1,12 @@
 //是否显示通知
+function isDraftFormatter(isDraft) {
+    if(isDraft == 1){
+        return '<span class="label label-default">未发布</span>';
+    }else {
+        return '<span class="label label-success">已发布</span>';
+    }
+}
+//是否显示通知
 function noticeStatusFormatter(isActive) {
     if(isActive == 1){
         return '<span class="label label-danger">不显示</span>';

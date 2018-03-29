@@ -58,14 +58,14 @@
     </select>
 
     <insert id="addArticle"  keyProperty="id">
-        INSERT INTO blog_article (category_id, title,intro, author,allow_comment,is_stick, content)
-        VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{allowComment},#{isStick}, #{content})
+        INSERT INTO blog_article (category_id, title,intro, author,allow_comment,is_stick, is_draft,content)
+        VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{allowComment},#{isStick}, #{isDraft},#{content})
     </insert>
 
     <insert id="updateArticle"  keyProperty="id">
         UPDATE blog_article
         SET category_id  = #{categoryId}, title = #{title},intro = #{intro},author = #{author},is_stick = #{isStick},
-        allow_comment=#{allowComment},content=#{content}
+        is_draft=#{isDraft},allow_comment=#{allowComment},content=#{content}
         WHERE id = #{id}
     </insert>
 
