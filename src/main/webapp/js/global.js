@@ -1,14 +1,35 @@
+//是否显示通知
+function noticeStatusFormatter(isActive) {
+    if(isActive == 1){
+        return '<span class="label label-danger">不显示</span>';
+    }else {
+        return '<span class="label label-success">已显示</span>';
+    }
+}
+//是否允许评论文章
+function allowCommentFormatter(allowComment) {
+    if(allowComment == 1){
+        return '<span class="label label-danger">已禁止</span>';
+    }else {
+        return '<span class="label label-default">未禁止</span>';
+    }
+}
+//显示文章置顶状态
+function stickFormatter(stick) {
+    if(stick == 1){
+        return '<span class="label label-danger">已置顶</span>';
+    }else {
+        return '<span class="label label-default">未置顶</span>';
+    }
+}
 //bootstrap-table表格插件的过滤器
 //显示信件的查阅状态
 function letterStatusFormatter(viewStatus) {
-    if(viewStatus == 0){
-        viewStatus="未读";
-    }else if(viewStatus == 1){
-        viewStatus="已读";
-    }else{
-        viewStatus="未知状态";
+    if(viewStatus == 1){
+        return '<span class="label label-default">已读</span>';
+    }else {
+        return '<span class="label label-info">未读</span>';
     }
-    return viewStatus;
 }
 
 //bootstrap-table表格插件的过滤器

@@ -39,9 +39,14 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-11">
-                        <div class="checkbox">
-                            <label>
-                                <input id="chkComment" ng-init="myVar = article.allowComment==1" ng-model="myVar" type="checkbox">禁止留言
+                        <div>
+                            <label class="checkbox-inline">
+                                <input id="chkComment" ng-init="myVar = article.allowComment==1" ng-model="myVar" type="checkbox">
+                                <span class="label label-danger">禁止留言</span>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input id="chkStick" ng-init="myVar1 = article.isStick==1" ng-model="myVar1" type="checkbox">
+                                <span class="label label-danger">置顶文章</span>
                             </label>
                         </div>
                     </div>

@@ -10,9 +10,9 @@ $('#articleForm').validator({
     timely:0,//0：关闭实时验证，只在提交表单的时候执行验证
     theme:'yellow_top',
     fields: {
-        'articleTitle': '标题:required',
-        'articleAuthor':'作者:required',
-        'articleIntro':'简介:required',
+        'articleTitle': '标题:required;length(1~30)',
+        'articleAuthor':'作者:required;length(1~15)',
+        'articleIntro':'简介:required;length(1~50)',
         'selectedCatg':'分类:required',
         'articleContent':'内容:required'
     },
@@ -20,8 +20,12 @@ $('#articleForm').validator({
         var $scope = $('div[ng-controller="pubArticleCtrl"]').scope();
         //判断checkbox 是否选中
         var allowComment = 0;//是否允许评论
+        var isStick = 0;//是否置顶
         if($scope.myVar){
             allowComment = 1;
+        }
+        if($scope.myVar1){
+            isStick = 1;
         }
         var me = this;
         // Before submitting the form, hold form, to prevent duplicate submission.
@@ -35,6 +39,7 @@ $('#articleForm').validator({
                 author:$scope.article.author,
                 intro:$scope.article.intro,
                 allowComment:allowComment,
+                isStick:isStick,
                 content:editor.getData()
             },
             type: "POST",

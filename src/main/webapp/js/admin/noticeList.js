@@ -20,10 +20,9 @@ $btnOk.click(function (e) {//点击确认按钮
 
     $('#noticeForm').isValid(function(){
         var scope = $(e.target).scope();
-        if(scope.notice.isActive==undefined || scope.notice.isActive==null){
-            scope.notice.isActive = 1;
+        if(!scope.notice.isActive){
+            scope.notice.isActive = 0;//默认显示
         }
-
         if(scope.notice!=null && scope.notice.id !=null){//修改
             $table.bootstrapTable('updateRow', {
                 //index:0,
@@ -114,7 +113,6 @@ $btnDel.click(function () {
             }
         });
     };
-
 });
 $btnRefresh.click(function () {
     $table.bootstrapTable('refresh');
