@@ -2,7 +2,7 @@
 /* CSS Document */
 body{font-size:12px;font-family:"宋体"; margin:0;padding:0; _background-image:url(text.txt); /* for IE6 */ _background-attachment:fixed;}
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {margin: 0;padding: 0;}
-a{color: #666;text-decoration:none;}
+/*a{color: #666;text-decoration:none;}*/
 a:hover{color: #1e90ff;}
 
 /* floatPanel */
