@@ -101,10 +101,7 @@ public class ArticleController extends BaseController {
             String date = map.get("date");
             Date firstDay = DateUtils.firstDayByMonth(date);
             Date lastDay = DateUtils.lastDayByMonth(date);
-            HashMap<String, Date> hashMap = new HashMap<String, Date>();
-            hashMap.put("firstDay", firstDay);
-            hashMap.put("lastDay", lastDay);
-            pageInfo = articleService.selectArticleByArchiveDate(hashMap,pageInfo);
+            pageInfo = articleService.selectArticleByArchiveDate(firstDay,lastDay,pageInfo);
         }
 
         return pageInfo;

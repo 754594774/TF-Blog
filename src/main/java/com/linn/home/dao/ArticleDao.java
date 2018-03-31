@@ -18,20 +18,20 @@ public interface ArticleDao {
      * 根据文章列表
      * @return
      */
-    List<Article> selectArticleList() throws Exception;
+    List<Article> selectArticleList(Article Article) throws Exception;
 
     /**
      * 根据分类id查找文章
      * @return
      */
-    List<Article> selectArticleByCategoryId(int categoryId) throws Exception;
+    List<Article> selectArticleByCategoryId(Article article) throws Exception;
 
     /**
      * 根据日期范围查找文章
      * @param hashMap
      * @return
      */
-    List<Article> selectArticleByArchiveDate(HashMap<String,Date> hashMap) throws Exception;
+    List<Article> selectArticleByArchiveDate(HashMap<String,Object> hashMap) throws Exception;
 
     /**
      * 根据id查询文章信息
@@ -78,8 +78,8 @@ public interface ArticleDao {
 
     /**
      * 搜索
-     * @param searchContent
+     * @param hashMap
      * @return
      */
-    List<Article> selectArticleBySearch(String searchContent);
+    List<Article> selectArticleBySearch(HashMap<String,Object> hashMap);
 }

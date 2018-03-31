@@ -2,6 +2,7 @@ package com.linn.home.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.linn.frame.util.SysContent;
 import com.linn.home.dao.ArticleDao;
 import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
@@ -20,8 +21,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public PageInfo selectArticleList(PageInfo page) throws Exception {
+        Article article = new Article();
+        article.setIsDraft(SysContent.NOTDRAFT);
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
-        List<Article> articles = articleDao.selectArticleList();
+        List<Article> articles = articleDao.selectArticleList(article);
         page = new PageInfo(articles);
         return page;
     }
@@ -29,16 +32,23 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public PageInfo selectArticleByCategoryId(int categoryId,PageInfo page) throws Exception {
 
+        Article article = new Article();
+        article.setCategoryId(categoryId);
+        article.setIsDraft(SysContent.NOTDRAFT);//不是草稿
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
         //紧跟着的第一个select方法会被分页
-        List<Article> articles = articleDao.selectArticleByCategoryId(categoryId);
+        List<Article> articles = articleDao.selectArticleByCategoryId(article);
         //用PageInfo对结果进行包装
         page = new PageInfo(articles);
         return page;
     }
 
     @Override
-    public PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap,PageInfo page) throws Exception {
+    public PageInfo selectArticleByArchiveDate(Date firstDay, Date lastDay, PageInfo page) throws Exception {
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("firstDay", firstDay);
+        hashMap.put("lastDay", lastDay);
+        hashMap.put("isDraft", SysContent.NOTDRAFT);
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<Article> articles = articleDao.selectArticleByArchiveDate(hashMap);
         //用PageInfo对结果进行包装
@@ -80,8 +90,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public PageInfo selectArticleBySearch(String searchContent,PageInfo pageInfo) throws Exception {
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("searchContent", searchContent);
+        hashMap.put("isDraft", SysContent.NOTDRAFT);
+
         PageHelper.startPage(pageInfo.getPageNum(),pageInfo.getPageSize());
-        List<Article>  articles= articleDao.selectArticleBySearch(searchContent);
+        List<Article>  articles= articleDao.selectArticleBySearch(hashMap);
         //用PageInfo对结果进行包装
         pageInfo = new PageInfo(articles);
         return pageInfo;

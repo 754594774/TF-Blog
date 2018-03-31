@@ -14,7 +14,7 @@ public interface ArticleService {
 
     PageInfo selectArticleByCategoryId(int categoryId,PageInfo page) throws Exception;
 
-    PageInfo selectArticleByArchiveDate(HashMap<String,Date> hashMap,PageInfo page) throws Exception;
+    PageInfo selectArticleByArchiveDate(Date firstDay,Date lastDay,PageInfo page) throws Exception;
 
     Article selectArticleById(int articleId) throws Exception;
 
