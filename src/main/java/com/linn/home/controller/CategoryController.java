@@ -45,6 +45,7 @@ public class CategoryController extends BaseController{
             catg.setGmtCreate(new Date());
             catg.setGmtModified(new Date());
             int ret = categoryService.addCategory(catg);
+
         }else {
             //更新
             catg.setGmtModified(new Date());

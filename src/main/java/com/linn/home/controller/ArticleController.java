@@ -1,8 +1,5 @@
 package com.linn.home.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.pagehelper.PageInfo;
 import com.linn.frame.controller.BaseController;
 import com.linn.frame.entity.ResultBean;
@@ -22,7 +19,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -134,7 +130,7 @@ public class ArticleController extends BaseController {
 
         if(ids!=null && ids.length > 0){
             for (int id: ids) {
-                int ret = articleService.delArticle(id);
+                int ret = articleService.deleteArticle(id);
             }
         }
         return new ResultBean(SysContent.SUCCESS,"删除成功");

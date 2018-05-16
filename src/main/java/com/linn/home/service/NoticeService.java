@@ -21,7 +21,7 @@ public interface NoticeService {
      * @return
      * @throws Exception
      */
-    List<Notice> toNoticeList() throws Exception;
+    List<Notice> findNoticeList() throws Exception;
 
     /**
      * 添加通知

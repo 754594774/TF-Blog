@@ -22,7 +22,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public List<Notice> toNoticeList() throws Exception {
+    public List<Notice> findNoticeList() throws Exception {
         return noticeDao.findNoticeList();
     }
 

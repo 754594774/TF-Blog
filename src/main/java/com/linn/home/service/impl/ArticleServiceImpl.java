@@ -79,7 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int delArticle(int id) throws Exception {
+    public int deleteArticle(int id) throws Exception {
         return articleDao.deleteArticleById(id);
     }
 
