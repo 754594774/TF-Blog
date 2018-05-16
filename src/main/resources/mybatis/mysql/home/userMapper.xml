@@ -13,11 +13,18 @@
     </resultMap>
 
     <select id="findUserByName" resultMap="userResultMap">
-        select * from blog_user where 1=1 and user_name = #{userName}
+        SELECT id,user_name,pass_word,gmt_create,gmt_modified
+        FROM blog_user
+        WHERE 1=1
+        AND user_name = #{userName}
     </select>
 
     <select id="findUserByNameAndPwd" resultMap="userResultMap">
-        select * from blog_user where 1=1 and user_name = #{userName} and pass_word = #{passWord}
+        SELECT id,user_name,pass_word,gmt_create,gmt_modified
+        FROM blog_user
+        WHERE 1=1
+        AND user_name = #{userName}
+        AND pass_word = #{passWord}
     </select>
 
     <insert id="addUser"  keyProperty="id">
@@ -26,7 +33,9 @@
     </insert>
 
     <select id="findUserList" resultMap="userResultMap">
-        select * from blog_user order by id desc
+        SELECT id,user_name,pass_word,gmt_create,gmt_modified
+        FROM blog_user
+        ORDER BY id DESC
     </select>
 
     <update id="updateUserByUserName">

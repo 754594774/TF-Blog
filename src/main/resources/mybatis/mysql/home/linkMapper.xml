@@ -13,22 +13,26 @@
         <result property="gmtModified" column="gmt_modified"/>
     </resultMap>
 
+    <!--查找友链列表-->
     <select id="findLinkList" resultMap="linkResultMap">
-        select * from blog_link
+        SELECT id,title,url,remark,gmt_create,gmt_modified FROM blog_link ORDER BY id DESC
     </select>
 
+    <!--添加友链-->
     <insert id="addLink"  keyProperty="id">
         INSERT INTO blog_link (title, url,remark)
         VALUES (#{title}, #{url},#{remark})
     </insert>
 
+    <!--更新友链-->
     <update id="updateLinkById">
         UPDATE blog_link
         SET title  = #{title}, url = #{url},remark = #{remark},gmt_modified = #{gmtModified}
         WHERE id = #{id}
     </update>
 
+    <!--删除友链-->
     <delete id="deleteLinkById">
-        delete from blog_link where id = #{id}
+        DELETE FROM blog_link WHERE id = #{id}
     </delete>
 </mapper>

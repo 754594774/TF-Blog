@@ -24,48 +24,57 @@
         <result property="count" column="cnt"/>
     </resultMap>
 
+    <!--后台文章管理列表-->
     <select id="findArticleListAdmin"  resultMap="articleResultMap">
-        select * from blog_article order by id desc
+        SELECT id,title,author,intro,is_stick,allow_comment,is_draft,gmt_create,gmt_modified FROM blog_article ORDER BY id DESC
     </select>
 
+    <!--默认首页显示文章列表-->
     <select id="selectArticleList"  resultMap="articleResultMap">
-        SELECT * FROM blog_article  WHERE is_draft = #{isDraft} ORDER BY is_stick DESC,id DESC
+        SELECT id,is_stick,title,gmt_create,intro FROM blog_article  WHERE is_draft = #{isDraft} ORDER BY is_stick DESC,id DESC
     </select>
 
+    <!--搜索文章-->
     <select id="selectArticleBySearch"  parameterType="hashmap" resultMap="articleResultMap">
-        select * from blog_article t where 1=1
-        and is_draft = #{isDraft}
-        and t.title like CONCAT('%',trim(#{searchContent}),'%')
-        or t.author like  CONCAT('%',trim(#{searchContent}),'%')
-        or t.intro like  CONCAT('%',trim(#{searchContent}),'%')
+        SELECT is_stick,title,gmt_create,intro FROM blog_article t WHERE 1=1
+        AND is_draft = #{isDraft}
+        AND t.title LIKE CONCAT('%',trim(#{searchContent}),'%')
+        OR t.author LIKE  CONCAT('%',trim(#{searchContent}),'%')
+        OR t.intro LIKE  CONCAT('%',trim(#{searchContent}),'%')
         ORDER BY is_stick DESC,id DESC
     </select>
 
+   <!--根据类别查找文章列表-->
     <select id="selectArticleByCategoryId"  resultMap="articleResultMap">
-        select * from blog_article where category_id = #{categoryId}
+        SELECT is_stick,title,gmt_create,intro FROM blog_article WHERE category_id = #{categoryId}
         AND is_draft = #{isDraft}
         ORDER BY is_stick DESC,id DESC
     </select>
 
+    <!--根据归档日期查找文章列表-->
     <select id="selectArticleByArchiveDate"  parameterType="hashmap" resultMap="articleResultMap">
-        select * from blog_article where gmt_create &gt; #{firstDay} and  gmt_create &lt; #{lastDay}
+        SELECT is_stick,title,gmt_create,intro FROM blog_article WHERE gmt_create &gt; #{firstDay} AND gmt_create &lt; #{lastDay}
         AND is_draft = #{isDraft}
         ORDER BY is_stick DESC,id DESC
     </select>
 
+    <!--根据id查找文章详情-->
     <select id="selectArticleById"  parameterType="int" resultMap="articleResultMap">
-        select * from blog_article where id = #{articleId};
+        SELECT id,title,gmt_create,author,content,allow_comment FROM blog_article WHERE id = #{articleId};
     </select>
 
+    <!--按照每月归档日期-->
     <select id="selectAllArchive" resultMap="archivesResultMap">
-        SELECT DATE_FORMAT(`gmt_create`,'%Y%m') AS pubtime, COUNT(*) AS cnt FROM blog_article GROUP BY pubtime DESC
+        SELECT DATE_FORMAT(`gmt_create`,'%Y%m') AS pubtime, COUNT(1) AS cnt FROM blog_article GROUP BY pubtime DESC
     </select>
 
+    <!--添加文章-->
     <insert id="addArticle"  keyProperty="id">
         INSERT INTO blog_article (category_id, title,intro, author,allow_comment,is_stick, is_draft,content)
         VALUES (#{categoryId}, #{title},#{intro}, #{author}, #{allowComment},#{isStick}, #{isDraft},#{content})
     </insert>
 
+    <!--更新文章-->
     <insert id="updateArticle"  keyProperty="id">
         UPDATE blog_article
         SET category_id  = #{categoryId}, title = #{title},intro = #{intro},author = #{author},is_stick = #{isStick},
@@ -73,7 +82,8 @@
         WHERE id = #{id}
     </insert>
 
+    <!--删除文章-->
     <delete id="deleteArticleById">
-        delete from blog_article where id = #{id}
+        DELETE FROM blog_article WHERE id = #{id}
     </delete>
 </mapper>
