@@ -135,7 +135,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>ln_blog</finalName>
+    <finalName>TF-Blog</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
