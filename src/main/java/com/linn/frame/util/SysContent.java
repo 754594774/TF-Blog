@@ -39,4 +39,8 @@ public class SysContent {
      */
     public static final int NOTDRAFT = 0;
 
+    /**
+     * 默认字符编码
+     **/
+    public static final String DEFAULT_CODE = "utf-8";
 }

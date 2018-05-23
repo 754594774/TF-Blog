@@ -19,40 +19,40 @@
 </head>
 <body  ng-app="frontApp">
 
-    <div id="logo" >
-        <img src="../resources/images/2.png" class="img-responsive" alt="Cinque Terre" >
-        <div class="container">
-
-            <div class="row">
-                <div class="col-sm-9 col-sm-offset-2" style="padding-bottom: 0;margin-bottom: 0">
-                    <img src="../resources/images/logo.png" class="img-responsive" alt="Cinque Terre" >
-                </div>
-            </div>
-        </div>
-    </div>
-
+<div id="logo" >
+    <img src="../resources/images/2.png" class="img-responsive" alt="Cinque Terre" >
     <div class="container">
 
         <div class="row">
             <div class="col-sm-9 col-sm-offset-2" style="padding-bottom: 0;margin-bottom: 0">
-                <nav class="navbar navbar-default" role="navigation" ng-controller="searchCtrl">
-                    <div class="container-fluid">
-                        <div>
-                            <ul class="nav navbar-nav navbar-left">
-                                <li style="font-size:18px">
-                                    <a href="#/">首页</a>
-                                </li>
-                                <li style="font-size:18px"><a href="#/contactMe">联系我</a></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="form">
-                                <input type="text" class="form-control" ng-model="searchContent" placeholder="Search...">
-                                <button type="submit" ng-click="search()" id="btnSearch" class="btn btn-info btn-sm">搜索</button>
-                            </form>
-                        </div>
-                    </div>
-                </nav>
+                <img src="../resources/images/logo.png" class="img-responsive" alt="Cinque Terre" >
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-2" style="padding-bottom: 0;margin-bottom: 0">
+            <nav class="navbar navbar-default" role="navigation" ng-controller="searchCtrl">
+                <div class="container-fluid">
+                    <div>
+                        <ul class="nav navbar-nav navbar-left">
+                            <li style="font-size:18px">
+                                <a href="#/">首页</a>
+                            </li>
+                            <li style="font-size:18px"><a href="#/contactMe">联系我</a></li>
+                        </ul>
+                        <form class="navbar-form navbar-right" role="form">
+                            <input type="text" class="form-control" ng-model="searchContent" placeholder="Search...">
+                            <button type="submit" ng-click="search()" id="btnSearch" class="btn btn-info btn-sm">搜索</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 
     <div class="row" >
         <div class="col-sm-2">
@@ -138,8 +138,8 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="../plugins/angularJs/angular.min.js"></script>
-<script src="../plugins/angularJs/angular-route.js"></script>
-<script src="../plugins/sweetalert/sweetalert.js"></script>
+<script src="../plugins/angularJs/angular-route.min.js"></script>
+<script src="../plugins/sweetalert/sweetalert.min.js"></script>
 <script src="../plugins/tm-pagination/tm.pagination.js"></script>
 <script src="../js/global.js"></script>
 <script src="../js/index.js"></script>
@@ -149,10 +149,10 @@
 <script src="../plugins/floatDiv/jquery.floatDiv.js"></script>
 <script src="../plugins/adrightbottom/jquery.adrightbottom.js"></script>
 <script type="text/javascript">
-//    固定右侧导航栏
-//    $(function(){
-//        $("#test").floatdiv({top:"70px",right:"80px"});//righttop
-//    });
+    //    固定右侧导航栏
+    //    $(function(){
+    //        $("#test").floatdiv({top:"70px",right:"80px"});//righttop
+    //    });
     //右下角广告
     var popad=new Pop();
 

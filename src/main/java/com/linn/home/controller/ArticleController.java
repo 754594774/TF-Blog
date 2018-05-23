@@ -9,15 +9,19 @@ import com.linn.home.entity.Archive;
 import com.linn.home.entity.Article;
 import com.linn.home.service.ArticleService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -160,5 +164,41 @@ public class ArticleController extends BaseController {
             pageInfo = articleService.selectArticleList(pageInfo);
         }
         return pageInfo;
+    }
+
+    @RequestMapping("/uploadImage")
+    public void uploadImage(
+            @RequestParam(value = "upload",required = false) CommonsMultipartFile file,
+            HttpServletRequest request,
+            HttpServletResponse response,
+            ModelMap model
+    ) {
+        List<String> urls = new ArrayList<String>();
+
+        String path = request.getSession().getServletContext().getRealPath("upload");
+        String fileName = file.getOriginalFilename();
+        System.out.println(path);
+        File targetFile = new File(path,fileName);
+        if(!targetFile.exists()){
+            targetFile.mkdirs();
+        }
+        //保存
+        try{
+            file.transferTo(targetFile);
+            urls.add(request.getContextPath() + "/upload/" + fileName);
+        }catch (Exception e){
+            logger.error(e.getMessage(), e);
+        }
+        // 结合ckeditor功能
+        // imageContextPath为图片在服务器地址，如upload/123.jpg,非绝对路径
+        String imageContextPath = request.getContextPath() + "/upload/" + fileName;
+        String callback = request.getParameter("CKEditorFuncNum");
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("<script type=\"text/javascript\">");
+        sb.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + imageContextPath + "',''" + ")");
+        sb.append("</script>");
+        writer(response,sb.toString());
+
     }
 }

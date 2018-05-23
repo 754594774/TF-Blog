@@ -7,22 +7,29 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-	config.toolbarGroups = [
-		{ name: 'tools', groups: [ 'tools' ] },
-		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-		{ name: 'forms', groups: [ 'forms' ] },
-		{ name: 'styles', groups: [ 'styles' ] },
-		{ name: 'colors', groups: [ 'colors' ] },
-		{ name: 'others', groups: [ 'others' ] },
-		{ name: 'about', groups: [ 'about' ] },
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-		{ name: 'links', groups: [ 'links' ] },
-		{ name: 'insert', groups: [ 'insert' ] }
+	config.toolbar = [
+		{ name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
+		{ name: 'document', items: [ 'Source' ] },
+		{ name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+		{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+		{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
+		{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+		{ name: 'links', items: [ 'Link', 'Unlink' ] },
+		{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar' ] }
 	];
 
-	config.removeButtons = 'Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,PageBreak,Iframe,Save,NewPage,Preview,About';
+		config.extraAllowedContent='h3{clear};h2{line-height};h2 h3{margin-left,margin-top}',
 
+		// Adding drag and drop image upload.
+		config.extraPlugins= 'print,format,font,colorbutton,justify,uploadimage',
+		config.uploadUrl= '/upload?command=QuickUpload&type=Files&responseType=json',
+
+		// Configure your file manager integration. This example uses CKFinder 3 for PHP.
+		config.filebrowserBrowseUrl= '/ckfinder/ckfinder.html',
+		config.filebrowserImageBrowseUrl= '/ckfinder/ckfinder.html?type=Images',
+		config.filebrowserUploadUrl= '/upload?command=QuickUpload&type=Files',
+		config.filebrowserImageUploadUrl= '/uploadImage?command=QuickUpload&type=Images',
+
+		config.removeDialogTabs= 'image:advanced;link:advanced'
 };

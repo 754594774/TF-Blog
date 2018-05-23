@@ -17,7 +17,7 @@
         SELECT id,title,intro,gmt_create,gmt_modified FROM blog_category ORDER BY id DESC
     </select>
 
-     <!--添加一个类别-->
+    <!--添加一个类别-->
     <insert id="addCategory"  keyProperty="id">
         INSERT INTO blog_category (title, intro)
         VALUES (#{title}, #{intro})

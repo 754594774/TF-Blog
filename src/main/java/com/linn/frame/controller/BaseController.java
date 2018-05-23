@@ -3,6 +3,7 @@ package com.linn.frame.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.linn.frame.entity.ResultBean;
+import com.linn.frame.util.SysContent;
 import com.linn.home.service.NoticeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,5 +29,30 @@ public class BaseController
      * 日志变量
      **/
     protected Logger logger = LoggerFactory.getLogger(getClass());
-
+    /**
+     * 输出到请求端
+     *
+     * @param response
+     * @param content
+     */
+    protected void writer(HttpServletResponse response, String content)
+    {
+        PrintWriter writer = null;
+        response.setHeader("Content-Type", "text/xml;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding(SysContent.DEFAULT_CODE);
+        try
+        {
+            writer = response.getWriter();
+            writer.write(content);
+        }
+        catch (IOException e)
+        {
+            logger.error(e.getMessage(), e);
+        }
+        finally
+        {
+            writer.close();
+        }
+    }
 }

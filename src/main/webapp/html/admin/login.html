@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>登录页面</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="../../css/signin.css" rel="stylesheet">
-  </head>
-  <style type="text/css">
-   html body {
-      background: url('../../resources/images/bg1.png') no-repeat;
-      background-size: cover;
-      background-color: #f8f7ee;
-    }
-  </style>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录页面</title>
+  <!-- Bootstrap core CSS -->
+  <link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../../css/signin.css" rel="stylesheet">
+</head>
+<style type="text/css">
+  html body {
+    background: url('../../resources/images/bg1.png') no-repeat;
+    background-size: cover;
+    background-color: #f8f7ee;
+  }
+</style>
 
-  <body ng-app="loginApp">
-    <div class="container" ng-controller="loginCtrl">
-      <form class="form-signin" id="loginForm">
-        <label for="inputUser" class="sr-only">Email address</label>
-        <input type="text" id="inputUser" ng-model="user.userName" name="userName" class="form-control" placeholder="用户名" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword"  ng-model="user.passWord" name="passWord"  class="form-control" placeholder="密码" required>
-        <div class="checkbox">
-          <label>
-            <input id="rememberMe" ng-model="user.rememberMe" type="checkbox"> <span class="text-muted">记住我一天</span>
-          </label>
-        </div>
-        <button id="btnLogin" class="btn btn-lg btn-primary btn-block" ng-click="login()" type="button">登录</button>
-        <h4 style="color: red" id="message" ng-model="message" class="form-signin-heading"></h4>
-      </form>
-    </div> <!-- /container -->
+<body ng-app="loginApp">
+<div class="container" ng-controller="loginCtrl">
+  <form class="form-signin" id="loginForm">
+    <label for="inputUser" class="sr-only">Email address</label>
+    <input type="text" id="inputUser" ng-model="user.userName" name="userName" class="form-control" placeholder="用户名" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword"  ng-model="user.passWord" name="passWord"  class="form-control" placeholder="密码" required>
+    <div class="checkbox">
+      <label>
+        <input id="rememberMe" ng-model="user.rememberMe" type="checkbox"> <span class="text-muted">记住我一天</span>
+      </label>
+    </div>
+    <button id="btnLogin" class="btn btn-lg btn-primary btn-block" ng-click="login()" type="button">登录</button>
+    <h4 style="color: red" id="message" ng-model="message" class="form-signin-heading"></h4>
+  </form>
+</div> <!-- /container -->
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="../../plugins/jquery.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../plugins/angularJs/angular.min.js"></script>
-    <script src="../../plugins/angularJs/angular-route.js"></script>
-    <script src="../../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
-    <script src="../../js/admin/login.js"></script>
-  </body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="../../plugins/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugins/angularJs/angular.min.js"></script>
+<script src="../../plugins/angularJs/angular-route.js"></script>
+<script src="../../plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
+<script src="../../js/admin/login.js"></script>
+</body>
 </html>

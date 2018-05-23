@@ -36,7 +36,7 @@
 
     <!--搜索文章-->
     <select id="selectArticleBySearch"  parameterType="hashmap" resultMap="articleResultMap">
-        SELECT is_stick,title,gmt_create,intro FROM blog_article t WHERE 1=1
+        SELECT id,is_stick,title,gmt_create,intro FROM blog_article t WHERE 1=1
         AND is_draft = #{isDraft}
         AND t.title LIKE CONCAT('%',trim(#{searchContent}),'%')
         OR t.author LIKE  CONCAT('%',trim(#{searchContent}),'%')
@@ -44,16 +44,16 @@
         ORDER BY is_stick DESC,id DESC
     </select>
 
-   <!--根据类别查找文章列表-->
+    <!--根据类别查找文章列表-->
     <select id="selectArticleByCategoryId"  resultMap="articleResultMap">
-        SELECT is_stick,title,gmt_create,intro FROM blog_article WHERE category_id = #{categoryId}
+        SELECT id,is_stick,title,gmt_create,intro FROM blog_article WHERE category_id = #{categoryId}
         AND is_draft = #{isDraft}
         ORDER BY is_stick DESC,id DESC
     </select>
 
     <!--根据归档日期查找文章列表-->
     <select id="selectArticleByArchiveDate"  parameterType="hashmap" resultMap="articleResultMap">
-        SELECT is_stick,title,gmt_create,intro FROM blog_article WHERE gmt_create &gt; #{firstDay} AND gmt_create &lt; #{lastDay}
+        SELECT id,is_stick,title,gmt_create,intro FROM blog_article WHERE gmt_create &gt; #{firstDay} AND gmt_create &lt; #{lastDay}
         AND is_draft = #{isDraft}
         ORDER BY is_stick DESC,id DESC
     </select>
