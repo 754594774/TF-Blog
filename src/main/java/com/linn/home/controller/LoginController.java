@@ -42,18 +42,15 @@ public class LoginController extends BaseController{
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping("/admin/logout")
+    @RequestMapping("/logout")
     private ResultBean toAdminLogout(HttpSession session,
                                      HttpServletRequest request,
                                      HttpServletResponse response) throws Exception {
-        //删除cookie
-        Cookie cookie = new Cookie("user", null);
-        cookie.setMaxAge(0);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        //删除Session
-        request.getSession().removeAttribute("user");
-        //删除session
+        Subject subject = SecurityUtils.getSubject();
+        if (subject != null)
+        {
+            subject.logout();
+        }
         return new ResultBean(SysContent.SUCCESS,"登出成功!");
     }
 
@@ -72,15 +69,16 @@ public class LoginController extends BaseController{
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/admin/subLogin",method = RequestMethod.POST)
+    @RequestMapping(value = "/subLogin",method = RequestMethod.POST)
     public ResultBean subLogin(@RequestBody Map<String, String> map){
 
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken(map.get("userName"),map.get("passWord"));
         try{
+            boolean rememberMe = Boolean.parseBoolean(map.get("rememberMe"));
+            token.setRememberMe(rememberMe);
             subject.login(token);
-            System.out.println("认证结果：" +  subject.isAuthenticated());
         } catch (UnknownAccountException uae)
         {
             logger.error(uae.getMessage(), uae);
@@ -104,9 +102,33 @@ public class LoginController extends BaseController{
         return new ResultBean(SysContent.SUCCESS,"登录成功!");
     }
 
+    /**
+     * 跳转到后台管理主页
+     * @return
+     */
     @RequestMapping("/admin")
     public String toAdminIndex(){
         return "/admin/index";
+    }
+
+    /**
+     * 获取已登录用户
+     * @param session
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping("/findLoginUser")
+    private ResultBean findLoginUser(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        User user = new User();
+        Subject subject = SecurityUtils.getSubject();
+        if(subject == null){
+            return new ResultBean(SysContent.ERROR,"工人信息不存在！");
+        }
+        user.setUserName(subject.getPrincipal().toString());
+        return new ResultBean(SysContent.SUCCESS,"成功", user);
     }
 
     /**

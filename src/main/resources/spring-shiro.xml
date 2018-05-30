@@ -20,7 +20,6 @@
                 /plugins/** = anon
                 /html/** = anon
                 /upload/** = anon
-                /admin/subLogin = anon
                 /error = anon
                 /admin/** = authc
             </value>
@@ -30,7 +29,7 @@
     <!--创建securityManager对象-->
     <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
         <property name="realm" ref="realm" />
-        <!--<property name="sessionManager" ref="defaultWebSessionManager" />-->
+        <property name="rememberMeManager" ref="cookieRememberMeManager" />
     </bean>
 
     <!--创建自定义realm-->
@@ -43,8 +42,14 @@
         <property name="hashIterations" value="1" />
     </bean>
 
-    <!--<bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="defaultWebSessionManager">-->
-        <!--<property name="sessionDAO" ref="redisSessionDao" />-->
-    <!--</bean>-->
+    <!--记住我功能-->
+    <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">
+        <property name="cookie" ref="cookie" />
+    </bean>
+
+    <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="cookie">
+        <constructor-arg value="rememberMe" />
+        <property name="maxAge" value="3600" />
+    </bean>
 
 </beans>

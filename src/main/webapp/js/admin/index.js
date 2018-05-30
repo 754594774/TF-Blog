@@ -1,6 +1,19 @@
 //angularJs路由
 angular.module('backApp', ['ngRoute'])
-    .controller('userCtrl', function() {
+    .controller('userCtrl', function($http,$rootScope) {
+        $http({
+            method: 'GET',
+            url: 'findLoginUser'
+        }).then(function successCallback(response) {
+            if(response.data.errNo == 0){
+                $rootScope.user = response.data.obj;
+            }else{
+                $rootScope.user = null;
+            }
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+            $rootScope.user = null;
+        });
     })
     .controller('menuCtrl', function($scope,$routeParams,$location) {
         $scope.params = $routeParams;
@@ -41,6 +54,23 @@ angular.module('backApp', ['ngRoute'])
         };
     })
     .controller('headerCtrl', function($scope,$http) {
+        //登出
+        $scope.logout = function() {
+            $http({
+                method: 'POST',
+                url: 'logout'
+            }).then(function successCallback(response) {
+                if(response.data.errNo == 0){
+                    console.log("跳转到admin");
+                    window.location.href="login";
+                }else{
+                    toastr.error(response.data.errMsg);
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                toastr.error("请求登出异常");
+            })
+        };
         $http({
             method: 'POST',
             url: 'findCountByStatus'
@@ -53,23 +83,8 @@ angular.module('backApp', ['ngRoute'])
         }, function errorCallback(response) {
             // 请求失败执行代码
             toastr.error("请求未读信件异常");
-        })
-        //登出
-        $scope.logout = function() {
-            $http({
-                method: 'POST',
-                url: 'admin/logout'
-            }).then(function successCallback(response) {
-                if(response.data.errNo == 0){
-                    window.location.href="/admin/login";
-                }else{
-                    toastr.error(response.data.errMsg);
-                }
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-                toastr.error("请求登出异常");
-            })
-        };
+        });
+
     })
     .controller('pubArticleCtrl', function($scope,$http,$rootScope) {
         $http({

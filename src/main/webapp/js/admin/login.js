@@ -13,7 +13,7 @@ angular.module('loginApp', ['ngRoute'])
             $('#loginForm').isValid(function() {
                 $http({
                     method: 'POST',
-                    url: 'admin/subLogin',
+                    url: 'subLogin',
                     data: {
                         userName: $scope.user.userName,
                         passWord: $scope.user.passWord,

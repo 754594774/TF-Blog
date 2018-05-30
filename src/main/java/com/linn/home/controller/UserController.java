@@ -5,6 +5,7 @@ import com.linn.frame.util.SysContent;
 import com.linn.home.entity.Link;
 import com.linn.home.entity.User;
 import com.linn.home.service.UserService;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,11 +38,13 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/addOrUpdateUser")
     public ResultBean addOrUpdateUser(User user) throws Exception {
+        Md5Hash hash = new Md5Hash(user.getPassWord(),user.getUserName());
+        user.setPassWord(hash.toString());
         if(StringUtils.isEmpty(user.getId())) {
             if(userService.findUserByName(user)!=null) {
                 return new ResultBean(SysContent.ERROR,"用户名不能重复！");
             }
-                //添加
+            //添加
             user.setGmtCreate(new Date());
             user.setGmtModified(new Date());
             int ret = userService.addUser(user);
@@ -77,12 +80,13 @@ public class UserController {
         //老密码
         if(map.containsKey("passWord") && !StringUtils.isEmpty(map.get("passWord"))){
             String passWord = map.get("passWord").trim();
-            user.setPassWord(passWord);
+            Md5Hash hash = new Md5Hash(passWord,user.getUserName());
+            user.setPassWord(hash.toString());
         }
 
         user = userService.findUserByNameAndPwd(user);
         if(user == null){
-            return new ResultBean(SysContent.ERROR,"用户名或密码不正确!");
+            return new ResultBean(SysContent.ERROR,"密码错误!");
         }
 
         //新密码
@@ -91,7 +95,8 @@ public class UserController {
                 return new ResultBean(SysContent.ERROR,"新密码不能为空!");
             }
             String newPwd = map.get("newPwd").trim();
-            user.setPassWord(newPwd);
+            Md5Hash hash = new Md5Hash(newPwd,user.getUserName());
+            user.setPassWord(hash.toString());
         }
         //更新
         user.setGmtModified(new Date());
