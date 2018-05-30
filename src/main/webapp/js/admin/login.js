@@ -13,7 +13,7 @@ angular.module('loginApp', ['ngRoute'])
             $('#loginForm').isValid(function() {
                 $http({
                     method: 'POST',
-                    url: '/admin/index',
+                    url: 'admin/subLogin',
                     data: {
                         userName: $scope.user.userName,
                         passWord: $scope.user.passWord,
@@ -21,7 +21,7 @@ angular.module('loginApp', ['ngRoute'])
                     }
                 }).then(function successCallback(response) {
                     if(response.data.errNo == 0){
-                        window.location.href="/admin";
+                        window.location.href="admin";
                     }else{
                         $("#message").text(response.data.errMsg);
                     }

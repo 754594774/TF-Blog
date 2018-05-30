@@ -92,4 +92,6 @@
         <aop:pointcut id="servicePointcut" expression="execution(* com.linn..*Service.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>
     </aop:config>
+
+    <import resource="spring-shiro.xml" />
 </beans>

@@ -24,7 +24,7 @@ function leaveMsg(){
 
     var innerHtml =
         "<li class=\"list0\"> <a class=\"close\" href=\"javascript:;\">X</a>\n" +
-        "  <div class=\"head\"><img src=\"../resources/images/foot.png\" alt=\"\"></div>\n" +
+        "  <div class=\"head\"><img src=\"resources/images/foot.png\" alt=\"\"></div>\n" +
         "  <div class=\"content\">\n" +
         "    <p class=\"text\"><span class=\"name\">我：</span>" + msg + "</p>\n" +
         "    <div class=\"good\"><span class=\"date\">" + getTime() + "</span></div>\n" +

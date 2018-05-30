@@ -45,6 +45,30 @@
     </update>
 
     <delete id="deleteUserById">
-        delete from blog_user where id = #{id}
+        DELETE FROM blog_user
+        WHERE id = #{id}
     </delete>
+
+    <!--根据用户名查找拥有的所有角色-->
+    <select id="getRolesByUsername" parameterType="String" resultType="String">
+        SELECT role_name
+        FROM  blog_user_roles
+        WHERE user_name = #{userName}
+    </select>
+
+    <!--根据角色名查找拥有的所有权限-->
+    <select id="getPermisionByUsername" parameterType="String" resultType="String">
+        SELECT permission
+        FROM blog_roles_permissions rp
+        JOIN blog_user_roles ur
+        ON rp.role_name = ur.role_name
+        WHERE ur.user_name ="001";
+    </select>
+
+    <!--根据用户名查找密码-->
+    <select id="getPasswordByUsername" resultMap="userResultMap">
+        SELECT pass_word
+        FROM blog_user t
+        WHERE t.user_name = #{userName}
+    </select>
 </mapper>

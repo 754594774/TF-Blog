@@ -20,7 +20,7 @@ $(function () {
         $('#myModal').modal('show');
         //更新信件状态
         $.ajax({
-            url: '/changeViewStatus',
+            url: 'changeViewStatus',
             type: 'POST',
             traditional:true,
             data:{ids:ids},

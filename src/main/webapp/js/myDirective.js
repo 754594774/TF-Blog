@@ -5,6 +5,6 @@
 angular.module('frontApp')
     .directive("backTopDirective", function() {
         return {
-            templateUrl: '../html/backTop.html'
+            templateUrl: 'html/backTop.html'
         };
     });

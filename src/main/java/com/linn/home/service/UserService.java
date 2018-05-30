@@ -20,4 +20,10 @@ public interface UserService {
     int updateUserByUserName(User user) throws Exception;
 
     int deleteUserById(int id) throws Exception;
+
+    List<String> getRolesByUsername(String username);
+
+    User getPasswordByUsername(String username);
+
+    List<String> getPermisionByUsername(String username);
 }

@@ -1,10 +1,8 @@
 //angularJs路由
 angular.module('backApp', ['ngRoute'])
-    .controller('userCtrl', function(userService) {
-        userService.getUser();
+    .controller('userCtrl', function() {
     })
-    .controller('menuCtrl', function($scope,$routeParams,userService) {
-        userService.getUser();
+    .controller('menuCtrl', function($scope,$routeParams,$location) {
         $scope.params = $routeParams;
     })
     .controller('changePwdCtrl', function($scope,$http,$rootScope) {
@@ -22,7 +20,7 @@ angular.module('backApp', ['ngRoute'])
             $('#changePwdForm').isValid(function(){
                 $http({
                     method: 'POST',
-                    url: '/changePwd',
+                    url: 'changePwd',
                     data: {
                         userName: $rootScope.user.userName,
                         passWord:$scope.oldPwd,
@@ -45,7 +43,7 @@ angular.module('backApp', ['ngRoute'])
     .controller('headerCtrl', function($scope,$http) {
         $http({
             method: 'POST',
-            url: '/findCountByStatus'
+            url: 'findCountByStatus'
         }).then(function successCallback(response) {
             if(response.data.errNo == 0){
                 $scope.unReadCount = response.data.obj;
@@ -60,9 +58,8 @@ angular.module('backApp', ['ngRoute'])
         $scope.logout = function() {
             $http({
                 method: 'POST',
-                url: '/admin/logout'
+                url: 'admin/logout'
             }).then(function successCallback(response) {
-                console.log(response);
                 if(response.data.errNo == 0){
                     window.location.href="/admin/login";
                 }else{
@@ -74,8 +71,7 @@ angular.module('backApp', ['ngRoute'])
             })
         };
     })
-    .controller('pubArticleCtrl', function($scope,$http,$rootScope,userService) {
-        userService.getUser();
+    .controller('pubArticleCtrl', function($scope,$http,$rootScope) {
         $http({
             method: 'GET',
             url: 'toCategoryList'
@@ -96,25 +92,6 @@ angular.module('backApp', ['ngRoute'])
             // 请求失败执行代码
             toastr.error("请求分类数据失败");
         });
-    })
-    .service('userService', function($rootScope, $http) {//拦截用户登录
-        this.getUser = function () {
-            $http({
-                method: 'GET',
-                url: 'findLoginUser'
-            }).then(function successCallback(response) {
-                if(response.data.errNo == 0){
-                    $rootScope.user = response.data.obj;
-                }else{
-                    $rootScope.user = null;
-                    window.location.href="/admin/login";
-                }
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-                $rootScope.user = null;
-                window.location.href="/admin/login";
-            });
-        }
     })
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider

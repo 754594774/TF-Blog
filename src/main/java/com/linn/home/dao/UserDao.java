@@ -55,4 +55,25 @@ public interface UserDao {
      * @return
      */
     User findUserByName(User user);
+
+    /**
+     * 根据用户名查找用户的角色
+     * @param username
+     * @return 角色集合
+     */
+    List<String> getRolesByUsername(String username);
+
+    /**
+     * 根据用户名查找用户密码
+     * @param username
+     * @return 用户
+     */
+    User getPasswordByUsername(String username);
+
+    /**
+     * 通过用户名查找用户权限集合
+     * @param username
+     * @return
+     */
+    List<String> getPermisionByUsername(String username);
 }

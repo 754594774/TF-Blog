@@ -1,9 +1,16 @@
 package com.linn.home.controller;
 
+import com.linn.frame.controller.BaseController;
 import com.linn.frame.entity.ResultBean;
 import com.linn.frame.util.SysContent;
 import com.linn.home.entity.User;
 import com.linn.home.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -24,26 +31,10 @@ import java.util.Map;
  * Created by Administrator on 2018-02-07.
  */
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
 
     @Resource
     private UserService userService ;
-
-    //跳转到后台主页面
-    @RequestMapping("/admin")
-    private String toAdmin() throws Exception {
-        return "admin/index";
-    }
-
-    /**
-     * 跳转到登录页面
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("/admin/login")
-    private String toAdminLogin() throws Exception {
-        return "admin/login";
-    }
 
     /**
      * 登出
@@ -67,74 +58,82 @@ public class LoginController {
     }
 
     /**
-     * 登录
-     * @param map
-     * @param session
-     * @param request
-     * @param response
+     * 跳转到登录页面
      * @return
      * @throws Exception
      */
-    @ResponseBody
-    @RequestMapping(value = "/admin/index",method = RequestMethod.POST)
-    private ResultBean toAdminIndex(@RequestBody Map<String, String> map,
-                                    HttpSession session,
-                                    HttpServletRequest request,
-                                    HttpServletResponse response) throws Exception {
-        User user = new User();
-        if(map.containsKey("userName") && !StringUtils.isEmpty(map.get("userName"))){
-            String userName = map.get("userName");
-            user.setUserName(userName);
-        }else{
-            return new ResultBean(SysContent.ERROR,"用户名不能为空!");
-        }
-        if(map.containsKey("passWord") && !StringUtils.isEmpty(map.get("passWord"))){
-            String passWord = map.get("passWord");
-            user.setPassWord(passWord);
-        }else{
-            return new ResultBean(SysContent.ERROR,"密码不能为空!");
-        }
-        user = userService.findUserByNameAndPwd(user);
-
-        if(user == null){
-            return new ResultBean(SysContent.ERROR,"用户名或密码不正确!");
-        }
-
-        session.setMaxInactiveInterval(10*60);//过期时间-10分钟
-        session.setAttribute("user",user);
-
-        if(map.containsKey("rememberMe") && !StringUtils.isEmpty(map.get("rememberMe"))){
-            Object rememberMe = map.get("rememberMe");
-            if(rememberMe.equals("true")){//记住我
-                //添加cookie
-                Cookie cookie = new Cookie("user",user.getUserName() + "_" + user.getPassWord());
-                cookie.setMaxAge(60*60*24);//记住我1天
-                cookie.setPath("/");
-                response.addCookie(cookie);
-            }
-        }
-        return new ResultBean(SysContent.SUCCESS,"登陆成功!");
+    @RequestMapping("/login")
+    private String toAdminLogin() throws Exception {
+        return "/admin/login";
     }
 
+    /**
+     * 登录
+     * @return
+     */
     @ResponseBody
-    @RequestMapping("/findLoginUser")
-    private ResultBean findLoginUser(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        User user = new User();
-        //获取cookie
-        Cookie[] cookies = request.getCookies();
-        for(Cookie cookie : cookies) {
-            if(cookie.getName().equals("user")){
-                String nameAndPwd = cookie.getValue();
-                user.setUserName(nameAndPwd.split("_")[0]);
-                user.setPassWord(nameAndPwd.split("_")[1]);
-                return new ResultBean(SysContent.SUCCESS,"成功",user);
-            }
+    @RequestMapping(value = "/admin/subLogin",method = RequestMethod.POST)
+    public ResultBean subLogin(@RequestBody Map<String, String> map){
+
+        Subject subject = SecurityUtils.getSubject();
+
+        UsernamePasswordToken token = new UsernamePasswordToken(map.get("userName"),map.get("passWord"));
+        try{
+            subject.login(token);
+            System.out.println("认证结果：" +  subject.isAuthenticated());
+        } catch (UnknownAccountException uae)
+        {
+            logger.error(uae.getMessage(), uae);
+            return new ResultBean(SysContent.ERROR,"账号不存在!");
         }
-        //获取Session
-        user = (User)request.getSession().getAttribute("user");
-        if(user != null){
-            return new ResultBean(SysContent.SUCCESS,"成功",user);
+        catch (IncorrectCredentialsException ice)
+        {
+            logger.error(ice.getMessage(), ice);
+            return new ResultBean(SysContent.ERROR,"密码错误!");
         }
-        return new ResultBean(SysContent.ERROR,"工人信息不存在！");
+        catch (LockedAccountException lae)
+        {
+            logger.error(lae.getMessage(), lae);
+            return new ResultBean(SysContent.ERROR,"账号被锁定!");
+        }
+        catch (Exception e)
+        {
+            logger.error(e.getMessage(), e);
+            return new ResultBean(SysContent.ERROR,"未知错误,请联系管理员!");
+        }
+        return new ResultBean(SysContent.SUCCESS,"登录成功!");
+    }
+
+    @RequestMapping("/admin")
+    public String toAdminIndex(){
+        return "/admin/index";
+    }
+
+    /**
+     * 没有权限
+     *
+     * @param model 数据传输对象
+     * @return 返回视图
+     */
+    @RequestMapping(value = "/unauth")
+    public String unauth(Model model)
+    {
+        if (!SecurityUtils.getSubject().isAuthenticated())
+        {
+            return "redirect:/login";
+        }
+        return "/unauth";
+    }
+
+    /**
+     * 系统错误页面
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String toError(Model model)
+    {
+        return "/error";
     }
 }

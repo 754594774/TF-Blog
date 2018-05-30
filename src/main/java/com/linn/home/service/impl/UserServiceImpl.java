@@ -46,4 +46,19 @@ public class UserServiceImpl implements UserService {
     public int deleteUserById(int id) throws Exception {
         return userDao.deleteUserById(id);
     }
+
+    @Override
+    public List<String> getRolesByUsername(String username) {
+        return userDao.getRolesByUsername(username);
+    }
+
+    @Override
+    public User getPasswordByUsername(String username) {
+        return userDao.getPasswordByUsername(username);
+    }
+
+    @Override
+    public List<String> getPermisionByUsername(String username) {
+        return userDao.getPermisionByUsername(username);
+    }
 }

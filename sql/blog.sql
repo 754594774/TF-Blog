@@ -40,8 +40,8 @@ CREATE TABLE blog_link (
 )
 CREATE TABLE blog_user (
   id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-  user_name VARCHAR(30) NOT NULL COMMENT '用户名',
-  pass_word VARCHAR(30) NOT NULL COMMENT '密码',
+  user_name VARCHAR(32) NOT NULL COMMENT '用户名',
+  pass_word VARCHAR(64) NOT NULL COMMENT '密码',
   gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
   gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
 )
@@ -52,6 +52,28 @@ CREATE TABLE blog_letter (
   contact_way VARCHAR(30) NOT NULL COMMENT '联系方式',
   content TEXT NOT NULL COMMENT '正文',
   view_status TINYINT(1) UNSIGNED ZEROFILL DEFAULT 0 COMMENT '查阅状态',
+  gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
+  gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
+)
+
+CREATE TABLE blog_user_roles (
+  id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  user_name VARCHAR(30) NOT NULL COMMENT '用户名',
+  role_name VARCHAR(30) NOT NULL COMMENT '角色名',
+  gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
+  gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
+)
+CREATE TABLE blog_roles_permissions (
+  id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  role_name VARCHAR(30) NOT NULL COMMENT '角色名',
+  permission VARCHAR(30) NOT NULL COMMENT '权限',
+  gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
+  gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
+)
+CREATE TABLE blog_role (
+  id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+  role_name VARCHAR(30) NOT NULL COMMENT '角色名',
+  role_code VARCHAR(30) NOT NULL COMMENT '角色编号',
   gmt_create DATETIME DEFAULT NOW() COMMENT '录入时间',
   gmt_modified DATETIME DEFAULT NOW() COMMENT '更新时间'
 )

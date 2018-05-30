@@ -12,7 +12,7 @@ function loadCommentList(data){
         }
         innerHtml +=
             "<li class=\"list0\"> <a class=\"close\" href=\"javascript:;\">X</a>\n" +
-            "  <div class=\"head\"><img src=\"../resources/images/foot.png\" alt=\"\"></div>\n" +
+            "  <div class=\"head\"><img src=\"resources/images/foot.png\" alt=\"\"></div>\n" +
             "  <div class=\"content\">\n" +
             "    <p class=\"text\"><span class=\"name\" rootId=" + comment.id + ">" + comment.memberName + "：</span>" + comment.content + "</p>\n" +
             "    <div class=\"good\"><span class=\"date\">" + formatDateTime(comment.pdate) + "</span></div>\n" +
@@ -53,7 +53,7 @@ function tree(comments,toUser){
         }
         str +=
             "      <div class=\"comment\" user=\"self\">\n" +
-            "        <div class=\"comment-left\"><img src=\"../resources/images/foot.png\" alt=\"\"></div>\n" +
+            "        <div class=\"comment-left\"><img src=\"resources/images/foot.png\" alt=\"\"></div>\n" +
             "        <div class=\"comment-right\">\n" +
             "          <div class=\"comment-text\"><span class=\"user\" pid=" + comment.id + ">" +comment.memberName  + "：</span>" + replayUser + comment.content + "</div>\n" +
             "          <div class=\"comment-date\">" + formatDateTime(comment.pdate) + " <a class=\"comment-dele\" href=\"javascript:;\">回复</a> </div>\n" +
@@ -159,7 +159,7 @@ function initCommentEvent() {
         //设置属性
         div.setAttribute("user", "self");
         //获取每条评论的innerHTML结构，每次只替换textarea的输入内容和 当前发送时间
-        var html = '<div class="comment-left">' + '<img src="../resources/images/foot.png" alt=""/>' + '</div>' +
+        var html = '<div class="comment-left">' + '<img src="resources/images/foot.png" alt=""/>' + '</div>' +
             '<div class="comment-right">' +
             '<div class="comment-text"><span>我：</span>' + textarea.value + '</div>' +
             '<div class="comment-date">' +
