@@ -1,3 +1,9 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
 <div ng-controller="articleDetailCtrl" class="panel panel-default">
     <div class="panel-body">
         <input id="articleId" type="hidden" value="{{article.id}}">
@@ -5,7 +11,9 @@
         </h2>
         <span class="text-muted center-block text-center">{{article.gmtCreate | date:"yyyy-MM-dd HH:mm:ss"}} by {{article.author}}</span>
         <hr style="height:3px;border:none;border-top:3px double green;"/>
+
         <p ng-bind-html="article.content | to_trusted" class="blog-description"></p>
+
     </div>
 </div>
 <!--&lt;!&ndash;翻页&ndash;&gt;-->
@@ -57,5 +65,16 @@
         </ul>
     </div>
 </div>
+<link rel="stylesheet" type="text/css" href="plugins/highlight/styles/monokai-sublime.css"/>
+<script src="plugins/jquery.min.js"></script>
+<script src="plugins/highlight/highlight.pack.js"></script>
 <script src="plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
 <script src="js/articleDetail.js"></script>
+<script>
+    //代码高亮
+    $(function(){
+        hljs.initHighlightingOnLoad();
+
+    });
+</script>
+</html>

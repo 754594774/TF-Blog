@@ -4,28 +4,42 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>任意位置浮动固定层DEMO</title>
-
-    <!-- start -->
+    <link rel="stylesheet" type="text/css" href="../plugins/highlight/styles/vs.css"/>
     <script src="../plugins/jquery.min.js"></script>
-    <script src="../plugins/browser.js"></script>
-    <!--<script type="text/javascript" src="http://www.ijquery.cn/js/jquery-1.7.2.min.js"></script>-->
-    <script src="../plugins/floatDiv/jquery.floatDiv.js"></script>
+    <script src="../plugins/highlight/highlight.pack.js"></script>
     <script type="text/javascript">
         $(function(){
-            $("#test").floatdiv({top:"80px",right:"100px"});
+            hljs.initHighlightingOnLoad();
         });
     </script>
-    <!-- end -->
 </head>
 
 <body>
-<!-- start -->
-<div id="test">
-    <img src="../resources/images/float.jpg" alt="" title="" />
-</div>
-<!-- end -->
-<div style="width:980px;height:800px;margin:0 auto;background:#CCCCCC;">
-</div>
+<p>
+<pre>
+    <code class="java">
+
+        package com.bjsxt.dp.filter;
+        /**
+        *李难难
+        * Created by Administrator on 2018/5/28/028.
+        */
+        public class SensitiveFilter implements Filter {
+        //重写
+        @Override
+        public String doFilter(String str) {
+        try{
+        String r = str.replace("被就业", "就业")
+        .replace("敏感", "");
+        return r;
+        }catch(Exception e){
+
+        }
+        }
+        }
+    </code>
+ </pre>
+</p>
 </body>
 
 </html>
