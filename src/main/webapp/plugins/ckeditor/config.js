@@ -26,13 +26,13 @@ CKEDITOR.editorConfig = function( config ) {
 		//使用zenburn的代码高亮风格样式 PS:zenburn效果就是黑色背景
 		//如果不设置着默认风格为default
 		config.codeSnippet_theme= 'monokai_sublime',
-		config.uploadUrl= '/upload?command=QuickUpload&type=Files&responseType=json',
+		config.uploadUrl= 'upload?command=QuickUpload&type=Files&responseType=json',
 
 		// Configure your file manager integration. This example uses CKFinder 3 for PHP.
-		config.filebrowserBrowseUrl= '/ckfinder/ckfinder.html',
-		config.filebrowserImageBrowseUrl= '/ckfinder/ckfinder.html?type=Images',
-		config.filebrowserUploadUrl= '/upload?command=QuickUpload&type=Files',
-		config.filebrowserImageUploadUrl= '/uploadImage?command=QuickUpload&type=Images',
+		config.filebrowserBrowseUrl= 'ckfinder/ckfinder.html',
+		config.filebrowserImageBrowseUrl= 'ckfinder/ckfinder.html?type=Images',
+		config.filebrowserUploadUrl= 'upload?command=QuickUpload&type=Files',
+		config.filebrowserImageUploadUrl= 'uploadImage?command=QuickUpload&type=Images',
 
 		config.removeDialogTabs= 'image:advanced;link:advanced'
 };

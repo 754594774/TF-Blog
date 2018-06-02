@@ -177,7 +177,6 @@ public class ArticleController extends BaseController {
 
         String path = request.getSession().getServletContext().getRealPath("upload");
         String fileName = file.getOriginalFilename();
-        System.out.println(path);
         File targetFile = new File(path,fileName);
         if(!targetFile.exists()){
             targetFile.mkdirs();
