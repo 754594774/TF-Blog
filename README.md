@@ -1,18 +1,12 @@
 # tf-blog
 
-## 关于作者
-
-* 技术博客：http://linn.site/
-
-* 生活博客：http://www.linn.site/Hamster/
-
 ## 项目简介
 
-    > 个人博客系统，在工作之余开发，正在持续更新中。。。
+    > 使用anjularjs搭建的单页面博客系统
 
 ### 前端
 
-    * 示例网站：http://linn.site/
+    * 示例网站：http://linn.site/TF-Blog
 
     * 使用html + angularjs
 
