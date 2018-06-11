@@ -12,7 +12,7 @@
 
 ### 后端
 
-    * 示例网站：http://linn.site/admin/login 用户名/密码：admin/admin
+    * 示例网站：http://linn.site/TF-Blog/admin/login 用户名/密码：admin/admin
 
     * 使用ssm搭建
 
